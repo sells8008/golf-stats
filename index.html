@@ -33,6 +33,8 @@ td,th{border-bottom:1px solid #eee;padding:2px 6px;text-align:right}th:first-chi
 // kind: 'roundCount' (exact count per 18-hole round), 'holeSplit' (hole-level groups split by par),
 //       'roundSeries' (value per round over time), 'hcp'. Add a stat = add one entry.
 const avg=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null;
+const MISS=['Left','Right','Short','Long','No Chance'];
+const LABEL={'No Chance':'Missed - no chance'};
 const STATS=[
  {id:'dbl',area:'Doubles / Triples',title:'Doubles or worse per round',kind:'roundCount',val:r=>r.doubles!=null&&r.triplesPlus!=null?r.doubles+r.triplesPlus:null},
  {id:'tpl',area:'Doubles / Triples',title:'Triples or worse per round',kind:'roundCount',val:r=>r.triplesPlus},
@@ -45,9 +47,10 @@ const STATS=[
  {id:'p1',area:'Putting',title:'1-putts per round',kind:'roundCount',val:r=>r.onePutts},
  {id:'puttsplit',area:'Putting',title:'Avg to par per hole by putts',kind:'holeSplit',key:h=>h.putts==null?null:(h.putts>=3?'3+':String(h.putts)),order:['0','1','2','3+']},
  {id:'ud',area:'Up & Downs',title:'Up-and-downs made per round',kind:'roundCount',val:r=>r.udMade},
+ {id:'scr',area:'Up & Downs',title:'Scrambling % by round (up-and-downs made / attempted)',kind:'roundSeries',val:r=>r.udAtt?Math.round(100*r.udMade/r.udAtt):null},
  {id:'udser',area:'Up & Downs',title:'Up-and-downs made over time',kind:'roundSeries',val:r=>r.udMade},
- {id:'fwmiss',area:'Miss Direction',title:'Fairway miss direction',kind:'holeSplit',key:h=>['Left','Right','Short','Long'].includes(h.fwMiss)?h.fwMiss:null,order:['Left','Right','Short','Long']},
- {id:'grmiss',area:'Miss Direction',title:'Green miss direction',kind:'holeSplit',key:h=>['Left','Right','Short','Long'].includes(h.grMiss)?h.grMiss:null,order:['Left','Right','Short','Long']},
+ {id:'fwmiss',area:'Miss Direction',title:'Fairway miss direction',kind:'holeSplit',key:h=>MISS.includes(h.fwMiss)?h.fwMiss:null,order:MISS},
+ {id:'grmiss',area:'Miss Direction',title:'Green miss direction',kind:'holeSplit',key:h=>MISS.includes(h.grMiss)?h.grMiss:null,order:MISS},
  {id:'score',area:'Scoring',title:'Score to par by round',kind:'roundSeries',val:r=>r.toPar},
  {id:'hcp',area:'Handicap',title:'Handicap index trend',kind:'hcp'},
 ];
@@ -123,8 +126,8 @@ function holeSplit(s,F,c){
  const pars=F.pars.filter(p=>H.some(h=>h.par===p)),cols=['#3b7d4f','#c96','#58a','#a5a'];
  const ds=pars.map((p,i)=>({label:'Par '+p,backgroundColor:cols[i],data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar)))}));
  ds.push({label:'All selected pars',backgroundColor:'#333',data:s.order.map(k=>avg(H.filter(h=>s.key(h)===k).map(h=>h.toPar)))});
- charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order,datasets:ds},options:{scales:{y:{title:{display:true,text:'Avg to par'}}}}}));
- const rows=[];s.order.forEach(k=>{const g=H.filter(h=>s.key(h)===k);rows.push([k,g.length,(100*g.length/H.length).toFixed(0)+'%',fmt(avg(g.map(h=>h.toPar)))].concat(pars.map(p=>{const q=g.filter(h=>h.par===p);return q.length?fmt(avg(q.map(h=>h.toPar)))+` (${q.length})`:'–'})))});
+ charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order.map(k=>LABEL[k]||k),datasets:ds},options:{scales:{y:{title:{display:true,text:'Avg to par'}}}}}));
+ const rows=[];s.order.forEach(k=>{const g=H.filter(h=>s.key(h)===k);rows.push([LABEL[k]||k,g.length,(100*g.length/H.length).toFixed(0)+'%',fmt(avg(g.map(h=>h.toPar)))].concat(pars.map(p=>{const q=g.filter(h=>h.par===p);return q.length?fmt(avg(q.map(h=>h.toPar)))+` (${q.length})`:'–'})))});
  table(c,['','Holes','Share','Avg to par'].concat(pars.map(p=>'Par '+p)),rows);
 }
 function roundSeries(s,F,c){

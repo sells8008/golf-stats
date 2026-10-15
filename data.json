@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-15T17:18",
+ "generated": "2026-10-15T17:23",
  "rounds": [
   {
    "date": "2026-06-25",
@@ -37,12 +37,12 @@
    "triplesPlus": 0,
    "fwHit": 11,
    "fwPossible": 14,
-   "gir": null,
+   "gir": 11,
    "putts": 36,
    "threePutts": 2,
    "onePutts": 2,
-   "udMade": null,
-   "udAtt": null,
+   "udMade": 0,
+   "udAtt": 7,
    "id": "2026-07-03_talbot_18"
   },
   {
@@ -59,12 +59,12 @@
    "triplesPlus": 1,
    "fwHit": 6,
    "fwPossible": 14,
-   "gir": null,
+   "gir": 6,
    "putts": 35,
    "threePutts": 2,
    "onePutts": 3,
-   "udMade": null,
-   "udAtt": null,
+   "udMade": 3,
+   "udAtt": 12,
    "id": "2026-07-05_talbot_18"
   },
   {
@@ -81,12 +81,12 @@
    "triplesPlus": 2,
    "fwHit": 6,
    "fwPossible": 14,
-   "gir": null,
+   "gir": 9,
    "putts": 35,
    "threePutts": 1,
    "onePutts": 2,
-   "udMade": null,
-   "udAtt": null,
+   "udMade": 1,
+   "udAtt": 9,
    "id": "2026-07-12_tpc-sawgrass-stadium_18"
   },
   {
@@ -191,12 +191,12 @@
    "triplesPlus": 0,
    "fwHit": 8,
    "fwPossible": 14,
-   "gir": null,
+   "gir": 4,
    "putts": 29,
    "threePutts": 0,
    "onePutts": 7,
-   "udMade": null,
-   "udAtt": null,
+   "udMade": 4,
+   "udAtt": 14,
    "id": "2026-08-15_queens-harbour-yacht_18"
   },
   {
@@ -301,12 +301,12 @@
    "triplesPlus": 0,
    "fwHit": 9,
    "fwPossible": 14,
-   "gir": null,
+   "gir": 9,
    "putts": 28,
    "threePutts": 1,
    "onePutts": 9,
-   "udMade": null,
-   "udAtt": null,
+   "udMade": 6,
+   "udAtt": 9,
    "id": "2026-09-27_jacksonville-beach-g_18"
   },
   {
@@ -345,13 +345,57 @@
    "triplesPlus": 2,
    "fwHit": 7,
    "fwPossible": 14,
-   "gir": null,
+   "gir": 8,
    "putts": 35,
    "threePutts": 1,
    "onePutts": 2,
+   "udMade": 1,
+   "udAtt": 10,
+   "id": "2026-10-11_jacksonville-beach-g_18"
+  },
+  {
+   "date": "2026-06-26",
+   "course": "Park City GC",
+   "tees": "Blue",
+   "type": 18,
+   "teeYards": null,
+   "rating": null,
+   "par": 72,
+   "gross": 81,
+   "toPar": 9,
+   "doubles": 2,
+   "triplesPlus": 1,
+   "fwHit": null,
+   "fwPossible": null,
+   "gir": null,
+   "putts": null,
+   "threePutts": null,
+   "onePutts": null,
    "udMade": null,
    "udAtt": null,
-   "id": "2026-10-11_jacksonville-beach-g_18"
+   "id": "2026-06-26_park-city-gc_18"
+  },
+  {
+   "date": "2026-06-27",
+   "course": "Canyons Golf",
+   "tees": "Blue",
+   "type": 18,
+   "teeYards": null,
+   "rating": null,
+   "par": 70,
+   "gross": 86,
+   "toPar": 16,
+   "doubles": 4,
+   "triplesPlus": 1,
+   "fwHit": null,
+   "fwPossible": null,
+   "gir": null,
+   "putts": null,
+   "threePutts": null,
+   "onePutts": null,
+   "udMade": null,
+   "udAtt": null,
+   "id": "2026-06-27_canyons-golf_18"
   },
   {
    "date": "2026-08-27",
@@ -371,8 +415,8 @@
    "putts": 14,
    "threePutts": 0,
    "onePutts": 4,
-   "udMade": null,
-   "udAtt": null,
+   "udMade": 2,
+   "udAtt": 2,
    "id": "2026-08-27_jacksonville-beach-g_9"
   },
   {
@@ -1336,8 +1380,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 3,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1354,8 +1398,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1369,11 +1413,11 @@
    "toPar": 1,
    "fir": "Miss",
    "fwMiss": "Left",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1390,8 +1434,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1408,8 +1452,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1426,8 +1470,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1444,8 +1488,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1462,8 +1506,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1480,8 +1524,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1498,8 +1542,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1516,8 +1560,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 3,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1534,8 +1578,8 @@
    "gir": "Miss",
    "grMiss": "Long",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1552,8 +1596,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1570,8 +1614,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1588,8 +1632,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1606,8 +1650,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1624,8 +1668,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-03_talbot_18",
@@ -1642,8 +1686,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1660,8 +1704,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1678,8 +1722,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1696,8 +1740,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1714,8 +1758,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 3,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1732,8 +1776,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1747,11 +1791,11 @@
    "toPar": 2,
    "fir": "Miss",
    "fwMiss": "Right",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1768,8 +1812,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1786,8 +1830,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1804,8 +1848,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1822,8 +1866,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1837,11 +1881,11 @@
    "toPar": 2,
    "fir": "Miss",
    "fwMiss": "Short",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1858,8 +1902,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1876,8 +1920,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1894,8 +1938,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1912,8 +1956,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 3,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1930,8 +1974,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1948,8 +1992,8 @@
    "gir": "Miss",
    "grMiss": "Left",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-05_talbot_18",
@@ -1966,8 +2010,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -1984,8 +2028,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2002,8 +2046,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2020,8 +2064,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2038,8 +2082,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2053,11 +2097,11 @@
    "toPar": 2,
    "fir": "Miss",
    "fwMiss": "Right",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2071,11 +2115,11 @@
    "toPar": 0,
    "fir": "Miss",
    "fwMiss": "Left",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2092,8 +2136,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2110,8 +2154,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2128,8 +2172,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2146,8 +2190,8 @@
    "gir": "Miss",
    "grMiss": "Left",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2161,11 +2205,11 @@
    "toPar": 3,
    "fir": "Miss",
    "fwMiss": "Left",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2182,8 +2226,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2200,8 +2244,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 3,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2215,11 +2259,11 @@
    "toPar": 2,
    "fir": "Miss",
    "fwMiss": "Right",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2236,8 +2280,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2254,8 +2298,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2272,8 +2316,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
@@ -2290,8 +2334,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-07-17_club-at-savannah-har_18",
@@ -3604,8 +3648,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3622,8 +3666,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3640,8 +3684,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3658,8 +3702,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3676,8 +3720,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3694,8 +3738,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3712,8 +3756,8 @@
    "gir": "Miss",
    "grMiss": "Long",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3730,8 +3774,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3748,8 +3792,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3763,11 +3807,11 @@
    "toPar": 2,
    "fir": "Miss",
    "fwMiss": "Right",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3784,8 +3828,8 @@
    "gir": "Miss",
    "grMiss": "Long",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3802,8 +3846,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3820,8 +3864,8 @@
    "gir": "Miss",
    "grMiss": "Left",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3835,11 +3879,11 @@
    "toPar": 2,
    "fir": "Miss",
    "fwMiss": "Right",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3856,8 +3900,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3874,8 +3918,8 @@
    "gir": "Miss",
    "grMiss": "Left",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3889,11 +3933,11 @@
    "toPar": 1,
    "fir": "Miss",
    "fwMiss": "Right",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-08-15_queens-harbour-yacht_18",
@@ -3910,8 +3954,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-08-24_cimarrone-golf-club_18",
@@ -4252,8 +4296,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-08-27_jacksonville-beach-g_9",
@@ -4270,8 +4314,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-27_jacksonville-beach-g_9",
@@ -4288,8 +4332,8 @@
    "gir": "Miss",
    "grMiss": "Left",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-08-27_jacksonville-beach-g_9",
@@ -4306,8 +4350,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-27_jacksonville-beach-g_9",
@@ -4324,8 +4368,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-27_jacksonville-beach-g_9",
@@ -4342,8 +4386,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-27_jacksonville-beach-g_9",
@@ -4360,8 +4404,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-27_jacksonville-beach-g_9",
@@ -4378,8 +4422,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-27_jacksonville-beach-g_9",
@@ -4396,8 +4440,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-08-30_jacksonville-beach-g_18",
@@ -5710,8 +5754,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5728,8 +5772,8 @@
    "gir": "Miss",
    "grMiss": "Long",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5746,8 +5790,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5764,8 +5808,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5782,8 +5826,8 @@
    "gir": "Miss",
    "grMiss": "Long",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5800,8 +5844,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5818,8 +5862,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5836,8 +5880,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5854,8 +5898,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5872,8 +5916,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 3,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5890,8 +5934,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5908,8 +5952,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5923,11 +5967,11 @@
    "toPar": 1,
    "fir": "Hit",
    "fwMiss": null,
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5944,8 +5988,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5962,8 +6006,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5977,11 +6021,11 @@
    "toPar": 1,
    "fir": "Miss",
    "fwMiss": "Right",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -5998,8 +6042,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-09-27_jacksonville-beach-g_18",
@@ -6016,8 +6060,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-10-04_queens-harbour-yacht_18",
@@ -6358,8 +6402,8 @@
    "gir": "Miss",
    "grMiss": "Long",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 1
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6373,11 +6417,11 @@
    "toPar": 3,
    "fir": "Miss",
    "fwMiss": "Left",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6394,8 +6438,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6412,8 +6456,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6430,8 +6474,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6445,11 +6489,11 @@
    "toPar": 2,
    "fir": "Miss",
    "fwMiss": "Right",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 1,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6463,11 +6507,11 @@
    "toPar": 2,
    "fir": "Miss",
    "fwMiss": "Short",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6484,8 +6528,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6502,8 +6546,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6520,8 +6564,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6538,8 +6582,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 3,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6556,8 +6600,8 @@
    "gir": "Miss",
    "grMiss": "Right",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6571,11 +6615,11 @@
    "toPar": 3,
    "fir": "Miss",
    "fwMiss": "Short",
-   "gir": null,
-   "grMiss": null,
+   "gir": "Miss",
+   "grMiss": "No Chance",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6592,8 +6636,8 @@
    "gir": "Miss",
    "grMiss": "Short",
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 1,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6610,8 +6654,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6628,8 +6672,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6646,8 +6690,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   },
   {
    "id": "2026-10-11_jacksonville-beach-g_18",
@@ -6664,8 +6708,8 @@
    "gir": "Hit",
    "grMiss": null,
    "putts": 2,
-   "udAtt": null,
-   "udMade": null
+   "udAtt": 0,
+   "udMade": 0
   }
  ],
  "handicap": [
