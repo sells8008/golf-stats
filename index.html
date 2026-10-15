@@ -92,7 +92,7 @@ const STATS=[
  {id:'diff',area:'Differential',title:'Score differential over time',kind:'diffSeries'},
 ];
 // Area summary pills (18-hole rounds only; rounds counted only if every filtered hole has the field)
-const diffR=F=>F.R.filter(r=>r.differential!=null).slice().reverse();
+const diffR=F=>F.G.slice().reverse();
 const SUMM={
  'Differential':F=>{const r=diffR(F);if(!r.length)return null;const d=r.map(x=>x.differential);return `Avg differential: ${avg(d).toFixed(1)} · best ${Math.min(...d).toFixed(1)} · ${r.length} rounds`},
  'Fairways':F=>{const r=perRound(F,h=>h.par>=4,h=>h.fir==='Hit'||h.fir==='Miss',hs=>[hs.filter(h=>h.fir==='Hit').length,hs.length]);if(!r.length)return null;
@@ -127,10 +127,10 @@ fetch('data.json').then(r=>r.json()).then(d=>{D=d;init()}).catch(e=>console.erro
 const sortB=(a,b)=>a==='Unknown'?1:b==='Unknown'?-1:parseFloat(a)-parseFloat(b);
 function init(){
  $('#gen').textContent='Data updated '+D.generated.replace('T',' ');
- D.rounds.forEach(r=>{r.yb=r.type==18&&r.teeYards?(a=>a+'-'+(a+199))(Math.floor(r.teeYards/200)*200):'Unknown';
+(D.ghin||[]).concat(D.rounds).forEach(r=>{r.yb=r.type==18&&r.teeYards?(a=>a+'-'+(a+199))(Math.floor(r.teeYards/200)*200):'Unknown';
   const a=Math.floor(r.rating);r.rb=r.rating!=null?a+'.0-'+a+'.9':'Unknown'});
- multiSelect('#msCourse',[...new Set(D.rounds.map(r=>r.course))].sort(),ST.courses,'Search courses…');
- multiSelect('#msTee',[...new Set(D.rounds.map(r=>r.tees).filter(Boolean))].sort(),ST.tees,'Search tees…');
+ multiSelect('#msCourse',[...new Set(D.rounds.concat(D.ghin||[]).map(r=>r.course))].sort(),ST.courses,'Search courses…');
+ multiSelect('#msTee',[...new Set(D.rounds.concat(D.ghin||[]).map(r=>r.tees).filter(Boolean))].sort(),ST.tees,'Search tees…');
  ['#lastN','#from','#to','#lastC'].forEach(s=>$(s).addEventListener('input',render));
  ['#ydManual','#rtManual'].forEach(s=>$(s).addEventListener('input',()=>{(s==='#ydManual'?ST.yds:ST.rts).clear();drawChips();render()}));
  $('#ph').onclick=e=>{if(e.target.id==='reset')return;$('#panel').classList.toggle('closed');SS('golf_panel_closed',$('#panel').classList.contains('closed'))};
@@ -189,7 +189,12 @@ function filtered(){
  const key=x=>x.id||(x.date+'|'+x.course+'|'+x.type);const rk=new Set(R.map(key));
  const pars=ST.allPars?[3,4,5]:[...ST.pars].sort();
  const H=D.holes.filter(h=>rk.has(key(h))&&pars.includes(h.par)&&(ST.inc9||h.type==18));
- return {R,R18:R.filter(r=>r.type==18),H,pars,allPars:ST.allPars};
+ // GHIN score history (differential only): same round filters; tee distance only where known
+ let G=(D.ghin||[]).filter(r=>(!cs.size||cs.has(r.course))&&(!ts.size||(r.tees&&ts.has(r.tees)))&&(r.teeYards==null||okB(ST.yds,ym,r.yb,r.type==18?r.teeYards:null))&&okB(ST.rts,rm,r.rb,r.rating)&&(!f||r.date>=f)&&(!t||r.date<=t)&&(ST.inc9||r.type==18));
+ G.sort((a,b)=>b.date.localeCompare(a.date));
+ if(lc){const keep=new Set();const cl=cs.size?[...cs]:[...new Set(G.map(r=>r.course))];cl.forEach(c=>G.filter(r=>r.course===c).slice(0,lc).forEach(r=>keep.add(r)));G=G.filter(r=>keep.has(r))}
+ if(n)G=G.slice(0,n);
+ return {R,R18:R.filter(r=>r.type==18),H,pars,allPars:ST.allPars,G};
 }
 const fmt=(x,d=2)=>x==null?'–':(x>0&&d==2?'+':'')+x.toFixed(d);
 const tpCls=x=>x==null?'':x<=0.15?'tp-neg':x<=0.9?'tp-mid':'tp-pos';
@@ -261,10 +266,10 @@ function diffSeries(s,F,c){
  const R=diffR(F);if(!R.length)return empty(c,'No differential data for the current filters yet.');
  const d=R.map(r=>r.differential);
  const b8=d.map((_,i)=>{const w=d.slice(Math.max(0,i-19),i+1);if(w.length<8)return null;return avg(w.slice().sort((a,b)=>a-b).slice(0,8))});
- const ds=[{label:'Differential',data:d,borderColor:PAL.g,backgroundColor:fillGrad(PAL.g),fill:true,tension:.4,borderWidth:2.5,pointRadius:3.5,pointHoverRadius:6,pointBackgroundColor:PAL.g}];
+ const ds=[{label:'Differential',data:d,borderColor:PAL.g,backgroundColor:fillGrad(PAL.g),fill:true,tension:.35,borderWidth:2,pointRadius:R.length>60?2:3.5,pointHoverRadius:6,pointBackgroundColor:PAL.g}];
  if(b8.some(x=>x!=null))ds.push({label:'Avg best 8 of last 20',data:b8,borderColor:PAL.gold,borderDash:[5,4],tension:.4,borderWidth:2,pointRadius:0,fill:false,spanGaps:true});
  charts.push(new Chart(canvas(c),{type:'line',data:{labels:R.map(r=>r.date),datasets:ds},options:{maintainAspectRatio:false,interaction:{mode:'nearest',intersect:false},
-  plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{title:x=>{const r=R[x[0].dataIndex];return r.date+' · '+r.course+(r.type==9?' (9)':'')},label:x=>x.dataset.label+': '+(x.raw==null?'–':(+x.raw).toFixed(1))}}},
+  plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{title:x=>{const r=R[x[0].dataIndex];return r.date+' · '+r.course+(r.type==9?' (9 holes)':'')+' · '+r.score},label:x=>x.dataset.label+': '+(x.raw==null?'–':(+x.raw).toFixed(1))}}},
   scales:{x:ax('Round date',{grid:{display:false},ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:7}}),y:ax('Score differential')}}}));
 }
 function hcp(s,F,c){

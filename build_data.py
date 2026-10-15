@@ -36,6 +36,15 @@ hcp = []
 ws = wb['Handicap Tracker']
 for r in ws.iter_rows(min_row=8, max_col=2, values_only=True):
     if r[0] and num(r[1]) is not None: hcp.append(dict(date=d(r[0]), index=r[1]))
-out = dict(generated=datetime.datetime.now().isoformat(timespec='minutes'), rounds=rounds, holes=holes, handicap=hcp)
+rmap = {r['id']: r for r in rounds if r.get('id')}
+ghin = []
+if 'GHIN Scores' in wb.sheetnames:
+    ws = wb['GHIN Scores']; GH = [c.value for c in ws[1]]; gx = {h: i for i, h in enumerate(GH)}
+    for r in ws.iter_rows(min_row=2, values_only=True):
+        if not r[0] or num(r[gx['Differential']]) is None: continue
+        rid = r[gx['RoundId']]; lr = rmap.get(rid, {})
+        ghin.append(dict(date=d(r[0]), course=course(r[gx['Course']]), tees=tee(r[gx['Tees']]), type=int(r[gx['Holes']]), score=r[gx['Score']],
+            differential=r[gx['Differential']], id=rid, rating=lr.get('rating'), teeYards=lr.get('teeYards')))
+out = dict(ghin=ghin, generated=datetime.datetime.now().isoformat(timespec='minutes'), rounds=rounds, holes=holes, handicap=hcp)
 json.dump(out, open('data.json', 'w'), indent=1)
-print(len(rounds), 'rounds', len(holes), 'holes', len(hcp), 'hcp')
+print(len(ghin), 'ghin', len(rounds), 'rounds', len(holes), 'holes', len(hcp), 'hcp')
