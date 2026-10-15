@@ -94,7 +94,10 @@ const ICON={'Doubles / Triples':'💥','Fairways':'🎯','Greens':'⛳','Putting
 let D,charts=[];const $=s=>document.querySelector(s);
 const LS=k=>JSON.parse(localStorage.getItem(k)||'null');const SS=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let areaSel=LS('golf_areas')||{all:true,on:[]};let buckets=LS('golf_buckets')||{};
-const AREAS=[...new Set(STATS.map(s=>s.area))];
+const AREA_ORDER=['Fairways','Greens','Putting','Up & Downs','Doubles / Triples','Scoring','Handicap'];
+const aIdx=a=>{const i=AREA_ORDER.indexOf(a);return i<0?99:i};
+const AREAS=[...new Set(STATS.map(s=>s.area))].sort((a,b)=>aIdx(a)-aIdx(b));
+const ORDERED=STATS.map((s,i)=>[s,i]).sort((a,b)=>aIdx(a[0].area)-aIdx(b[0].area)||a[1]-b[1]).map(x=>x[0]);
 // filter state (empty set = no restriction)
 const ST={courses:new Set(),tees:new Set(),yds:new Set(),rts:new Set(),allPars:true,pars:new Set(),inc9:true};
 const PAL={g:'#5fd38d',gold:'#e6c15a',blue:'#6cb6f0',coral:'#f08a6c',lav:'#b59cf0',grid:'#ffffff12',tick:'#9db5a7'};
@@ -132,7 +135,7 @@ function drawChips(){
  chipGroup('#yds',[['__all','Select all']].concat(yItems),v=>v==='__all'?!ST.yds.size:ST.yds.has(v),v=>v==='__all'?ST.yds.clear():tg(ST.yds,v));
  chipGroup('#rts',[['__all','Select all']].concat(rItems),v=>v==='__all'?!ST.rts.size:ST.rts.has(v),v=>v==='__all'?ST.rts.clear():tg(ST.rts,v));
  const trig=(id,set)=>{const v=[...set];$(id+' .trig').textContent=v.length?v[0]+(v.length>1?' +'+(v.length-1):''):'All'};trig('#popYd',ST.yds);trig('#popRt',ST.rts);
- chipGroup('#parChips',[['all','All pars'],[3,'Par 3'],[4,'Par 4'],[5,'Par 5']],v=>v==='all'?ST.allPars:!ST.allPars&&ST.pars.has(v),
+ chipGroup('#parChips',[['all','All holes'],[3,'Par 3'],[4,'Par 4'],[5,'Par 5']],v=>v==='all'?ST.allPars:!ST.allPars&&ST.pars.has(v),
   v=>{if(v==='all'){ST.allPars=true;ST.pars.clear()}else{ST.allPars=false;tg(ST.pars,v);if(!ST.pars.size)ST.allPars=true}});
  chipGroup('#nineChips',[[true,'Include 9-hole'],[false,'18-hole only']],v=>ST.inc9===v,v=>ST.inc9=v);
 }
@@ -177,13 +180,13 @@ const tpCell=(x,d=2)=>`<span class="${d==2?tpCls(x):tpCls(x/18)}">${fmt(x,d)}${d
 const tpR=x=>x==null?'–':`<span class="${tpCls(x/18)}">${x>0?'+':''}${x.toFixed(1)}</span>`;
 function render(){
  charts.forEach(c=>c.destroy());charts=[];const F=filtered();
- const parTxt=F.allPars?'all pars':'par '+F.pars.join('/');
+ const parTxt=F.allPars?'all holes':'par '+F.pars.join('/');
  $('#summary').innerHTML=`<b style="color:var(--text)">${F.R.length}</b> rounds · <b style="color:var(--text)">${F.R18.length}</b> × 18-hole · <b style="color:var(--text)">${F.H.length}</b> holes with hole data · ${parTxt}`;
  const bits=[];if(ST.courses.size)bits.push(ST.courses.size+' course'+(ST.courses.size>1?'s':''));if(ST.tees.size)bits.push([...ST.tees].join('/')+' tees');if(ST.yds.size)bits.push([...ST.yds].join(', ')+' yds');if(ST.rts.size)bits.push('rating '+[...ST.rts].join(', '));
  if($('#lastN').value)bits.push('last '+$('#lastN').value);if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));if($('#lastC').value)bits.push('last '+$('#lastC').value+' per course');bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
  $('#fsum').textContent=bits.join(' · ');
  const out=$('#out');out.innerHTML='';
- STATS.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
+ ORDERED.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
   const c=document.createElement('div');c.className='card';c.innerHTML=`<h3>${s.title}</h3><div class="meta">${ICON[s.area]||''} ${s.area}${s.note?' · '+s.note:''}</div>`;out.appendChild(c);
   ({roundCount,holeSplit,roundSeries,hcp})[s.kind](s,F,c);
  });
@@ -220,13 +223,14 @@ function holeSplit(s,F,c){
  if(!H.length)return empty(c,'No hole-level data for this stat in the current filters'+(!F.allPars&&F.pars.length==1&&F.pars[0]==3&&s.id.startsWith('f')?' (par 3s have no fairway).':'.'));
  const pars=F.allPars?[]:F.pars.filter(p=>H.some(h=>h.par===p));
  const A=k=>avg(H.filter(h=>s.key(h)===k).map(h=>h.toPar));
- const ds=pars.map(p=>({label:'Par '+p,backgroundColor:grad(PARCOL[p]),data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar))),borderRadius:7,borderSkipped:false,minBarLength:6,maxBarThickness:34}));
- if(pars.length!==1)ds.push({label:F.allPars?'All pars':'Selected pars combined',backgroundColor:grad(PAL.g),data:s.order.map(A),borderRadius:7,borderSkipped:false,minBarLength:6,maxBarThickness:pars.length?34:56});
+ const N=(k,p)=>H.filter(h=>s.key(h)===k&&(p==null||h.par===p)).length;
+ const ds=pars.map(p=>({counts:s.order.map(k=>N(k,p)),label:'Par '+p,backgroundColor:grad(PARCOL[p]),data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar))),borderRadius:7,borderSkipped:false,minBarLength:6,maxBarThickness:34}));
+ if(pars.length!==1)ds.push({label:F.allPars?'All holes':'Selected pars combined',backgroundColor:grad(PAL.g),counts:s.order.map(k=>N(k)),data:s.order.map(A),borderRadius:7,borderSkipped:false,minBarLength:6,maxBarThickness:pars.length?34:56});
  charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order.map(k=>LABEL[k]||k),datasets:ds},
-  options:{maintainAspectRatio:false,plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.raw==null?'–':sgn(x.raw))}}},scales:{x:ax(s.x||'Category',{grid:{display:false}}),y:ax(s.y||'Avg score to par per hole')}}}));
+  options:{maintainAspectRatio:false,plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.raw==null?'–':sgn(x.raw)),afterLabel:x=>'# of holes: '+x.dataset.counts[x.dataIndex]}}},scales:{x:ax(s.x||'Category',{grid:{display:false}}),y:ax(s.y||'Avg score to par per hole')}}}));
  const rows=s.order.map(k=>{const g=H.filter(h=>s.key(h)===k);const a=avg(g.map(h=>h.toPar));
   return [LABEL[k]||k,g.length,(100*g.length/H.length).toFixed(0)+'%',`<span class="${tpCls(a)}">${fmt(a)}</span>`].concat(pars.map(p=>{const q=g.filter(h=>h.par===p);const b=avg(q.map(h=>h.toPar));return q.length?`<span class="${tpCls(b)}">${fmt(b)}</span> <span style="color:var(--mut)">(${q.length})</span>`:'–'}))});
- table(c,['','Holes','Share','Avg to par'].concat(pars.map(p=>'Par '+p)),rows);
+ table(c,['','# of holes','Share',F.allPars?'Avg to par (all holes)':'Avg to par'].concat(pars.map(p=>'Par '+p)),rows);
 }
 function line(c,labels,data,color,yT,xT,extra={}){charts.push(new Chart(canvas(c),{type:'line',data:{labels,datasets:[Object.assign({label:yT,data,borderColor:color,backgroundColor:fillGrad(color),fill:true,tension:.4,borderWidth:2.5,pointRadius:3,pointHoverRadius:6,pointBackgroundColor:color},extra)]},
  options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false}},scales:{x:ax(xT,{grid:{display:false},ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:7}}),y:ax(yT)}}}))}
