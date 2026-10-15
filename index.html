@@ -43,6 +43,7 @@ th{color:var(--mut);font-weight:500;font-size:11px;text-transform:uppercase;lett
 td{background:#ffffff06;padding:6px 8px;text-align:right}td:first-child{text-align:left;border-radius:8px 0 0 8px;font-weight:500}td:last-child{border-radius:0 8px 8px 0}tr:hover td{background:#ffffff0d}
 .tp-neg{color:var(--acc);font-weight:600}.tp-mid{color:var(--acc2);font-weight:600}.tp-pos{color:var(--pos);font-weight:600}
 .bk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:12px;color:var(--mut)}.bk input{max-width:170px;padding:5px 9px}
+.spill{display:inline-block;margin:6px 0 2px;padding:3px 10px;border-radius:999px;background:#5fd38d1a;border:1px solid #5fd38d55;color:#cfeedd;font-size:12px;font-weight:500;font-variant-numeric:tabular-nums}
 .note{font-size:12px;color:var(--mut);margin-top:8px}
 @media(max-width:600px){.f.w2{grid-column:span 1}.pb{grid-template-columns:1fr 1fr;max-height:70vh;overflow:auto}.panel{position:sticky}.pb{max-height:60vh}header{padding:14px}h1{font-size:19px}.panel{margin:8px}.pb{grid-template-columns:1fr;max-height:70vh}#out{padding:8px}.cv{height:210px}}
 </style></head><body>
@@ -50,7 +51,7 @@ td{background:#ffffff06;padding:6px 8px;text-align:right}td:first-child{text-ali
 <div class="panel" id="panel">
  <div class="ph" id="ph"><span class="tog">▾</span><b>Filters</b><span class="sum" id="fsum"></span><button class="btn" id="reset">Reset</button></div>
  <div class="pb">
-  <div class="f"><label class="t">Last X rounds</label><input type="number" id="lastN" min="1" placeholder="All"></div>
+  <div class="f"><label class="t">Last # of rounds (all courses)</label><input type="number" id="lastN" min="1" placeholder="All"></div>
   <div class="f w2"><label class="t">Date range</label><div class="row"><input type="date" id="from"><span class="sub">–</span><input type="date" id="to"></div></div>
   <div class="f w2"><label class="t">Courses</label><div class="ms" id="msCourse"></div></div>
   <div class="f"><label class="t">Last # of rounds</label><input type="number" id="lastC" min="1" placeholder="All"></div>
@@ -89,6 +90,19 @@ const STATS=[
  {id:'score',area:'Scoring',title:'Score to par by round',kind:'roundSeries',y:'Score to par',val:r=>r.toPar},
  {id:'hcp',area:'Handicap',title:'Handicap index trend',kind:'hcp'},
 ];
+// Area summary pills (18-hole rounds only; rounds counted only if every filtered hole has the field)
+const SUMM={
+ 'Fairways':F=>{const r=perRound(F,h=>h.par>=4,h=>h.fir==='Hit'||h.fir==='Miss',hs=>[hs.filter(h=>h.fir==='Hit').length,hs.length]);if(!r.length)return null;
+   const a=avg(r.map(x=>x[0])),b=avg(r.map(x=>x[1]));return `Avg fairways hit: ${a.toFixed(1)} / ${b.toFixed(b%1?1:0)} (${Math.round(100*a/b)}%) · ${r.length} rounds`},
+ 'Greens':F=>{const r=perRound(F,()=>true,h=>h.gir==='Hit'||h.gir==='Miss',hs=>[hs.filter(h=>h.gir==='Hit').length,hs.length]);if(!r.length)return null;
+   const a=avg(r.map(x=>x[0])),b=avg(r.map(x=>x[1]));return `Avg GIR: ${a.toFixed(1)}${b!==18?' / '+b.toFixed(b%1?1:0):''} (${Math.round(100*a/b)}%) · ${r.length} rounds`},
+ 'Putting':F=>{const r=perRound(F,()=>true,h=>h.putts!=null,hs=>[hs.reduce((t,h)=>t+h.putts,0),hs.length]);if(!r.length)return null;
+   const a=avg(r.map(x=>x[0])),b=avg(r.map(x=>x[1]));return `Avg putts: ${a.toFixed(1)} per round${b!==18?' ('+b.toFixed(b%1?1:0)+' holes)':''} · ${(a/b).toFixed(2)} per hole · ${r.length} rounds`},
+ 'Up & Downs':F=>{const r=perRound(F,()=>true,h=>h.udAtt!=null&&h.udAtt!=='',hs=>[hs.reduce((t,h)=>t+(+h.udMade||0),0),hs.reduce((t,h)=>t+(+h.udAtt||0),0)]);if(!r.length)return null;
+   const a=avg(r.map(x=>x[0])),b=avg(r.map(x=>x[1]));return `Avg up & downs: ${a.toFixed(1)} of ${b.toFixed(1)} (${b?Math.round(100*a/b):0}%) · ${r.length} rounds`},
+};
+function perRound(F,sel,has,fn){const by={};F.H.forEach(h=>{if(h.type!=18||!sel(h))return;(by[h.id]=by[h.id]||[]).push(h)});
+ return F.R18.map(r=>by[r.id]).filter(hs=>hs&&hs.length&&hs.every(has)).map(fn)}
 const ICON={'Doubles / Triples':'💥','Fairways':'🎯','Greens':'⛳','Putting':'🕳️','Up & Downs':'🪄','Miss Direction':'🧭','Scoring':'📈','Handicap':'📉'};
 // =========================================================
 let D,charts=[];const $=s=>document.querySelector(s);
@@ -183,11 +197,11 @@ function render(){
  const parTxt=F.allPars?'all holes':'par '+F.pars.join('/');
  $('#summary').innerHTML=`<b style="color:var(--text)">${F.R.length}</b> rounds · <b style="color:var(--text)">${F.R18.length}</b> × 18-hole · <b style="color:var(--text)">${F.H.length}</b> holes with hole data · ${parTxt}`;
  const bits=[];if(ST.courses.size)bits.push(ST.courses.size+' course'+(ST.courses.size>1?'s':''));if(ST.tees.size)bits.push([...ST.tees].join('/')+' tees');if(ST.yds.size)bits.push([...ST.yds].join(', ')+' yds');if(ST.rts.size)bits.push('rating '+[...ST.rts].join(', '));
- if($('#lastN').value)bits.push('last '+$('#lastN').value);if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));if($('#lastC').value)bits.push('last '+$('#lastC').value+' rounds at course(s)');bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
+ if($('#lastN').value)bits.push('last '+$('#lastN').value+' rounds (all courses)');if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));if($('#lastC').value)bits.push('last '+$('#lastC').value+' rounds at course(s)');bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
  $('#fsum').textContent=bits.join(' · ');
- const out=$('#out');out.innerHTML='';
+ const out=$('#out');out.innerHTML='';const SC={};Object.keys(SUMM).forEach(k=>SC[k]=SUMM[k](F));
  ORDERED.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
-  const c=document.createElement('div');c.className='card';c.innerHTML=`<h3>${s.title}</h3><div class="meta">${ICON[s.area]||''} ${s.area}${s.note?' · '+s.note:''}</div>`;out.appendChild(c);
+  const c=document.createElement('div');c.className='card';c.innerHTML=`<h3>${s.title}</h3>${SUMM[s.area]?`<div class="spill">${SC[s.area]||'–'}</div>`:''}<div class="meta">${ICON[s.area]||''} ${s.area}${s.note?' · '+s.note:''}</div>`;out.appendChild(c);
   ({roundCount,holeSplit,roundSeries,hcp})[s.kind](s,F,c);
  });
 }
