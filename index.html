@@ -53,7 +53,7 @@ td{background:#ffffff06;padding:6px 8px;text-align:right}td:first-child{text-ali
   <div class="f"><label class="t">Last X rounds</label><input type="number" id="lastN" min="1" placeholder="All"></div>
   <div class="f w2"><label class="t">Date range</label><div class="row"><input type="date" id="from"><span class="sub">–</span><input type="date" id="to"></div></div>
   <div class="f w2"><label class="t">Courses</label><div class="ms" id="msCourse"></div></div>
-  <div class="f"><label class="t">Last X at course(s)</label><input type="number" id="lastC" min="1" placeholder="All"></div>
+  <div class="f"><label class="t">Last # of rounds at course(s)</label><input type="number" id="lastC" min="1" placeholder="All"></div>
   <div class="f w2"><label class="t">Tee name</label><div class="ms" id="msTee"></div></div>
   <div class="f"><label class="t">Tee distance <span class="info" title="18-hole tee yards. 9-hole rounds and unknown yardage fall in Unknown. Custom buckets (inside) replace the presets while filled.">ⓘ</span></label><div class="pop" id="popYd"><button class="trig"></button><div class="dd"><div class="chips" id="yds"></div><input type="text" id="ydManual" placeholder="Custom: 6000-6399, 6400+"></div></div></div>
   <div class="f"><label class="t">Course rating <span class="info" title="1-point bands from each round's Rating. Custom buckets (inside) replace the presets while filled.">ⓘ</span></label><div class="pop" id="popRt"><button class="trig"></button><div class="dd"><div class="chips" id="rts"></div><input type="text" id="rtManual" placeholder="Custom: 68-70.9, 71+"></div></div></div>
@@ -94,7 +94,7 @@ const ICON={'Doubles / Triples':'💥','Fairways':'🎯','Greens':'⛳','Putting
 let D,charts=[];const $=s=>document.querySelector(s);
 const LS=k=>JSON.parse(localStorage.getItem(k)||'null');const SS=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let areaSel=LS('golf_areas')||{all:true,on:[]};let buckets=LS('golf_buckets')||{};
-const AREA_ORDER=['Fairways','Greens','Putting','Up & Downs','Doubles / Triples','Scoring','Handicap'];
+const AREA_ORDER=['Fairways','Greens','Putting','Up & Downs','Miss Direction','Doubles / Triples','Scoring','Handicap'];
 const aIdx=a=>{const i=AREA_ORDER.indexOf(a);return i<0?99:i};
 const AREAS=[...new Set(STATS.map(s=>s.area))].sort((a,b)=>aIdx(a)-aIdx(b));
 const ORDERED=STATS.map((s,i)=>[s,i]).sort((a,b)=>aIdx(a[0].area)-aIdx(b[0].area)||a[1]-b[1]).map(x=>x[0]);
@@ -183,7 +183,7 @@ function render(){
  const parTxt=F.allPars?'all holes':'par '+F.pars.join('/');
  $('#summary').innerHTML=`<b style="color:var(--text)">${F.R.length}</b> rounds · <b style="color:var(--text)">${F.R18.length}</b> × 18-hole · <b style="color:var(--text)">${F.H.length}</b> holes with hole data · ${parTxt}`;
  const bits=[];if(ST.courses.size)bits.push(ST.courses.size+' course'+(ST.courses.size>1?'s':''));if(ST.tees.size)bits.push([...ST.tees].join('/')+' tees');if(ST.yds.size)bits.push([...ST.yds].join(', ')+' yds');if(ST.rts.size)bits.push('rating '+[...ST.rts].join(', '));
- if($('#lastN').value)bits.push('last '+$('#lastN').value);if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));if($('#lastC').value)bits.push('last '+$('#lastC').value+' per course');bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
+ if($('#lastN').value)bits.push('last '+$('#lastN').value);if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));if($('#lastC').value)bits.push('last '+$('#lastC').value+' rounds at course(s)');bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
  $('#fsum').textContent=bits.join(' · ');
  const out=$('#out');out.innerHTML='';
  ORDERED.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
