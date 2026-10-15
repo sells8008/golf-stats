@@ -43,6 +43,7 @@ const STATS=[
  {id:'putts',area:'Putting',title:'Putts per round',kind:'roundSeries',val:r=>r.putts},
  {id:'p3',area:'Putting',title:'3-putts or worse per round',kind:'roundCount',val:r=>r.threePutts},
  {id:'p1',area:'Putting',title:'1-putts per round',kind:'roundCount',val:r=>r.onePutts},
+ {id:'puttsplit',area:'Putting',title:'Avg to par per hole by putts',kind:'holeSplit',key:h=>h.putts==null?null:(h.putts>=3?'3+':String(h.putts)),order:['0','1','2','3+']},
  {id:'ud',area:'Up & Downs',title:'Up-and-downs made per round',kind:'roundCount',val:r=>r.udMade},
  {id:'udser',area:'Up & Downs',title:'Up-and-downs made over time',kind:'roundSeries',val:r=>r.udMade},
  {id:'fwmiss',area:'Miss Direction',title:'Fairway miss direction',kind:'holeSplit',key:h=>['Left','Right','Short','Long'].includes(h.fwMiss)?h.fwMiss:null,order:['Left','Right','Short','Long']},
@@ -82,7 +83,7 @@ function filtered(){
  R.sort((a,b)=>b.date.localeCompare(a.date));
  const lc=+$('#lastC').value;if(lc){const keep=new Set();cs.forEach(c=>R.filter(r=>r.course===c).slice(0,lc).forEach(r=>keep.add(r)));R=R.filter(r=>keep.has(r))}
  const n=+$('#lastN').value;if(n)R=R.slice(0,n);
- const key=x=>x.date+'|'+x.course+'|'+x.type;const rk=new Set(R.map(key));
+ const key=x=>x.id||(x.date+'|'+x.course+'|'+x.type);const rk=new Set(R.map(key));
  const H=D.holes.filter(h=>rk.has(key(h))&&pars.includes(h.par)&&($('#inc9').checked||h.type==18));
  return {R,R18:R.filter(r=>r.type==18),H,pars};
 }

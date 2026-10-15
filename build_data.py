@@ -22,15 +22,16 @@ for sn, rt in (('18-Hole Rounds', 18), ('9-Hole Rounds', 9)):
             doubles=g('Doubles (exact +2)'), triplesPlus=g('TriplesOrWorse (+3 or more)'),
             fwHit=g('FairwaysHit'), fwPossible=g('FairwaysPossible'),
             gir=g('GIR'), putts=g('Putts'), threePutts=g('ThreePuttsPlus'), onePutts=g('OnePutts'),
-            udMade=g('UpDownsMade'), udAtt=g('UpDownsAttempted')))
+            udMade=g('UpDownsMade'), udAtt=g('UpDownsAttempted'), id=r[ix['RoundId']] if 'RoundId' in ix else None))
 holes = []
-ws = wb['Holes']
+ws = wb['Holes']; HH = [c.value for c in ws[1]]; hx = {h: i for i, h in enumerate(HH)}
 for r in ws.iter_rows(min_row=2, values_only=True):
-    if not r[0]: continue
-    par, sc = num(r[5]), num(r[6])
-    holes.append(dict(date=d(r[0]), course=course(r[1]), tees=tee(r[2]), type=r[3], hole=r[4], par=par, score=sc,
-        toPar=(sc - par) if par and sc else None, fir=r[8], fwMiss=r[9], gir=r[10], grMiss=r[11],
-        putts=num(r[12]), udAtt=r[13], udMade=r[14]))
+    v = lambda k: r[hx[k]] if k in hx else None
+    if not v('RoundDate'): continue
+    par, sc = num(v('Par')), num(v('Score'))
+    holes.append(dict(id=v('RoundId'), date=d(v('RoundDate')), course=course(v('Course')), tees=tee(v('Tees')), type=v('RoundType'), hole=v('Hole'),
+        par=par, score=sc, toPar=(sc - par) if par and sc else None, fir=v('FIR'), fwMiss=v('FairwayMiss'), gir=v('GIR'), grMiss=v('GreenMiss'),
+        putts=num(v('Putts')), udAtt=v('UpDownAttempt'), udMade=v('UpDownMade')))
 hcp = []
 ws = wb['Handicap Tracker']
 for r in ws.iter_rows(min_row=8, max_col=2, values_only=True):
