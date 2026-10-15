@@ -1,109 +1,197 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hunter's Golf Stats</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛳</text></svg>"><title>Hunter's Golf Stats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-body{font-family:system-ui,sans-serif;margin:0;background:#f4f6f3;color:#1d2b1f}
-header{background:#1f4d2b;color:#fff;padding:12px 18px}h1{margin:0;font-size:20px}
-#filters{display:flex;flex-wrap:wrap;gap:14px;padding:12px 18px;background:#fff;border-bottom:1px solid #ccd}
-fieldset{border:1px solid #cdd;border-radius:6px;padding:6px 10px;margin:0}legend{font-size:12px;font-weight:600}
-label{font-size:13px;margin-right:8px;white-space:nowrap}input[type=number]{width:60px}
-#areas{padding:8px 18px;background:#eef2ec}#summary{padding:6px 18px;font-size:13px;color:#555}
-#out{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:14px;padding:14px 18px}
-.card{background:#fff;border-radius:8px;padding:12px;box-shadow:0 1px 3px #0002}.card h3{margin:0 0 4px;font-size:15px}
-.note{font-size:11px;color:#777}table{border-collapse:collapse;font-size:12px;width:100%;margin-top:6px}
-td,th{border-bottom:1px solid #eee;padding:2px 6px;text-align:right}th:first-child,td:first-child{text-align:left}
-.empty{color:#999;font-style:italic;font-size:13px}.bk{font-size:12px;margin-top:4px}.bk input{width:120px}
+:root{--bg:#14231c;--bg2:#1a2b23;--card:#1f3329;--card2:#253d31;--line:#2f4a3c;--text:#e7f0ea;--mut:#9db5a7;--acc:#5fd38d;--acc2:#e6c15a;--neg:#5fd38d;--pos:#f08a6c;--r:14px}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1200px 600px at 10% -10%,#1f3a2c 0,transparent 60%),var(--bg);color:var(--text);font:14px/1.45 Inter,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px 6px}
+h1{margin:0;font-size:22px;font-weight:700;letter-spacing:-.02em}h1 span{color:var(--acc)}.sub{color:var(--mut);font-size:12px}
+.panel{position:sticky;top:0;z-index:20;margin:10px 16px;background:rgba(26,43,35,.92);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 8px 30px #0004}
+.ph{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;user-select:none}.ph b{font-weight:600}.ph .sum{color:var(--mut);font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph .tog{transition:transform .25s;color:var(--mut)}.panel.closed .tog{transform:rotate(-90deg)}.panel.closed .pb{display:none}
+.pb{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px 18px;padding:4px 14px 14px;max-height:62vh;overflow:auto}
+.f label.t{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:6px}
+input{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:7px 10px;font:inherit;outline:none;width:100%}
+input:focus{border-color:var(--acc);box-shadow:0 0 0 3px #5fd38d33}input[type=date]{color-scheme:dark}.row{display:flex;gap:8px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:5px 12px;font:500 12.5px Inter,system-ui,sans-serif;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.chip:hover{border-color:#4a7a60}.chip.on,.acard.on{background:linear-gradient(180deg,#2f6b48,#275a3d);border-color:var(--acc);box-shadow:0 0 0 1px #5fd38d55,0 0 14px #5fd38d33}
+.chip.on::before,.acard.on .ck::before{content:'✓';font-weight:700;color:var(--acc);font-size:11px}
+.ms{position:relative}.ms .box{display:flex;flex-wrap:wrap;gap:5px;align-items:center;min-height:38px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:5px 8px;cursor:text}
+.ms .box input{border:0;background:none;padding:3px;min-width:80px;flex:1;width:auto}.ms .box input:focus{box-shadow:none}
+.pill{background:#2f6b48;border:1px solid var(--acc);border-radius:999px;padding:2px 4px 2px 9px;font-size:12px;display:inline-flex;align-items:center;gap:4px}
+.pill button{background:none;border:0;color:var(--text);cursor:pointer;font-size:14px;line-height:1;padding:0 4px;border-radius:50%}.pill button:hover{background:#0003}
+.dd{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--card2);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px #0007;padding:6px;display:none;z-index:30}.ms.open .dd{display:block}
+.dd input{margin-bottom:6px}.dd .opt{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:8px;cursor:pointer;font-size:13px}.dd .opt:hover{background:#ffffff0d}
+.dd .opt .cb{width:16px;height:16px;border:1.5px solid var(--mut);border-radius:5px;display:grid;place-items:center;font-size:11px}.dd .opt.on .cb{background:var(--acc);border-color:var(--acc);color:#10291b}.dd .opt.on .cb::after{content:'✓';font-weight:800}
+.dd .list{max-height:220px;overflow:auto}.dd .none{color:var(--mut);padding:8px;font-size:12px}
+.hint{font-size:11px;color:var(--mut);margin-top:5px}
+.btn{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:10px;padding:7px 12px;cursor:pointer;font:500 12.5px Inter,system-ui}.btn:hover{color:var(--text);border-color:var(--acc)}
+#areas{display:flex;gap:8px;overflow-x:auto;padding:6px 16px 4px;scrollbar-width:thin}
+.acard{flex:0 0 auto;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 13px;cursor:pointer;font-weight:500;font-size:13px;transition:all .15s;color:var(--text)}
+.acard .ic{font-size:17px}.acard:hover{transform:translateY(-1px);border-color:#4a7a60}
+#summary{padding:6px 18px;color:var(--mut);font-size:12.5px}
+#out{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:16px;padding:8px 16px 40px}
+.card{background:linear-gradient(180deg,var(--card),#1c2f25);border:1px solid var(--line);border-radius:18px;padding:16px 16px 12px;box-shadow:0 6px 24px #0003;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.card h3{margin:0;font-size:15px;font-weight:600;letter-spacing:-.01em}.card .meta{font-size:11.5px;color:var(--mut);margin:2px 0 10px}
+.cv{position:relative;height:230px}.empty{color:var(--mut);font-style:italic;padding:18px 0;font-size:13px}
+table{width:100%;border-collapse:separate;border-spacing:0 3px;margin-top:10px;font-size:12.5px;font-variant-numeric:tabular-nums}
+th{color:var(--mut);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.04em;text-align:right;padding:4px 8px}th:first-child{text-align:left}
+td{background:#ffffff06;padding:6px 8px;text-align:right}td:first-child{text-align:left;border-radius:8px 0 0 8px;font-weight:500}td:last-child{border-radius:0 8px 8px 0}tr:hover td{background:#ffffff0d}
+.tp-neg{color:var(--acc);font-weight:600}.tp-mid{color:var(--acc2);font-weight:600}.tp-pos{color:var(--pos);font-weight:600}
+.bk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:12px;color:var(--mut)}.bk input{max-width:170px;padding:5px 9px}
+.note{font-size:12px;color:var(--mut);margin-top:8px}
+@media(max-width:600px){.panel{position:sticky}.pb{max-height:60vh}header{padding:14px}h1{font-size:19px}.panel{margin:8px}.pb{grid-template-columns:1fr;max-height:70vh}#out{padding:8px}.cv{height:210px}}
 </style></head><body>
-<header><h1>Hunter's Golf Stats</h1><div class="note" id="gen" style="color:#cfe"></div></header>
-<div id="filters">
- <fieldset><legend>Last X rounds</legend><input type="number" id="lastN" min="1" placeholder="all"></fieldset>
- <fieldset><legend>Date range</legend><input type="date" id="from"> – <input type="date" id="to"></fieldset>
- <fieldset><legend>Courses</legend><div id="courses"></div></fieldset>
- <fieldset><legend>Tee name</legend><div id="tees"></div></fieldset>
- <fieldset><legend>Tee distance (18-hole yards)</legend><div id="yds"></div></fieldset>
- <fieldset><legend>Course rating</legend><div id="rts"></div></fieldset>
- <fieldset><legend>Last X rounds at selected course(s)</legend><input type="number" id="lastC" min="1" placeholder="all"></fieldset>
- <fieldset><legend>Par (hole stats)</legend><label><input type="checkbox" class="par" value="3" checked>3</label><label><input type="checkbox" class="par" value="4" checked>4</label><label><input type="checkbox" class="par" value="5" checked>5</label></fieldset>
- <fieldset><legend>Rounds</legend><label><input type="checkbox" id="inc9" checked>Include 9-hole holes in hole stats</label></fieldset>
- <button id="reset">Reset filters</button>
+<header><div><h1>Hunter's <span>Golf Stats</span></h1><div class="sub" id="gen"></div></div></header>
+<div class="panel" id="panel">
+ <div class="ph" id="ph"><span class="tog">▾</span><b>Filters</b><span class="sum" id="fsum"></span><button class="btn" id="reset">Reset</button></div>
+ <div class="pb">
+  <div class="f"><label class="t">Last X rounds</label><input type="number" id="lastN" min="1" placeholder="All rounds"></div>
+  <div class="f"><label class="t">Date range</label><div class="row"><input type="date" id="from"><span class="sub">to</span><input type="date" id="to"></div></div>
+  <div class="f"><label class="t">Courses</label><div class="ms" id="msCourse"></div></div>
+  <div class="f"><label class="t">Last X rounds at selected course(s)</label><input type="number" id="lastC" min="1" placeholder="All"></div>
+  <div class="f"><label class="t">Tee name</label><div class="ms" id="msTee"></div></div>
+  <div class="f"><label class="t">Tee distance (18-hole yards)</label><div class="chips" id="yds"></div><input type="text" id="ydManual" placeholder="Custom: 6000-6399, 6400+" style="margin-top:7px"><div class="hint">Custom buckets replace the presets while filled.</div></div>
+  <div class="f"><label class="t">Course rating</label><div class="chips" id="rts"></div><input type="text" id="rtManual" placeholder="Custom: 68-70.9, 71+" style="margin-top:7px"><div class="hint">Custom buckets replace the presets while filled.</div></div>
+  <div class="f"><label class="t">Par (hole stats)</label><div class="chips" id="parChips"></div><div class="hint">All pars = one combined number; pick 3/4/5 to split by par.</div></div>
+  <div class="f"><label class="t">9-hole rounds (hole stats)</label><div class="chips" id="nineChips"></div><div class="hint">Round-level counts always use 18-hole rounds only.</div></div>
+ </div>
 </div>
 <div id="areas"></div><div id="summary"></div><div id="out"></div>
 <script>
 // ===================== STAT REGISTRY =====================
 // kind: 'roundCount' (exact count per 18-hole round), 'holeSplit' (hole-level groups split by par),
 //       'roundSeries' (value per round over time), 'hcp'. Add a stat = add one entry.
+// x / y = axis titles (optional; sensible defaults per kind).
 const avg=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null;
 const MISS=['Left','Right','Short','Long','No Chance'];
 const LABEL={'No Chance':'Missed - no chance'};
 const STATS=[
- {id:'dbl',area:'Doubles / Triples',title:'Doubles or worse per round',kind:'roundCount',val:r=>r.doubles!=null&&r.triplesPlus!=null?r.doubles+r.triplesPlus:null},
- {id:'tpl',area:'Doubles / Triples',title:'Triples or worse per round',kind:'roundCount',val:r=>r.triplesPlus},
- {id:'fwc',area:'Fairways',title:'Fairways hit per round (with avg GIR)',kind:'roundCount',val:r=>r.fwHit,extra:{label:'Avg GIR',val:r=>r.gir}},
- {id:'firsplit',area:'Fairways',title:'Avg to par per hole: fairway hit vs missed',kind:'holeSplit',key:h=>h.fir==='Hit'||h.fir==='Miss'?h.fir:null,order:['Hit','Miss'],note:'Par 3s have no fairway (NA).'},
- {id:'girc',area:'Greens',title:'Greens in regulation per round',kind:'roundCount',val:r=>r.gir},
- {id:'girsplit',area:'Greens',title:'Avg to par per hole: green hit vs missed',kind:'holeSplit',key:h=>h.gir==='Hit'||h.gir==='Miss'?h.gir:null,order:['Hit','Miss']},
- {id:'putts',area:'Putting',title:'Putts per round',kind:'roundSeries',val:r=>r.putts},
- {id:'p3',area:'Putting',title:'3-putts or worse per round',kind:'roundCount',val:r=>r.threePutts},
- {id:'p1',area:'Putting',title:'1-putts per round',kind:'roundCount',val:r=>r.onePutts},
- {id:'puttsplit',area:'Putting',title:'Avg to par per hole by putts',kind:'holeSplit',key:h=>h.putts==null?null:(h.putts>=3?'3+':String(h.putts)),order:['0','1','2','3+']},
- {id:'ud',area:'Up & Downs',title:'Up-and-downs made per round',kind:'roundCount',val:r=>r.udMade},
- {id:'scr',area:'Up & Downs',title:'Scrambling % by round (up-and-downs made / attempted)',kind:'roundSeries',val:r=>r.udAtt?Math.round(100*r.udMade/r.udAtt):null},
- {id:'udser',area:'Up & Downs',title:'Up-and-downs made over time',kind:'roundSeries',val:r=>r.udMade},
- {id:'fwmiss',area:'Miss Direction',title:'Fairway miss direction',kind:'holeSplit',key:h=>MISS.includes(h.fwMiss)?h.fwMiss:null,order:MISS},
- {id:'grmiss',area:'Miss Direction',title:'Green miss direction',kind:'holeSplit',key:h=>MISS.includes(h.grMiss)?h.grMiss:null,order:MISS},
- {id:'score',area:'Scoring',title:'Score to par by round',kind:'roundSeries',val:r=>r.toPar},
+ {id:'dbl',area:'Doubles / Triples',title:'Doubles or worse per round',kind:'roundCount',x:'Holes at double bogey or worse',val:r=>r.doubles!=null&&r.triplesPlus!=null?r.doubles+r.triplesPlus:null},
+ {id:'tpl',area:'Doubles / Triples',title:'Triples or worse per round',kind:'roundCount',x:'Holes at triple bogey or worse',val:r=>r.triplesPlus},
+ {id:'fwc',area:'Fairways',title:'Fairways hit per round (with avg GIR)',kind:'roundCount',x:'Fairways hit',val:r=>r.fwHit,extra:{label:'Avg GIR',val:r=>r.gir}},
+ {id:'firsplit',area:'Fairways',title:'Avg to par per hole: fairway hit vs missed',kind:'holeSplit',x:'Fairway result',key:h=>h.fir==='Hit'||h.fir==='Miss'?h.fir:null,order:['Hit','Miss'],note:'Par 3s have no fairway (NA).'},
+ {id:'girc',area:'Greens',title:'Greens in regulation per round',kind:'roundCount',x:'Greens hit',val:r=>r.gir},
+ {id:'girsplit',area:'Greens',title:'Avg to par per hole: green hit vs missed',kind:'holeSplit',x:'Green result',key:h=>h.gir==='Hit'||h.gir==='Miss'?h.gir:null,order:['Hit','Miss']},
+ {id:'putts',area:'Putting',title:'Putts per round',kind:'roundSeries',y:'Putts',val:r=>r.putts},
+ {id:'p3',area:'Putting',title:'3-putts or worse per round',kind:'roundCount',x:'3-putts or worse',val:r=>r.threePutts},
+ {id:'p1',area:'Putting',title:'1-putts per round',kind:'roundCount',x:'1-putts',val:r=>r.onePutts},
+ {id:'puttsplit',area:'Putting',title:'Avg to par per hole by putts',kind:'holeSplit',x:'Putts on the hole',key:h=>h.putts==null?null:(h.putts>=3?'3+':String(h.putts)),order:['0','1','2','3+']},
+ {id:'ud',area:'Up & Downs',title:'Up-and-downs made per round',kind:'roundCount',x:'Up-and-downs made',val:r=>r.udMade},
+ {id:'scr',area:'Up & Downs',title:'Scrambling % by round',kind:'roundSeries',y:'Scrambling % (made / attempted)',val:r=>r.udAtt?Math.round(100*r.udMade/r.udAtt):null},
+ {id:'udser',area:'Up & Downs',title:'Up-and-downs made over time',kind:'roundSeries',y:'Up-and-downs made',val:r=>r.udMade},
+ {id:'fwmiss',area:'Miss Direction',title:'Fairway miss direction',kind:'holeSplit',x:'Miss direction',key:h=>MISS.includes(h.fwMiss)?h.fwMiss:null,order:MISS},
+ {id:'grmiss',area:'Miss Direction',title:'Green miss direction',kind:'holeSplit',x:'Miss direction',key:h=>MISS.includes(h.grMiss)?h.grMiss:null,order:MISS},
+ {id:'score',area:'Scoring',title:'Score to par by round',kind:'roundSeries',y:'Score to par',val:r=>r.toPar},
  {id:'hcp',area:'Handicap',title:'Handicap index trend',kind:'hcp'},
 ];
+const ICON={'Doubles / Triples':'💥','Fairways':'🎯','Greens':'⛳','Putting':'🕳️','Up & Downs':'🪄','Miss Direction':'🧭','Scoring':'📈','Handicap':'📉'};
 // =========================================================
 let D,charts=[];const $=s=>document.querySelector(s);
 const LS=k=>JSON.parse(localStorage.getItem(k)||'null');const SS=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let areaSel=LS('golf_areas')||{all:true,on:[]};let buckets=LS('golf_buckets')||{};
 const AREAS=[...new Set(STATS.map(s=>s.area))];
-fetch('data.json').then(r=>r.json()).then(d=>{D=d;init()});
-function boxes(id,vals,cls){$(id).innerHTML=vals.map(v=>`<label><input type="checkbox" class="${cls}" value="${v}" checked>${v}</label>`).join('')}
+// filter state (empty set = no restriction)
+const ST={courses:new Set(),tees:new Set(),yds:new Set(),rts:new Set(),allPars:true,pars:new Set(),inc9:true};
+const PAL={g:'#5fd38d',gold:'#e6c15a',blue:'#6cb6f0',coral:'#f08a6c',lav:'#b59cf0',grid:'#ffffff12',tick:'#9db5a7'};
+const PARCOL={3:PAL.blue,4:PAL.gold,5:PAL.lav};
+Chart.defaults.color=PAL.tick;Chart.defaults.font.family='Inter,system-ui,sans-serif';Chart.defaults.font.size=11.5;
+Chart.defaults.animation.duration=700;Chart.defaults.animation.easing='easeOutQuart';
+Chart.defaults.plugins.tooltip=Object.assign(Chart.defaults.plugins.tooltip,{backgroundColor:'#0f1c16ee',borderColor:'#2f4a3c',borderWidth:1,padding:10,cornerRadius:10,titleFont:{weight:'600'},boxPadding:4,usePointStyle:true});
+Chart.defaults.plugins.legend.labels.usePointStyle=true;Chart.defaults.plugins.legend.labels.boxWidth=8;
+fetch('data.json').then(r=>r.json()).then(d=>{D=d;init()}).catch(e=>console.error(e));
+const sortB=(a,b)=>a==='Unknown'?1:b==='Unknown'?-1:parseFloat(a)-parseFloat(b);
 function init(){
- $('#gen').textContent='Data updated '+D.generated;
- boxes('#courses',[...new Set(D.rounds.map(r=>r.course))].sort(),'crs');
- const yb=r=>r.type==18&&r.teeYards?(()=>{const a=Math.floor(r.teeYards/200)*200;return a+'-'+(a+199)})():'Unknown';D.rounds.forEach(r=>r.yb=yb(r));
- boxes('#yds',[...new Set(D.rounds.map(r=>r.yb))].sort((a,b)=>a==='Unknown'?1:b==='Unknown'?-1:parseInt(a)-parseInt(b)),'yd');
- D.rounds.forEach(r=>{const a=Math.floor(r.rating);r.rb=r.rating!=null?a+'.0-'+a+'.9':'Unknown'});
- boxes('#rts',[...new Set(D.rounds.map(r=>r.rb))].sort((a,b)=>a==='Unknown'?1:b==='Unknown'?-1:parseFloat(a)-parseFloat(b)),'rt');
- boxes('#tees',[...new Set(D.rounds.map(r=>r.tees).filter(Boolean))].sort(),'tee');
- renderAreas();document.querySelectorAll('#filters input').forEach(e=>e.addEventListener('input',render));
- $('#reset').onclick=()=>{document.querySelectorAll('#filters input[type=checkbox]').forEach(e=>e.checked=true);['#lastN','#from','#to','#lastC'].forEach(s=>$(s).value='');render()};
- render();
+ $('#gen').textContent='Data updated '+D.generated.replace('T',' ');
+ D.rounds.forEach(r=>{r.yb=r.type==18&&r.teeYards?(a=>a+'-'+(a+199))(Math.floor(r.teeYards/200)*200):'Unknown';
+  const a=Math.floor(r.rating);r.rb=r.rating!=null?a+'.0-'+a+'.9':'Unknown'});
+ multiSelect('#msCourse',[...new Set(D.rounds.map(r=>r.course))].sort(),ST.courses,'Search courses…');
+ multiSelect('#msTee',[...new Set(D.rounds.map(r=>r.tees).filter(Boolean))].sort(),ST.tees,'Search tees…');
+ ['#lastN','#from','#to','#lastC'].forEach(s=>$(s).addEventListener('input',render));
+ ['#ydManual','#rtManual'].forEach(s=>$(s).addEventListener('input',()=>{(s==='#ydManual'?ST.yds:ST.rts).clear();drawChips();render()}));
+ $('#ph').onclick=e=>{if(e.target.id==='reset')return;$('#panel').classList.toggle('closed');SS('golf_panel_closed',$('#panel').classList.contains('closed'))};
+ const pc=LS('golf_panel_closed');if(pc===true||(pc===null&&innerWidth<700))$('#panel').classList.add('closed');
+ $('#reset').onclick=()=>{['courses','tees','yds','rts','pars'].forEach(k=>ST[k].clear());ST.allPars=true;ST.inc9=true;['#lastN','#from','#to','#lastC','#ydManual','#rtManual'].forEach(s=>$(s).value='');
+  document.querySelectorAll('.ms').forEach(m=>m._draw());drawChips();render()};
+ document.addEventListener('click',e=>document.querySelectorAll('.ms.open').forEach(m=>{if(!m.contains(e.target))m.classList.remove('open')}));
+ renderAreas();drawChips();render();
+}
+function parseB(s){return s.split(',').map(x=>x.trim()).filter(Boolean)}
+function inBucket(v,s){s=s.trim();if(s.endsWith('+'))return v>=+s.slice(0,-1);const[a,b]=s.split('-').map(Number);return b==null||isNaN(b)?v===a:v>=a&&v<=b}
+function chipGroup(id,items,isOn,toggle){const el=$(id);el.innerHTML='';items.forEach(([v,l])=>{const b=document.createElement('button');b.className='chip'+(isOn(v)?' on':'');b.textContent=l;b.onclick=()=>{toggle(v);drawChips();render()};el.appendChild(b)})}
+const tg=(set,v)=>set.has(v)?set.delete(v):set.add(v);
+function drawChips(){
+ const ym=parseB($('#ydManual').value),rm=parseB($('#rtManual').value);
+ const yItems=(ym.length?ym.concat(['Unknown']):[...new Set(D.rounds.map(r=>r.yb))].sort(sortB)).map(v=>[v,v]);
+ const rItems=(rm.length?rm.concat(['Unknown']):[...new Set(D.rounds.map(r=>r.rb))].sort(sortB)).map(v=>[v,v]);
+ chipGroup('#yds',[['__all','Select all']].concat(yItems),v=>v==='__all'?!ST.yds.size:ST.yds.has(v),v=>v==='__all'?ST.yds.clear():tg(ST.yds,v));
+ chipGroup('#rts',[['__all','Select all']].concat(rItems),v=>v==='__all'?!ST.rts.size:ST.rts.has(v),v=>v==='__all'?ST.rts.clear():tg(ST.rts,v));
+ chipGroup('#parChips',[['all','All pars'],[3,'Par 3'],[4,'Par 4'],[5,'Par 5']],v=>v==='all'?ST.allPars:!ST.allPars&&ST.pars.has(v),
+  v=>{if(v==='all'){ST.allPars=true;ST.pars.clear()}else{ST.allPars=false;tg(ST.pars,v);if(!ST.pars.size)ST.allPars=true}});
+ chipGroup('#nineChips',[[true,'Include 9-hole'],[false,'18-hole only']],v=>ST.inc9===v,v=>ST.inc9=v);
+}
+function multiSelect(id,opts,set,ph){
+ const m=$(id);m.innerHTML=`<div class="chips" style="margin-bottom:6px"><button class="chip sa">Select all</button></div><div class="box"><input type="search" placeholder="${ph}"></div><div class="dd"><input type="search" placeholder="${ph}"><div class="list"></div></div>`;
+ const box=m.querySelector('.box'),outer=box.querySelector('input'),inner=m.querySelector('.dd input'),list=m.querySelector('.list');
+ const open=()=>{m.classList.add('open');drawList()};
+ const drawList=()=>{const q=inner.value.toLowerCase();const f=opts.filter(o=>o.toLowerCase().includes(q));
+  list.innerHTML=f.length?f.map(o=>`<div class="opt${set.has(o)?' on':''}" data-v="${o.replace(/"/g,'&quot;')}"><span class="cb"></span>${o}</div>`).join(''):'<div class="none">No matches</div>';
+  list.querySelectorAll('.opt').forEach(el=>el.onclick=e=>{e.stopPropagation();tg(set,el.dataset.v);m._draw();drawList();render()})};
+ m._draw=()=>{box.querySelectorAll('.pill').forEach(p=>p.remove());[...set].forEach(v=>{const p=document.createElement('span');p.className='pill';p.innerHTML=`${v}<button title="Remove">×</button>`;
+   p.querySelector('button').onclick=e=>{e.stopPropagation();set.delete(v);m._draw();if(m.classList.contains('open'))drawList();render()};box.insertBefore(p,outer)});
+  outer.placeholder=set.size?'Add…':ph+' (all)';m.querySelector('.sa').classList.toggle('on',!set.size)};
+ m.querySelector('.sa').onclick=e=>{e.stopPropagation();set.clear();m._draw();if(m.classList.contains('open'))drawList();render()};
+ box.onclick=()=>{open();inner.value=outer.value;drawList();setTimeout(()=>inner.focus(),0)};
+ outer.addEventListener('input',()=>{inner.value=outer.value;open();inner.focus();outer.value=''});
+ inner.addEventListener('input',drawList);inner.addEventListener('keydown',e=>{if(e.key==='Escape')m.classList.remove('open')});
+ m._draw();
 }
 function renderAreas(){
- $('#areas').innerHTML=`<b style="font-size:13px">Stat areas:</b> <label><input type="checkbox" id="showall" ${areaSel.all?'checked':''}>Show all</label>`+
-  AREAS.map(a=>`<label><input type="checkbox" class="area" value="${a}" ${areaSel.all||areaSel.on.includes(a)?'checked':''} ${areaSel.all?'disabled':''}>${a}</label>`).join('');
- $('#showall').onchange=e=>{areaSel.all=e.target.checked;SS('golf_areas',areaSel);renderAreas();render()};
- document.querySelectorAll('.area').forEach(e=>e.onchange=()=>{areaSel.on=[...document.querySelectorAll('.area:checked')].map(x=>x.value);SS('golf_areas',areaSel);render()});
+ const el=$('#areas');el.innerHTML='';
+ const mk=(key,label,icon,on,fn)=>{const b=document.createElement('button');b.className='acard'+(on?' on':'');b.innerHTML=`<span class="ic">${icon}</span>${label}<span class="ck"></span>`;b.onclick=fn;el.appendChild(b)};
+ mk('all','Show all','✨',areaSel.all,()=>{areaSel.all=!areaSel.all;if(!areaSel.all&&!areaSel.on.length)areaSel.on=[AREAS[0]];SS('golf_areas',areaSel);renderAreas();render()});
+ AREAS.forEach(a=>mk(a,a,ICON[a]||'📊',!areaSel.all&&areaSel.on.includes(a),()=>{if(areaSel.all){areaSel.all=false;areaSel.on=[a]}else{areaSel.on.includes(a)?areaSel.on=areaSel.on.filter(x=>x!==a):areaSel.on.push(a);if(!areaSel.on.length)areaSel.all=true}SS('golf_areas',areaSel);renderAreas();render()}));
 }
-const vals=c=>[...document.querySelectorAll('.'+c+':checked')].map(e=>e.value);
 function filtered(){
- const cs=vals('crs'),ts=vals('tee'),ys=vals('yd'),rs=vals('rt'),pars=vals('par').map(Number),f=$('#from').value,t=$('#to').value;
- let R=D.rounds.filter(r=>cs.includes(r.course)&&(!r.tees||ts.includes(r.tees))&&ys.includes(r.yb)&&rs.includes(r.rb)&&(!f||r.date>=f)&&(!t||r.date<=t));
+ const cs=ST.courses,ts=ST.tees,f=$('#from').value,t=$('#to').value;
+ const ym=parseB($('#ydManual').value),rm=parseB($('#rtManual').value);
+ const okB=(sel,man,auto,val)=>{if(!sel.size)return true;if(man.length){if(val==null)return sel.has('Unknown');return man.some(b=>sel.has(b)&&inBucket(val,b))}return sel.has(auto)};
+ let R=D.rounds.filter(r=>(!cs.size||cs.has(r.course))&&(!ts.size||(r.tees&&ts.has(r.tees)))&&okB(ST.yds,ym,r.yb,r.type==18?r.teeYards:null)&&okB(ST.rts,rm,r.rb,r.rating)&&(!f||r.date>=f)&&(!t||r.date<=t));
  R.sort((a,b)=>b.date.localeCompare(a.date));
- const lc=+$('#lastC').value;if(lc){const keep=new Set();cs.forEach(c=>R.filter(r=>r.course===c).slice(0,lc).forEach(r=>keep.add(r)));R=R.filter(r=>keep.has(r))}
+ const lc=+$('#lastC').value;if(lc){const keep=new Set();const cl=cs.size?[...cs]:[...new Set(R.map(r=>r.course))];cl.forEach(c=>R.filter(r=>r.course===c).slice(0,lc).forEach(r=>keep.add(r)));R=R.filter(r=>keep.has(r))}
  const n=+$('#lastN').value;if(n)R=R.slice(0,n);
  const key=x=>x.id||(x.date+'|'+x.course+'|'+x.type);const rk=new Set(R.map(key));
- const H=D.holes.filter(h=>rk.has(key(h))&&pars.includes(h.par)&&($('#inc9').checked||h.type==18));
- return {R,R18:R.filter(r=>r.type==18),H,pars};
+ const pars=ST.allPars?[3,4,5]:[...ST.pars].sort();
+ const H=D.holes.filter(h=>rk.has(key(h))&&pars.includes(h.par)&&(ST.inc9||h.type==18));
+ return {R,R18:R.filter(r=>r.type==18),H,pars,allPars:ST.allPars};
 }
 const fmt=(x,d=2)=>x==null?'–':(x>0&&d==2?'+':'')+x.toFixed(d);
-function inBucket(v,s){s=s.trim();if(s.endsWith('+'))return v>=+s.slice(0,-1);const[a,b]=s.split('-').map(Number);return b==null||isNaN(b)?v===a:v>=a&&v<=b}
+const tpCls=x=>x==null?'':x<=0.15?'tp-neg':x<=0.9?'tp-mid':'tp-pos';
+const tpCell=(x,d=2)=>`<span class="${d==2?tpCls(x):tpCls(x/18)}">${fmt(x,d)}${d!=2&&x!=null&&x>0?'':''}</span>`;
+const tpR=x=>x==null?'–':`<span class="${tpCls(x/18)}">${x>0?'+':''}${x.toFixed(1)}</span>`;
 function render(){
  charts.forEach(c=>c.destroy());charts=[];const F=filtered();
- $('#summary').textContent=`${F.R.length} rounds (${F.R18.length} × 18-hole) · ${F.H.length} holes with hole-level data · par ${F.pars.join('/')||'none'}`;
+ const parTxt=F.allPars?'all pars':'par '+F.pars.join('/');
+ $('#summary').innerHTML=`<b style="color:var(--text)">${F.R.length}</b> rounds · <b style="color:var(--text)">${F.R18.length}</b> × 18-hole · <b style="color:var(--text)">${F.H.length}</b> holes with hole data · ${parTxt}`;
+ const bits=[];if(ST.courses.size)bits.push(ST.courses.size+' course'+(ST.courses.size>1?'s':''));if(ST.tees.size)bits.push([...ST.tees].join('/')+' tees');if(ST.yds.size)bits.push([...ST.yds].join(', ')+' yds');if(ST.rts.size)bits.push('rating '+[...ST.rts].join(', '));
+ if($('#lastN').value)bits.push('last '+$('#lastN').value);if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));if($('#lastC').value)bits.push('last '+$('#lastC').value+' per course');bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
+ $('#fsum').textContent=bits.join(' · ');
  const out=$('#out');out.innerHTML='';
  STATS.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
-  const c=document.createElement('div');c.className='card';c.innerHTML=`<h3>${s.title}</h3><div class="note">${s.area}${s.note?' · '+s.note:''}</div>`;out.appendChild(c);
+  const c=document.createElement('div');c.className='card';c.innerHTML=`<h3>${s.title}</h3><div class="meta">${ICON[s.area]||''} ${s.area}${s.note?' · '+s.note:''}</div>`;out.appendChild(c);
   ({roundCount,holeSplit,roundSeries,hcp})[s.kind](s,F,c);
  });
 }
-function canvas(c){const k=document.createElement('canvas');k.height=170;c.appendChild(k);return k}
+function canvas(c){const w=document.createElement('div');w.className='cv';const k=document.createElement('canvas');w.appendChild(k);c.appendChild(w);return k}
 function empty(c,m){c.insertAdjacentHTML('beforeend',`<div class="empty">${m||'No data for the current filters yet.'}</div>`)}
-function table(c,head,rows){c.insertAdjacentHTML('beforeend','<table><tr>'+head.map(h=>`<th>${h}</th>`).join('')+'</tr>'+rows.map(r=>'<tr>'+r.map(x=>`<td>${x}</td>`).join('')+'</tr>').join('')+'</table>')}
+function table(c,head,rows){c.insertAdjacentHTML('beforeend','<table><thead><tr>'+head.map(h=>`<th>${h}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(x=>`<td>${x}</td>`).join('')+'</tr>').join('')+'</tbody></table>')}
+function grad(color){return ctx=>{const {chart}=ctx;const a=chart.chartArea;if(!a)return color;const g=chart.ctx.createLinearGradient(0,a.top,0,a.bottom);g.addColorStop(0,color);g.addColorStop(1,color+'40');return g}}
+function fillGrad(color){return ctx=>{const a=ctx.chart.chartArea;if(!a)return color+'22';const g=ctx.chart.ctx.createLinearGradient(0,a.top,0,a.bottom);g.addColorStop(0,color+'55');g.addColorStop(1,color+'00');return g}}
+const ax=(t,extra={})=>Object.assign({title:{display:true,text:t,color:'#c8dacf',font:{weight:'500'}},grid:{color:PAL.grid,drawTicks:false},border:{display:false},ticks:{padding:6}},extra);
+const sgn=v=>(v>0?'+':'')+(+v).toFixed(2);
 function roundCount(s,F,c){
  const R=F.R18.filter(r=>s.val(r)!=null);
  const bk=buckets[s.id];let groups;
@@ -111,35 +199,44 @@ function roundCount(s,F,c){
  else{const ks=[...new Set(R.map(s.val))].sort((a,b)=>a-b);groups=ks.map(k=>[String(k),R.filter(r=>s.val(r)===k)])}
  if(!R.length)empty(c,'No 18-hole rounds with this stat in the current filters.');
  else{
-  const rows=groups.map(([k,g])=>{const tp=avg(g.map(r=>r.toPar).filter(x=>x!=null));const ex=s.extra?avg(g.map(s.extra.val).filter(x=>x!=null)):null;
-   return [k,g.length,fmt(avg(g.map(r=>r.gross)),1),fmt(tp)].concat(s.extra?[ex==null?'–':ex.toFixed(1)]:[])});
-  charts.push(new Chart(canvas(c),{type:'bar',data:{labels:rows.map(r=>r[0]),datasets:[{label:'Avg to par',data:groups.map(([k,g])=>avg(g.map(r=>r.toPar).filter(x=>x!=null))),backgroundColor:'#3b7d4f'},{label:'Rounds',data:groups.map(g=>g[1].length),type:'line',yAxisID:'y2',borderColor:'#c90'}]},
-   options:{scales:{y:{title:{display:true,text:'Avg to par'}},y2:{position:'right',grid:{display:false},title:{display:true,text:'Rounds'}}}}}));
-  table(c,['Count','Rounds','Avg gross','Avg to par'].concat(s.extra?[s.extra.label]:[]),rows);
+  const tps=groups.map(([k,g])=>avg(g.map(r=>r.toPar).filter(x=>x!=null)));
+  charts.push(new Chart(canvas(c),{type:'bar',data:{labels:groups.map(g=>g[0]),datasets:[
+    {label:'Avg to par',data:tps,backgroundColor:grad(PAL.g),borderRadius:8,borderSkipped:false,maxBarThickness:46,order:2},
+    {label:'Rounds',data:groups.map(g=>g[1].length),type:'line',yAxisID:'y2',borderColor:PAL.gold,backgroundColor:PAL.gold,tension:.4,pointRadius:4,pointHoverRadius:6,borderWidth:2,order:1}]},
+   options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.datasetIndex?x.raw:sgn(x.raw))}}},
+    scales:{x:ax((s.x||'Count per round')+(bk&&bk.length?' (custom buckets)':''),{grid:{display:false}}),y:ax('Avg score to par'),y2:ax('Rounds',{position:'right',grid:{display:false},beginAtZero:true,ticks:{precision:0}})}}}));
+  const rows=groups.map(([k,g],i)=>{const ex=s.extra?avg(g.map(s.extra.val).filter(x=>x!=null)):null;
+   return [k,g.length,g.length?avg(g.map(r=>r.gross)).toFixed(1):'–',tpR(tps[i])].concat(s.extra?[ex==null?'–':ex.toFixed(1)]:[])});
+  table(c,[s.x?'Count':'Count','Rounds','Avg gross','Avg to par'].concat(s.extra?[s.extra.label]:[]),rows);
  }
- const d=document.createElement('div');d.className='bk';d.innerHTML=`Custom buckets: <input placeholder="e.g. 0-3,4-6,7+" value="${(bk||[]).join(',')}"> <span class="note">blank = exact counts · 18-hole rounds only</span>`;
- d.querySelector('input').onchange=e=>{const v=e.target.value.split(',').map(x=>x.trim()).filter(Boolean);if(v.length)buckets[s.id]=v;else delete buckets[s.id];SS('golf_buckets',buckets);render()};c.appendChild(d);
+ const d=document.createElement('div');d.className='bk';d.innerHTML=`<span>Buckets</span><input placeholder="e.g. 0-3, 4-6, 7+" value="${(bk||[]).join(', ')}"><span>blank = exact counts</span>`;
+ d.querySelector('input').onchange=e=>{const v=parseB(e.target.value);if(v.length)buckets[s.id]=v;else delete buckets[s.id];SS('golf_buckets',buckets);render()};c.appendChild(d);
 }
 function holeSplit(s,F,c){
  const H=F.H.filter(h=>s.key(h)!=null&&h.toPar!=null);
- if(!H.length)return empty(c,'No hole-level data for this stat in the current filters'+(F.pars.length==1&&F.pars[0]==3&&s.id.startsWith('f')?' (par 3s have no fairway).':'.'));
- const pars=F.pars.filter(p=>H.some(h=>h.par===p)),cols=['#3b7d4f','#c96','#58a','#a5a'];
- const ds=pars.map((p,i)=>({label:'Par '+p,backgroundColor:cols[i],data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar)))}));
- ds.push({label:'All selected pars',backgroundColor:'#333',data:s.order.map(k=>avg(H.filter(h=>s.key(h)===k).map(h=>h.toPar)))});
- charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order.map(k=>LABEL[k]||k),datasets:ds},options:{scales:{y:{title:{display:true,text:'Avg to par'}}}}}));
- const rows=[];s.order.forEach(k=>{const g=H.filter(h=>s.key(h)===k);rows.push([LABEL[k]||k,g.length,(100*g.length/H.length).toFixed(0)+'%',fmt(avg(g.map(h=>h.toPar)))].concat(pars.map(p=>{const q=g.filter(h=>h.par===p);return q.length?fmt(avg(q.map(h=>h.toPar)))+` (${q.length})`:'–'})))});
+ if(!H.length)return empty(c,'No hole-level data for this stat in the current filters'+(!F.allPars&&F.pars.length==1&&F.pars[0]==3&&s.id.startsWith('f')?' (par 3s have no fairway).':'.'));
+ const pars=F.allPars?[]:F.pars.filter(p=>H.some(h=>h.par===p));
+ const A=k=>avg(H.filter(h=>s.key(h)===k).map(h=>h.toPar));
+ const ds=pars.map(p=>({label:'Par '+p,backgroundColor:grad(PARCOL[p]),data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar))),borderRadius:7,borderSkipped:false,maxBarThickness:34}));
+ if(pars.length!==1)ds.push({label:F.allPars?'All pars':'Selected pars combined',backgroundColor:grad(PAL.g),data:s.order.map(A),borderRadius:7,borderSkipped:false,maxBarThickness:pars.length?34:56});
+ charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order.map(k=>LABEL[k]||k),datasets:ds},
+  options:{maintainAspectRatio:false,plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.raw==null?'–':sgn(x.raw))}}},scales:{x:ax(s.x||'Category',{grid:{display:false}}),y:ax(s.y||'Avg score to par per hole')}}}));
+ const rows=s.order.map(k=>{const g=H.filter(h=>s.key(h)===k);const a=avg(g.map(h=>h.toPar));
+  return [LABEL[k]||k,g.length,(100*g.length/H.length).toFixed(0)+'%',`<span class="${tpCls(a)}">${fmt(a)}</span>`].concat(pars.map(p=>{const q=g.filter(h=>h.par===p);const b=avg(q.map(h=>h.toPar));return q.length?`<span class="${tpCls(b)}">${fmt(b)}</span> <span style="color:var(--mut)">(${q.length})</span>`:'–'}))});
  table(c,['','Holes','Share','Avg to par'].concat(pars.map(p=>'Par '+p)),rows);
 }
+function line(c,labels,data,color,yT,xT,extra={}){charts.push(new Chart(canvas(c),{type:'line',data:{labels,datasets:[Object.assign({label:yT,data,borderColor:color,backgroundColor:fillGrad(color),fill:true,tension:.4,borderWidth:2.5,pointRadius:3,pointHoverRadius:6,pointBackgroundColor:color},extra)]},
+ options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false}},scales:{x:ax(xT,{grid:{display:false},ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:7}}),y:ax(yT)}}}))}
 function roundSeries(s,F,c){
  const R=F.R18.filter(r=>s.val(r)!=null).slice().reverse();
  if(!R.length)return empty(c,'No 18-hole rounds with this stat in the current filters.');
- charts.push(new Chart(canvas(c),{type:'line',data:{labels:R.map(r=>r.date),datasets:[{label:s.title,data:R.map(s.val),borderColor:'#3b7d4f'}]}}));
- c.insertAdjacentHTML('beforeend',`<div class="note">Average: ${avg(R.map(s.val)).toFixed(1)} over ${R.length} rounds</div>`);
+ line(c,R.map(r=>r.date),R.map(s.val),PAL.g,s.y||s.title,'Round date');
+ c.insertAdjacentHTML('beforeend',`<div class="note">Average <b style="color:var(--text)">${avg(R.map(s.val)).toFixed(1)}</b> over ${R.length} rounds</div>`);
 }
 function hcp(s,F,c){
  const f=$('#from').value,t=$('#to').value;const H=D.handicap.filter(h=>(!f||h.date>=f)&&(!t||h.date<=t));
  if(!H.length)return empty(c);
- charts.push(new Chart(canvas(c),{type:'line',data:{labels:H.map(h=>h.date),datasets:[{label:'Index',data:H.map(h=>h.index),borderColor:'#1f4d2b',pointRadius:1}]}}));
- c.insertAdjacentHTML('beforeend',`<div class="note">Latest ${H.at(-1).index} (${H.at(-1).date}) · low ${Math.min(...H.map(h=>h.index))} · date filter only</div>`);
+ line(c,H.map(h=>h.date),H.map(h=>h.index),PAL.gold,'Handicap index','Revision date',{pointRadius:0,tension:.3});
+ c.insertAdjacentHTML('beforeend',`<div class="note">Latest <b style="color:var(--text)">${H.at(-1).index}</b> (${H.at(-1).date}) · low ${Math.min(...H.map(h=>h.index))} · date filter only</div>`);
 }
 </script></body></html>
