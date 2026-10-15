@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-15T17:23",
+ "generated": "2026-10-15T17:25",
  "rounds": [
   {
    "date": "2026-06-25",
@@ -358,8 +358,8 @@
    "course": "Park City GC",
    "tees": "Blue",
    "type": 18,
-   "teeYards": null,
-   "rating": null,
+   "teeYards": 6215,
+   "rating": 70,
    "par": 72,
    "gross": 81,
    "toPar": 9,
@@ -381,7 +381,7 @@
    "tees": "Blue",
    "type": 18,
    "teeYards": null,
-   "rating": null,
+   "rating": 65.8,
    "par": 70,
    "gross": 86,
    "toPar": 16,
