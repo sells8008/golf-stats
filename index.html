@@ -19,7 +19,8 @@ td,th{border-bottom:1px solid #eee;padding:2px 6px;text-align:right}th:first-chi
  <fieldset><legend>Last X rounds</legend><input type="number" id="lastN" min="1" placeholder="all"></fieldset>
  <fieldset><legend>Date range</legend><input type="date" id="from"> – <input type="date" id="to"></fieldset>
  <fieldset><legend>Courses</legend><div id="courses"></div></fieldset>
- <fieldset><legend>Tees</legend><div id="tees"></div></fieldset>
+ <fieldset><legend>Tee name</legend><div id="tees"></div></fieldset>
+ <fieldset><legend>Tee distance (18-hole yards)</legend><div id="yds"></div></fieldset>
  <fieldset><legend>Last X rounds at selected course(s)</legend><input type="number" id="lastC" min="1" placeholder="all"></fieldset>
  <fieldset><legend>Par (hole stats)</legend><label><input type="checkbox" class="par" value="3" checked>3</label><label><input type="checkbox" class="par" value="4" checked>4</label><label><input type="checkbox" class="par" value="5" checked>5</label></fieldset>
  <fieldset><legend>Rounds</legend><label><input type="checkbox" id="inc9" checked>Include 9-hole holes in hole stats</label></fieldset>
@@ -58,6 +59,8 @@ function boxes(id,vals,cls){$(id).innerHTML=vals.map(v=>`<label><input type="che
 function init(){
  $('#gen').textContent='Data updated '+D.generated;
  boxes('#courses',[...new Set(D.rounds.map(r=>r.course))].sort(),'crs');
+ const yb=r=>r.type==18&&r.teeYards?(()=>{const a=Math.floor(r.teeYards/200)*200;return a+'-'+(a+199)})():'Unknown';D.rounds.forEach(r=>r.yb=yb(r));
+ boxes('#yds',[...new Set(D.rounds.map(r=>r.yb))].sort((a,b)=>a==='Unknown'?1:b==='Unknown'?-1:parseInt(a)-parseInt(b)),'yd');
  boxes('#tees',[...new Set(D.rounds.map(r=>r.tees).filter(Boolean))].sort(),'tee');
  renderAreas();document.querySelectorAll('#filters input').forEach(e=>e.addEventListener('input',render));
  $('#reset').onclick=()=>{document.querySelectorAll('#filters input[type=checkbox]').forEach(e=>e.checked=true);['#lastN','#from','#to','#lastC'].forEach(s=>$(s).value='');render()};
@@ -71,8 +74,8 @@ function renderAreas(){
 }
 const vals=c=>[...document.querySelectorAll('.'+c+':checked')].map(e=>e.value);
 function filtered(){
- const cs=vals('crs'),ts=vals('tee'),pars=vals('par').map(Number),f=$('#from').value,t=$('#to').value;
- let R=D.rounds.filter(r=>cs.includes(r.course)&&(!r.tees||ts.includes(r.tees))&&(!f||r.date>=f)&&(!t||r.date<=t));
+ const cs=vals('crs'),ts=vals('tee'),ys=vals('yd'),pars=vals('par').map(Number),f=$('#from').value,t=$('#to').value;
+ let R=D.rounds.filter(r=>cs.includes(r.course)&&(!r.tees||ts.includes(r.tees))&&ys.includes(r.yb)&&(!f||r.date>=f)&&(!t||r.date<=t));
  R.sort((a,b)=>b.date.localeCompare(a.date));
  const lc=+$('#lastC').value;if(lc){const keep=new Set();cs.forEach(c=>R.filter(r=>r.course===c).slice(0,lc).forEach(r=>keep.add(r)));R=R.filter(r=>keep.has(r))}
  const n=+$('#lastN').value;if(n)R=R.slice(0,n);
