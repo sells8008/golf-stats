@@ -1,0 +1,135 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hunter's Golf Stats</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#f4f6f3;color:#1d2b1f}
+header{background:#1f4d2b;color:#fff;padding:12px 18px}h1{margin:0;font-size:20px}
+#filters{display:flex;flex-wrap:wrap;gap:14px;padding:12px 18px;background:#fff;border-bottom:1px solid #ccd}
+fieldset{border:1px solid #cdd;border-radius:6px;padding:6px 10px;margin:0}legend{font-size:12px;font-weight:600}
+label{font-size:13px;margin-right:8px;white-space:nowrap}input[type=number]{width:60px}
+#areas{padding:8px 18px;background:#eef2ec}#summary{padding:6px 18px;font-size:13px;color:#555}
+#out{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:14px;padding:14px 18px}
+.card{background:#fff;border-radius:8px;padding:12px;box-shadow:0 1px 3px #0002}.card h3{margin:0 0 4px;font-size:15px}
+.note{font-size:11px;color:#777}table{border-collapse:collapse;font-size:12px;width:100%;margin-top:6px}
+td,th{border-bottom:1px solid #eee;padding:2px 6px;text-align:right}th:first-child,td:first-child{text-align:left}
+.empty{color:#999;font-style:italic;font-size:13px}.bk{font-size:12px;margin-top:4px}.bk input{width:120px}
+</style></head><body>
+<header><h1>Hunter's Golf Stats</h1><div class="note" id="gen" style="color:#cfe"></div></header>
+<div id="filters">
+ <fieldset><legend>Last X rounds</legend><input type="number" id="lastN" min="1" placeholder="all"></fieldset>
+ <fieldset><legend>Date range</legend><input type="date" id="from"> – <input type="date" id="to"></fieldset>
+ <fieldset><legend>Courses</legend><div id="courses"></div></fieldset>
+ <fieldset><legend>Tees</legend><div id="tees"></div></fieldset>
+ <fieldset><legend>Last X rounds at selected course(s)</legend><input type="number" id="lastC" min="1" placeholder="all"></fieldset>
+ <fieldset><legend>Par (hole stats)</legend><label><input type="checkbox" class="par" value="3" checked>3</label><label><input type="checkbox" class="par" value="4" checked>4</label><label><input type="checkbox" class="par" value="5" checked>5</label></fieldset>
+ <fieldset><legend>Rounds</legend><label><input type="checkbox" id="inc9" checked>Include 9-hole holes in hole stats</label></fieldset>
+ <button id="reset">Reset filters</button>
+</div>
+<div id="areas"></div><div id="summary"></div><div id="out"></div>
+<script>
+// ===================== STAT REGISTRY =====================
+// kind: 'roundCount' (exact count per 18-hole round), 'holeSplit' (hole-level groups split by par),
+//       'roundSeries' (value per round over time), 'hcp'. Add a stat = add one entry.
+const avg=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null;
+const STATS=[
+ {id:'dbl',area:'Doubles / Triples',title:'Doubles or worse per round',kind:'roundCount',val:r=>r.doubles!=null&&r.triplesPlus!=null?r.doubles+r.triplesPlus:null},
+ {id:'tpl',area:'Doubles / Triples',title:'Triples or worse per round',kind:'roundCount',val:r=>r.triplesPlus},
+ {id:'fwc',area:'Fairways',title:'Fairways hit per round (with avg GIR)',kind:'roundCount',val:r=>r.fwHit,extra:{label:'Avg GIR',val:r=>r.gir}},
+ {id:'firsplit',area:'Fairways',title:'Avg to par per hole: fairway hit vs missed',kind:'holeSplit',key:h=>h.fir==='Hit'||h.fir==='Miss'?h.fir:null,order:['Hit','Miss'],note:'Par 3s have no fairway (NA).'},
+ {id:'girc',area:'Greens',title:'Greens in regulation per round',kind:'roundCount',val:r=>r.gir},
+ {id:'girsplit',area:'Greens',title:'Avg to par per hole: green hit vs missed',kind:'holeSplit',key:h=>h.gir==='Hit'||h.gir==='Miss'?h.gir:null,order:['Hit','Miss']},
+ {id:'putts',area:'Putting',title:'Putts per round',kind:'roundSeries',val:r=>r.putts},
+ {id:'p3',area:'Putting',title:'3-putts or worse per round',kind:'roundCount',val:r=>r.threePutts},
+ {id:'p1',area:'Putting',title:'1-putts per round',kind:'roundCount',val:r=>r.onePutts},
+ {id:'ud',area:'Up & Downs',title:'Up-and-downs made per round',kind:'roundCount',val:r=>r.udMade},
+ {id:'udser',area:'Up & Downs',title:'Up-and-downs made over time',kind:'roundSeries',val:r=>r.udMade},
+ {id:'fwmiss',area:'Miss Direction',title:'Fairway miss direction',kind:'holeSplit',key:h=>['Left','Right','Short','Long'].includes(h.fwMiss)?h.fwMiss:null,order:['Left','Right','Short','Long']},
+ {id:'grmiss',area:'Miss Direction',title:'Green miss direction',kind:'holeSplit',key:h=>['Left','Right','Short','Long'].includes(h.grMiss)?h.grMiss:null,order:['Left','Right','Short','Long']},
+ {id:'score',area:'Scoring',title:'Score to par by round',kind:'roundSeries',val:r=>r.toPar},
+ {id:'hcp',area:'Handicap',title:'Handicap index trend',kind:'hcp'},
+];
+// =========================================================
+let D,charts=[];const $=s=>document.querySelector(s);
+const LS=k=>JSON.parse(localStorage.getItem(k)||'null');const SS=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let areaSel=LS('golf_areas')||{all:true,on:[]};let buckets=LS('golf_buckets')||{};
+const AREAS=[...new Set(STATS.map(s=>s.area))];
+fetch('data.json').then(r=>r.json()).then(d=>{D=d;init()});
+function boxes(id,vals,cls){$(id).innerHTML=vals.map(v=>`<label><input type="checkbox" class="${cls}" value="${v}" checked>${v}</label>`).join('')}
+function init(){
+ $('#gen').textContent='Data updated '+D.generated;
+ boxes('#courses',[...new Set(D.rounds.map(r=>r.course))].sort(),'crs');
+ boxes('#tees',[...new Set(D.rounds.map(r=>r.tees).filter(Boolean))].sort(),'tee');
+ renderAreas();document.querySelectorAll('#filters input').forEach(e=>e.addEventListener('input',render));
+ $('#reset').onclick=()=>{document.querySelectorAll('#filters input[type=checkbox]').forEach(e=>e.checked=true);['#lastN','#from','#to','#lastC'].forEach(s=>$(s).value='');render()};
+ render();
+}
+function renderAreas(){
+ $('#areas').innerHTML=`<b style="font-size:13px">Stat areas:</b> <label><input type="checkbox" id="showall" ${areaSel.all?'checked':''}>Show all</label>`+
+  AREAS.map(a=>`<label><input type="checkbox" class="area" value="${a}" ${areaSel.all||areaSel.on.includes(a)?'checked':''} ${areaSel.all?'disabled':''}>${a}</label>`).join('');
+ $('#showall').onchange=e=>{areaSel.all=e.target.checked;SS('golf_areas',areaSel);renderAreas();render()};
+ document.querySelectorAll('.area').forEach(e=>e.onchange=()=>{areaSel.on=[...document.querySelectorAll('.area:checked')].map(x=>x.value);SS('golf_areas',areaSel);render()});
+}
+const vals=c=>[...document.querySelectorAll('.'+c+':checked')].map(e=>e.value);
+function filtered(){
+ const cs=vals('crs'),ts=vals('tee'),pars=vals('par').map(Number),f=$('#from').value,t=$('#to').value;
+ let R=D.rounds.filter(r=>cs.includes(r.course)&&(!r.tees||ts.includes(r.tees))&&(!f||r.date>=f)&&(!t||r.date<=t));
+ R.sort((a,b)=>b.date.localeCompare(a.date));
+ const lc=+$('#lastC').value;if(lc){const keep=new Set();cs.forEach(c=>R.filter(r=>r.course===c).slice(0,lc).forEach(r=>keep.add(r)));R=R.filter(r=>keep.has(r))}
+ const n=+$('#lastN').value;if(n)R=R.slice(0,n);
+ const key=x=>x.date+'|'+x.course+'|'+x.type;const rk=new Set(R.map(key));
+ const H=D.holes.filter(h=>rk.has(key(h))&&pars.includes(h.par)&&($('#inc9').checked||h.type==18));
+ return {R,R18:R.filter(r=>r.type==18),H,pars};
+}
+const fmt=(x,d=2)=>x==null?'–':(x>0&&d==2?'+':'')+x.toFixed(d);
+function inBucket(v,s){s=s.trim();if(s.endsWith('+'))return v>=+s.slice(0,-1);const[a,b]=s.split('-').map(Number);return b==null||isNaN(b)?v===a:v>=a&&v<=b}
+function render(){
+ charts.forEach(c=>c.destroy());charts=[];const F=filtered();
+ $('#summary').textContent=`${F.R.length} rounds (${F.R18.length} × 18-hole) · ${F.H.length} holes with hole-level data · par ${F.pars.join('/')||'none'}`;
+ const out=$('#out');out.innerHTML='';
+ STATS.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
+  const c=document.createElement('div');c.className='card';c.innerHTML=`<h3>${s.title}</h3><div class="note">${s.area}${s.note?' · '+s.note:''}</div>`;out.appendChild(c);
+  ({roundCount,holeSplit,roundSeries,hcp})[s.kind](s,F,c);
+ });
+}
+function canvas(c){const k=document.createElement('canvas');k.height=170;c.appendChild(k);return k}
+function empty(c,m){c.insertAdjacentHTML('beforeend',`<div class="empty">${m||'No data for the current filters yet.'}</div>`)}
+function table(c,head,rows){c.insertAdjacentHTML('beforeend','<table><tr>'+head.map(h=>`<th>${h}</th>`).join('')+'</tr>'+rows.map(r=>'<tr>'+r.map(x=>`<td>${x}</td>`).join('')+'</tr>').join('')+'</table>')}
+function roundCount(s,F,c){
+ const R=F.R18.filter(r=>s.val(r)!=null);
+ const bk=buckets[s.id];let groups;
+ if(bk&&bk.length)groups=bk.map(b=>[b,R.filter(r=>inBucket(s.val(r),b))]);
+ else{const ks=[...new Set(R.map(s.val))].sort((a,b)=>a-b);groups=ks.map(k=>[String(k),R.filter(r=>s.val(r)===k)])}
+ if(!R.length)empty(c,'No 18-hole rounds with this stat in the current filters.');
+ else{
+  const rows=groups.map(([k,g])=>{const tp=avg(g.map(r=>r.toPar).filter(x=>x!=null));const ex=s.extra?avg(g.map(s.extra.val).filter(x=>x!=null)):null;
+   return [k,g.length,fmt(avg(g.map(r=>r.gross)),1),fmt(tp)].concat(s.extra?[ex==null?'–':ex.toFixed(1)]:[])});
+  charts.push(new Chart(canvas(c),{type:'bar',data:{labels:rows.map(r=>r[0]),datasets:[{label:'Avg to par',data:groups.map(([k,g])=>avg(g.map(r=>r.toPar).filter(x=>x!=null))),backgroundColor:'#3b7d4f'},{label:'Rounds',data:groups.map(g=>g[1].length),type:'line',yAxisID:'y2',borderColor:'#c90'}]},
+   options:{scales:{y:{title:{display:true,text:'Avg to par'}},y2:{position:'right',grid:{display:false},title:{display:true,text:'Rounds'}}}}}));
+  table(c,['Count','Rounds','Avg gross','Avg to par'].concat(s.extra?[s.extra.label]:[]),rows);
+ }
+ const d=document.createElement('div');d.className='bk';d.innerHTML=`Custom buckets: <input placeholder="e.g. 0-3,4-6,7+" value="${(bk||[]).join(',')}"> <span class="note">blank = exact counts · 18-hole rounds only</span>`;
+ d.querySelector('input').onchange=e=>{const v=e.target.value.split(',').map(x=>x.trim()).filter(Boolean);if(v.length)buckets[s.id]=v;else delete buckets[s.id];SS('golf_buckets',buckets);render()};c.appendChild(d);
+}
+function holeSplit(s,F,c){
+ const H=F.H.filter(h=>s.key(h)!=null&&h.toPar!=null);
+ if(!H.length)return empty(c,'No hole-level data for this stat in the current filters'+(F.pars.length==1&&F.pars[0]==3&&s.id.startsWith('f')?' (par 3s have no fairway).':'.'));
+ const pars=F.pars.filter(p=>H.some(h=>h.par===p)),cols=['#3b7d4f','#c96','#58a','#a5a'];
+ const ds=pars.map((p,i)=>({label:'Par '+p,backgroundColor:cols[i],data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar)))}));
+ ds.push({label:'All selected pars',backgroundColor:'#333',data:s.order.map(k=>avg(H.filter(h=>s.key(h)===k).map(h=>h.toPar)))});
+ charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order,datasets:ds},options:{scales:{y:{title:{display:true,text:'Avg to par'}}}}}));
+ const rows=[];s.order.forEach(k=>{const g=H.filter(h=>s.key(h)===k);rows.push([k,g.length,(100*g.length/H.length).toFixed(0)+'%',fmt(avg(g.map(h=>h.toPar)))].concat(pars.map(p=>{const q=g.filter(h=>h.par===p);return q.length?fmt(avg(q.map(h=>h.toPar)))+` (${q.length})`:'–'})))});
+ table(c,['','Holes','Share','Avg to par'].concat(pars.map(p=>'Par '+p)),rows);
+}
+function roundSeries(s,F,c){
+ const R=F.R18.filter(r=>s.val(r)!=null).slice().reverse();
+ if(!R.length)return empty(c,'No 18-hole rounds with this stat in the current filters.');
+ charts.push(new Chart(canvas(c),{type:'line',data:{labels:R.map(r=>r.date),datasets:[{label:s.title,data:R.map(s.val),borderColor:'#3b7d4f'}]}}));
+ c.insertAdjacentHTML('beforeend',`<div class="note">Average: ${avg(R.map(s.val)).toFixed(1)} over ${R.length} rounds</div>`);
+}
+function hcp(s,F,c){
+ const f=$('#from').value,t=$('#to').value;const H=D.handicap.filter(h=>(!f||h.date>=f)&&(!t||h.date<=t));
+ if(!H.length)return empty(c);
+ charts.push(new Chart(canvas(c),{type:'line',data:{labels:H.map(h=>h.date),datasets:[{label:'Index',data:H.map(h=>h.index),borderColor:'#1f4d2b',pointRadius:1}]}}));
+ c.insertAdjacentHTML('beforeend',`<div class="note">Latest ${H.at(-1).index} (${H.at(-1).date}) · low ${Math.min(...H.map(h=>h.index))} · date filter only</div>`);
+}
+</script></body></html>
