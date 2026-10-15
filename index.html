@@ -11,7 +11,7 @@ h1{margin:0;font-size:22px;font-weight:700;letter-spacing:-.02em}h1 span{color:v
 .ph{display:flex;align-items:center;gap:10px;padding:6px 12px;cursor:pointer;user-select:none}.ph b{font-weight:600}.ph .sum{color:var(--mut);font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ph .tog{transition:transform .25s;color:var(--mut)}.panel.closed .tog{transform:rotate(-90deg)}.panel.closed .pb{display:none}
 .pb{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px 10px;padding:2px 12px 10px}.f.w2{grid-column:span 2}
-.f label.t{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:3px;white-space:normal;line-height:1.2;min-height:24px;align-items:flex-end;overflow-wrap:anywhere;min-width:0}.f{min-width:0}.f.dr label.t{justify-content:center;text-align:center}.info{cursor:help;opacity:.7;font-size:11px;text-transform:none}
+.f label.t{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:3px;white-space:normal;line-height:1.2;min-height:24px;align-items:flex-end;overflow-wrap:anywhere;min-width:0}.f{min-width:0}.info{cursor:help;opacity:.7;font-size:11px;text-transform:none}
 input{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:5px 8px;font:inherit;font-size:12.5px;outline:none;width:100%;height:32px}
 input:focus{border-color:var(--acc);box-shadow:0 0 0 3px #5fd38d33}input[type=date]{color-scheme:dark}.row{display:flex;gap:8px;align-items:center}
 .chips{display:flex;flex-wrap:wrap;gap:4px}
@@ -89,9 +89,12 @@ const STATS=[
  {id:'grmiss',area:'Miss Direction',title:'Green miss direction',kind:'holeSplit',x:'Miss direction',key:h=>MISS.includes(h.grMiss)?h.grMiss:null,order:MISS},
  {id:'score',area:'Scoring',title:'Score to par by round',kind:'roundSeries',y:'Score to par',val:r=>r.toPar},
  {id:'hcp',area:'Handicap',title:'Handicap index trend',kind:'hcp'},
+ {id:'diff',area:'Differential',title:'Score differential over time',kind:'diffSeries'},
 ];
 // Area summary pills (18-hole rounds only; rounds counted only if every filtered hole has the field)
+const diffR=F=>F.R.filter(r=>r.differential!=null).slice().reverse();
 const SUMM={
+ 'Differential':F=>{const r=diffR(F);if(!r.length)return null;const d=r.map(x=>x.differential);return `Avg differential: ${avg(d).toFixed(1)} · best ${Math.min(...d).toFixed(1)} · ${r.length} rounds`},
  'Fairways':F=>{const r=perRound(F,h=>h.par>=4,h=>h.fir==='Hit'||h.fir==='Miss',hs=>[hs.filter(h=>h.fir==='Hit').length,hs.length]);if(!r.length)return null;
    const a=avg(r.map(x=>x[0])),b=avg(r.map(x=>x[1]));return `Avg fairways hit: ${a.toFixed(1)} / ${b.toFixed(b%1?1:0)} (${Math.round(100*a/b)}%) · ${r.length} rounds`},
  'Greens':F=>{const r=perRound(F,()=>true,h=>h.gir==='Hit'||h.gir==='Miss',hs=>[hs.filter(h=>h.gir==='Hit').length,hs.length]);if(!r.length)return null;
@@ -103,12 +106,12 @@ const SUMM={
 };
 function perRound(F,sel,has,fn){const by={};F.H.forEach(h=>{if(h.type!=18||!sel(h))return;(by[h.id]=by[h.id]||[]).push(h)});
  return F.R18.map(r=>by[r.id]).filter(hs=>hs&&hs.length&&hs.every(has)).map(fn)}
-const ICON={'Doubles / Triples':'💥','Fairways':'🎯','Greens':'⛳','Putting':'🕳️','Up & Downs':'🪄','Miss Direction':'🧭','Scoring':'📈','Handicap':'📉'};
+const ICON={'Doubles / Triples':'💥','Fairways':'🎯','Greens':'⛳','Putting':'🕳️','Up & Downs':'🪄','Miss Direction':'🧭','Scoring':'📈','Handicap':'📉','Differential':'🧮'};
 // =========================================================
 let D,charts=[];const $=s=>document.querySelector(s);
 const LS=k=>JSON.parse(localStorage.getItem(k)||'null');const SS=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let areaSel=LS('golf_areas')||{all:true,on:[]};let buckets=LS('golf_buckets')||{};
-const AREA_ORDER=['Fairways','Greens','Putting','Up & Downs','Miss Direction','Doubles / Triples','Scoring','Handicap'];
+const AREA_ORDER=['Fairways','Greens','Putting','Up & Downs','Miss Direction','Doubles / Triples','Scoring','Handicap','Differential'];
 const aIdx=a=>{const i=AREA_ORDER.indexOf(a);return i<0?99:i};
 const AREAS=[...new Set(STATS.map(s=>s.area))].sort((a,b)=>aIdx(a)-aIdx(b));
 const ORDERED=STATS.map((s,i)=>[s,i]).sort((a,b)=>aIdx(a[0].area)-aIdx(b[0].area)||a[1]-b[1]).map(x=>x[0]);
@@ -202,7 +205,7 @@ function render(){
  const out=$('#out');out.innerHTML='';const SC={};Object.keys(SUMM).forEach(k=>SC[k]=SUMM[k](F));
  ORDERED.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
   const c=document.createElement('div');c.className='card';c.innerHTML=`<h3>${s.title}</h3>${SUMM[s.area]?`<div class="spill">${SC[s.area]||'–'}</div>`:''}<div class="meta">${ICON[s.area]||''} ${s.area}${s.note?' · '+s.note:''}</div>`;out.appendChild(c);
-  ({roundCount,holeSplit,roundSeries,hcp})[s.kind](s,F,c);
+  ({roundCount,holeSplit,roundSeries,hcp,diffSeries})[s.kind](s,F,c);
  });
 }
 function canvas(c){const w=document.createElement('div');w.className='cv';const k=document.createElement('canvas');w.appendChild(k);c.appendChild(w);return k}
@@ -253,6 +256,16 @@ function roundSeries(s,F,c){
  if(!R.length)return empty(c,'No 18-hole rounds with this stat in the current filters.');
  line(c,R.map(r=>r.date),R.map(s.val),PAL.g,s.y||s.title,'Round date');
  c.insertAdjacentHTML('beforeend',`<div class="note">Average <b style="color:var(--text)">${avg(R.map(s.val)).toFixed(1)}</b> over ${R.length} rounds</div>`);
+}
+function diffSeries(s,F,c){
+ const R=diffR(F);if(!R.length)return empty(c,'No differential data for the current filters yet.');
+ const d=R.map(r=>r.differential);
+ const b8=d.map((_,i)=>{const w=d.slice(Math.max(0,i-19),i+1);if(w.length<8)return null;return avg(w.slice().sort((a,b)=>a-b).slice(0,8))});
+ const ds=[{label:'Differential',data:d,borderColor:PAL.g,backgroundColor:fillGrad(PAL.g),fill:true,tension:.4,borderWidth:2.5,pointRadius:3.5,pointHoverRadius:6,pointBackgroundColor:PAL.g}];
+ if(b8.some(x=>x!=null))ds.push({label:'Avg best 8 of last 20',data:b8,borderColor:PAL.gold,borderDash:[5,4],tension:.4,borderWidth:2,pointRadius:0,fill:false,spanGaps:true});
+ charts.push(new Chart(canvas(c),{type:'line',data:{labels:R.map(r=>r.date),datasets:ds},options:{maintainAspectRatio:false,interaction:{mode:'nearest',intersect:false},
+  plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{title:x=>{const r=R[x[0].dataIndex];return r.date+' · '+r.course+(r.type==9?' (9)':'')},label:x=>x.dataset.label+': '+(x.raw==null?'–':(+x.raw).toFixed(1))}}},
+  scales:{x:ax('Round date',{grid:{display:false},ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:7}}),y:ax('Score differential')}}}));
 }
 function hcp(s,F,c){
  const f=$('#from').value,t=$('#to').value;const H=D.handicap.filter(h=>(!f||h.date>=f)&&(!t||h.date<=t));

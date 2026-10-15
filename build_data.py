@@ -17,7 +17,7 @@ for sn, rt in (('18-Hole Rounds', 18), ('9-Hole Rounds', 9)):
         if not r[0]: continue
         g = lambda k: num(r[ix[k]]) if k in ix else None
         par, gross = g('Par'), g('Gross')
-        rounds.append(dict(date=d(r[0]), course=course(r[1]), tees=tee(r[2]), type=rt, teeYards=g('TeeYards'), rating=g('Rating'),
+        rounds.append(dict(date=d(r[0]), course=course(r[1]), tees=tee(r[2]), type=rt, teeYards=g('TeeYards'), rating=g('Rating'), differential=g('Differential'),
             par=par, gross=gross, toPar=(gross - par) if par and gross else None,
             doubles=g('Doubles (exact +2)'), triplesPlus=g('TriplesOrWorse (+3 or more)'),
             fwHit=g('FairwaysHit'), fwPossible=g('FairwaysPossible'),
