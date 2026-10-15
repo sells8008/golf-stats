@@ -8,26 +8,27 @@
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 22px 6px}
 h1{margin:0;font-size:22px;font-weight:700;letter-spacing:-.02em}h1 span{color:var(--acc)}.sub{color:var(--mut);font-size:12px}
 .panel{position:sticky;top:0;z-index:20;margin:10px 16px;background:rgba(26,43,35,.92);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 8px 30px #0004}
-.ph{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;user-select:none}.ph b{font-weight:600}.ph .sum{color:var(--mut);font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph{display:flex;align-items:center;gap:10px;padding:6px 12px;cursor:pointer;user-select:none}.ph b{font-weight:600}.ph .sum{color:var(--mut);font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ph .tog{transition:transform .25s;color:var(--mut)}.panel.closed .tog{transform:rotate(-90deg)}.panel.closed .pb{display:none}
-.pb{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px 18px;padding:4px 14px 14px;max-height:62vh;overflow:auto}
-.f label.t{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:6px}
-input{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:7px 10px;font:inherit;outline:none;width:100%}
+.pb{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px 10px;padding:2px 12px 10px}.f.w2{grid-column:span 2}
+.f label.t{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:3px;white-space:nowrap}.info{cursor:help;opacity:.7;font-size:11px;text-transform:none}
+input{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:5px 8px;font:inherit;font-size:12.5px;outline:none;width:100%;height:32px}
 input:focus{border-color:var(--acc);box-shadow:0 0 0 3px #5fd38d33}input[type=date]{color-scheme:dark}.row{display:flex;gap:8px;align-items:center}
-.chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:5px 12px;font:500 12.5px Inter,system-ui,sans-serif;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:3px 9px;font:500 11.5px Inter,system-ui,sans-serif;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
 .chip:hover{border-color:#4a7a60}.chip.on,.acard.on{background:linear-gradient(180deg,#2f6b48,#275a3d);border-color:var(--acc);box-shadow:0 0 0 1px #5fd38d55,0 0 14px #5fd38d33}
 .chip.on::before,.acard.on .ck::before{content:'✓';font-weight:700;color:var(--acc);font-size:11px}
-.ms{position:relative}.ms .box{display:flex;flex-wrap:wrap;gap:5px;align-items:center;min-height:38px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:5px 8px;cursor:text}
-.ms .box input{border:0;background:none;padding:3px;min-width:80px;flex:1;width:auto}.ms .box input:focus{box-shadow:none}
-.pill{background:#2f6b48;border:1px solid var(--acc);border-radius:999px;padding:2px 4px 2px 9px;font-size:12px;display:inline-flex;align-items:center;gap:4px}
+.ms{position:relative}.ms .box{display:flex;flex-wrap:wrap;gap:5px;align-items:center;min-height:32px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:3px 6px;cursor:text}
+.ms .box input{border:0;background:none;padding:2px;min-width:60px;flex:1;width:auto;height:24px}.ms .box input:focus{box-shadow:none}
+.pill{background:#2f6b48;border:1px solid var(--acc);border-radius:999px;padding:1px 3px 1px 8px;font-size:11px;display:inline-flex;align-items:center;gap:4px}
 .pill button{background:none;border:0;color:var(--text);cursor:pointer;font-size:14px;line-height:1;padding:0 4px;border-radius:50%}.pill button:hover{background:#0003}
-.dd{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--card2);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px #0007;padding:6px;display:none;z-index:30}.ms.open .dd{display:block}
+.dd{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--card2);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px #0007;padding:6px;display:none;z-index:30}.ms.open .dd,.pop.open .dd{display:block}.pop{position:relative}.pop .dd{min-width:240px}.pop .dd .chips{margin-bottom:8px}
+.trig{width:100%;height:32px;text-align:left;background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:8px;padding:0 8px;font:500 12.5px Inter,system-ui;cursor:pointer;display:flex;justify-content:space-between;align-items:center}.trig::after{content:'▾';color:var(--mut)}.pop.open .trig{border-color:var(--acc)}
 .dd input{margin-bottom:6px}.dd .opt{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:8px;cursor:pointer;font-size:13px}.dd .opt:hover{background:#ffffff0d}
 .dd .opt .cb{width:16px;height:16px;border:1.5px solid var(--mut);border-radius:5px;display:grid;place-items:center;font-size:11px}.dd .opt.on .cb{background:var(--acc);border-color:var(--acc);color:#10291b}.dd .opt.on .cb::after{content:'✓';font-weight:800}
 .dd .list{max-height:220px;overflow:auto}.dd .none{color:var(--mut);padding:8px;font-size:12px}
-.hint{font-size:11px;color:var(--mut);margin-top:5px}
-.btn{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:10px;padding:7px 12px;cursor:pointer;font:500 12.5px Inter,system-ui}.btn:hover{color:var(--text);border-color:var(--acc)}
+.hint{display:none}
+.btn{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:4px 10px;cursor:pointer;font:500 12.5px Inter,system-ui}.btn:hover{color:var(--text);border-color:var(--acc)}
 #areas{display:flex;gap:8px;overflow-x:auto;padding:6px 16px 4px;scrollbar-width:thin}
 .acard{flex:0 0 auto;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 13px;cursor:pointer;font-weight:500;font-size:13px;transition:all .15s;color:var(--text)}
 .acard .ic{font-size:17px}.acard:hover{transform:translateY(-1px);border-color:#4a7a60}
@@ -43,21 +44,21 @@ td{background:#ffffff06;padding:6px 8px;text-align:right}td:first-child{text-ali
 .tp-neg{color:var(--acc);font-weight:600}.tp-mid{color:var(--acc2);font-weight:600}.tp-pos{color:var(--pos);font-weight:600}
 .bk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:12px;color:var(--mut)}.bk input{max-width:170px;padding:5px 9px}
 .note{font-size:12px;color:var(--mut);margin-top:8px}
-@media(max-width:600px){.panel{position:sticky}.pb{max-height:60vh}header{padding:14px}h1{font-size:19px}.panel{margin:8px}.pb{grid-template-columns:1fr;max-height:70vh}#out{padding:8px}.cv{height:210px}}
+@media(max-width:600px){.f.w2{grid-column:span 1}.pb{grid-template-columns:1fr 1fr;max-height:70vh;overflow:auto}.panel{position:sticky}.pb{max-height:60vh}header{padding:14px}h1{font-size:19px}.panel{margin:8px}.pb{grid-template-columns:1fr;max-height:70vh}#out{padding:8px}.cv{height:210px}}
 </style></head><body>
 <header><div><h1>Hunter's <span>Golf Stats</span></h1><div class="sub" id="gen"></div></div></header>
 <div class="panel" id="panel">
  <div class="ph" id="ph"><span class="tog">▾</span><b>Filters</b><span class="sum" id="fsum"></span><button class="btn" id="reset">Reset</button></div>
  <div class="pb">
-  <div class="f"><label class="t">Last X rounds</label><input type="number" id="lastN" min="1" placeholder="All rounds"></div>
-  <div class="f"><label class="t">Date range</label><div class="row"><input type="date" id="from"><span class="sub">to</span><input type="date" id="to"></div></div>
-  <div class="f"><label class="t">Courses</label><div class="ms" id="msCourse"></div></div>
-  <div class="f"><label class="t">Last X rounds at selected course(s)</label><input type="number" id="lastC" min="1" placeholder="All"></div>
-  <div class="f"><label class="t">Tee name</label><div class="ms" id="msTee"></div></div>
-  <div class="f"><label class="t">Tee distance (18-hole yards)</label><div class="chips" id="yds"></div><input type="text" id="ydManual" placeholder="Custom: 6000-6399, 6400+" style="margin-top:7px"><div class="hint">Custom buckets replace the presets while filled.</div></div>
-  <div class="f"><label class="t">Course rating</label><div class="chips" id="rts"></div><input type="text" id="rtManual" placeholder="Custom: 68-70.9, 71+" style="margin-top:7px"><div class="hint">Custom buckets replace the presets while filled.</div></div>
-  <div class="f"><label class="t">Par (hole stats)</label><div class="chips" id="parChips"></div><div class="hint">All pars = one combined number; pick 3/4/5 to split by par.</div></div>
-  <div class="f"><label class="t">9-hole rounds (hole stats)</label><div class="chips" id="nineChips"></div><div class="hint">Round-level counts always use 18-hole rounds only.</div></div>
+  <div class="f"><label class="t">Last X rounds</label><input type="number" id="lastN" min="1" placeholder="All"></div>
+  <div class="f w2"><label class="t">Date range</label><div class="row"><input type="date" id="from"><span class="sub">–</span><input type="date" id="to"></div></div>
+  <div class="f w2"><label class="t">Courses</label><div class="ms" id="msCourse"></div></div>
+  <div class="f"><label class="t">Last X at course(s)</label><input type="number" id="lastC" min="1" placeholder="All"></div>
+  <div class="f w2"><label class="t">Tee name</label><div class="ms" id="msTee"></div></div>
+  <div class="f"><label class="t">Tee distance <span class="info" title="18-hole tee yards. 9-hole rounds and unknown yardage fall in Unknown. Custom buckets (inside) replace the presets while filled.">ⓘ</span></label><div class="pop" id="popYd"><button class="trig"></button><div class="dd"><div class="chips" id="yds"></div><input type="text" id="ydManual" placeholder="Custom: 6000-6399, 6400+"></div></div></div>
+  <div class="f"><label class="t">Course rating <span class="info" title="1-point bands from each round's Rating. Custom buckets (inside) replace the presets while filled.">ⓘ</span></label><div class="pop" id="popRt"><button class="trig"></button><div class="dd"><div class="chips" id="rts"></div><input type="text" id="rtManual" placeholder="Custom: 68-70.9, 71+"></div></div></div>
+  <div class="f w2"><label class="t">Par (hole stats) <span class="info" title="All pars = one combined number. Pick 3/4/5 to split hole stats by par.">ⓘ</span></label><div class="chips" id="parChips"></div></div>
+  <div class="f w2"><label class="t">9-hole rounds <span class="info" title="Applies to hole-level stats. Round-level counts always use 18-hole rounds only.">ⓘ</span></label><div class="chips" id="nineChips"></div></div>
  </div>
 </div>
 <div id="areas"></div><div id="summary"></div><div id="out"></div>
@@ -116,12 +117,13 @@ function init(){
  const pc=LS('golf_panel_closed');if(pc===true||(pc===null&&innerWidth<700))$('#panel').classList.add('closed');
  $('#reset').onclick=()=>{['courses','tees','yds','rts','pars'].forEach(k=>ST[k].clear());ST.allPars=true;ST.inc9=true;['#lastN','#from','#to','#lastC','#ydManual','#rtManual'].forEach(s=>$(s).value='');
   document.querySelectorAll('.ms').forEach(m=>m._draw());drawChips();render()};
- document.addEventListener('click',e=>document.querySelectorAll('.ms.open').forEach(m=>{if(!m.contains(e.target))m.classList.remove('open')}));
+ document.querySelectorAll('.pop').forEach(p=>p.querySelector('.trig').onclick=e=>{e.stopPropagation();const o=p.classList.contains('open');document.querySelectorAll('.pop.open,.ms.open').forEach(x=>x.classList.remove('open'));if(!o)p.classList.add('open')});
+ document.addEventListener('click',e=>document.querySelectorAll('.ms.open,.pop.open').forEach(m=>{if(!m.contains(e.target))m.classList.remove('open')}));
  renderAreas();drawChips();render();
 }
 function parseB(s){return s.split(',').map(x=>x.trim()).filter(Boolean)}
 function inBucket(v,s){s=s.trim();if(s.endsWith('+'))return v>=+s.slice(0,-1);const[a,b]=s.split('-').map(Number);return b==null||isNaN(b)?v===a:v>=a&&v<=b}
-function chipGroup(id,items,isOn,toggle){const el=$(id);el.innerHTML='';items.forEach(([v,l])=>{const b=document.createElement('button');b.className='chip'+(isOn(v)?' on':'');b.textContent=l;b.onclick=()=>{toggle(v);drawChips();render()};el.appendChild(b)})}
+function chipGroup(id,items,isOn,toggle){const el=$(id);el.innerHTML='';items.forEach(([v,l])=>{const b=document.createElement('button');b.className='chip'+(isOn(v)?' on':'');b.textContent=l;b.onclick=e=>{e.stopPropagation();toggle(v);drawChips();render()};el.appendChild(b)})}
 const tg=(set,v)=>set.has(v)?set.delete(v):set.add(v);
 function drawChips(){
  const ym=parseB($('#ydManual').value),rm=parseB($('#rtManual').value);
@@ -129,12 +131,13 @@ function drawChips(){
  const rItems=(rm.length?rm.concat(['Unknown']):[...new Set(D.rounds.map(r=>r.rb))].sort(sortB)).map(v=>[v,v]);
  chipGroup('#yds',[['__all','Select all']].concat(yItems),v=>v==='__all'?!ST.yds.size:ST.yds.has(v),v=>v==='__all'?ST.yds.clear():tg(ST.yds,v));
  chipGroup('#rts',[['__all','Select all']].concat(rItems),v=>v==='__all'?!ST.rts.size:ST.rts.has(v),v=>v==='__all'?ST.rts.clear():tg(ST.rts,v));
+ const trig=(id,set)=>{const v=[...set];$(id+' .trig').textContent=v.length?v[0]+(v.length>1?' +'+(v.length-1):''):'All'};trig('#popYd',ST.yds);trig('#popRt',ST.rts);
  chipGroup('#parChips',[['all','All pars'],[3,'Par 3'],[4,'Par 4'],[5,'Par 5']],v=>v==='all'?ST.allPars:!ST.allPars&&ST.pars.has(v),
   v=>{if(v==='all'){ST.allPars=true;ST.pars.clear()}else{ST.allPars=false;tg(ST.pars,v);if(!ST.pars.size)ST.allPars=true}});
  chipGroup('#nineChips',[[true,'Include 9-hole'],[false,'18-hole only']],v=>ST.inc9===v,v=>ST.inc9=v);
 }
 function multiSelect(id,opts,set,ph){
- const m=$(id);m.innerHTML=`<div class="chips" style="margin-bottom:6px"><button class="chip sa">Select all</button></div><div class="box"><input type="search" placeholder="${ph}"></div><div class="dd"><input type="search" placeholder="${ph}"><div class="list"></div></div>`;
+ const m=$(id);m.innerHTML=`<div class="box"><button class="chip sa">Select all</button><input type="search" placeholder="${ph}"></div><div class="dd"><input type="search" placeholder="${ph}"><div class="list"></div></div>`;
  const box=m.querySelector('.box'),outer=box.querySelector('input'),inner=m.querySelector('.dd input'),list=m.querySelector('.list');
  const open=()=>{m.classList.add('open');drawList()};
  const drawList=()=>{const q=inner.value.toLowerCase();const f=opts.filter(o=>o.toLowerCase().includes(q));
@@ -188,7 +191,7 @@ function render(){
 function canvas(c){const w=document.createElement('div');w.className='cv';const k=document.createElement('canvas');w.appendChild(k);c.appendChild(w);return k}
 function empty(c,m){c.insertAdjacentHTML('beforeend',`<div class="empty">${m||'No data for the current filters yet.'}</div>`)}
 function table(c,head,rows){c.insertAdjacentHTML('beforeend','<table><thead><tr>'+head.map(h=>`<th>${h}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(x=>`<td>${x}</td>`).join('')+'</tr>').join('')+'</tbody></table>')}
-function grad(color){return ctx=>{const {chart}=ctx;const a=chart.chartArea;if(!a)return color;const g=chart.ctx.createLinearGradient(0,a.top,0,a.bottom);g.addColorStop(0,color);g.addColorStop(1,color+'40');return g}}
+function grad(color){return ctx=>{const {chart}=ctx;const a=chart.chartArea;if(!a)return color;const g=chart.ctx.createLinearGradient(0,a.top,0,a.bottom);g.addColorStop(0,color);g.addColorStop(1,color+'bf');return g}}
 function fillGrad(color){return ctx=>{const a=ctx.chart.chartArea;if(!a)return color+'22';const g=ctx.chart.ctx.createLinearGradient(0,a.top,0,a.bottom);g.addColorStop(0,color+'55');g.addColorStop(1,color+'00');return g}}
 const ax=(t,extra={})=>Object.assign({title:{display:true,text:t,color:'#c8dacf',font:{weight:'500'}},grid:{color:PAL.grid,drawTicks:false},border:{display:false},ticks:{padding:6}},extra);
 const sgn=v=>(v>0?'+':'')+(+v).toFixed(2);
@@ -201,13 +204,13 @@ function roundCount(s,F,c){
  else{
   const tps=groups.map(([k,g])=>avg(g.map(r=>r.toPar).filter(x=>x!=null)));
   charts.push(new Chart(canvas(c),{type:'bar',data:{labels:groups.map(g=>g[0]),datasets:[
-    {label:'Avg to par',data:tps,backgroundColor:grad(PAL.g),borderRadius:8,borderSkipped:false,maxBarThickness:46,order:2},
-    {label:'Rounds',data:groups.map(g=>g[1].length),type:'line',yAxisID:'y2',borderColor:PAL.gold,backgroundColor:PAL.gold,tension:.4,pointRadius:4,pointHoverRadius:6,borderWidth:2,order:1}]},
+    {label:'Avg to par',data:tps,backgroundColor:grad(PAL.g),borderRadius:8,borderSkipped:false,minBarLength:6,maxBarThickness:46,order:2},
+    {label:'# of rounds',data:groups.map(g=>g[1].length),type:'line',yAxisID:'y2',borderColor:PAL.gold,backgroundColor:PAL.gold,tension:.4,pointRadius:4,pointHoverRadius:6,borderWidth:2,order:1}]},
    options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.datasetIndex?x.raw:sgn(x.raw))}}},
-    scales:{x:ax((s.x||'Count per round')+(bk&&bk.length?' (custom buckets)':''),{grid:{display:false}}),y:ax('Avg score to par'),y2:ax('Rounds',{position:'right',grid:{display:false},beginAtZero:true,ticks:{precision:0}})}}}));
+    scales:{x:ax((s.x||'Count per round')+(bk&&bk.length?' (custom buckets)':''),{grid:{display:false}}),y:ax('Avg score to par'),y2:ax('# of rounds',{position:'right',grid:{display:false},beginAtZero:true,ticks:{precision:0}})}}}));
   const rows=groups.map(([k,g],i)=>{const ex=s.extra?avg(g.map(s.extra.val).filter(x=>x!=null)):null;
    return [k,g.length,g.length?avg(g.map(r=>r.gross)).toFixed(1):'–',tpR(tps[i])].concat(s.extra?[ex==null?'–':ex.toFixed(1)]:[])});
-  table(c,[s.x?'Count':'Count','Rounds','Avg gross','Avg to par'].concat(s.extra?[s.extra.label]:[]),rows);
+  table(c,['Count','# of rounds','Avg gross','Avg to par'].concat(s.extra?[s.extra.label]:[]),rows);
  }
  const d=document.createElement('div');d.className='bk';d.innerHTML=`<span>Buckets</span><input placeholder="e.g. 0-3, 4-6, 7+" value="${(bk||[]).join(', ')}"><span>blank = exact counts</span>`;
  d.querySelector('input').onchange=e=>{const v=parseB(e.target.value);if(v.length)buckets[s.id]=v;else delete buckets[s.id];SS('golf_buckets',buckets);render()};c.appendChild(d);
@@ -217,8 +220,8 @@ function holeSplit(s,F,c){
  if(!H.length)return empty(c,'No hole-level data for this stat in the current filters'+(!F.allPars&&F.pars.length==1&&F.pars[0]==3&&s.id.startsWith('f')?' (par 3s have no fairway).':'.'));
  const pars=F.allPars?[]:F.pars.filter(p=>H.some(h=>h.par===p));
  const A=k=>avg(H.filter(h=>s.key(h)===k).map(h=>h.toPar));
- const ds=pars.map(p=>({label:'Par '+p,backgroundColor:grad(PARCOL[p]),data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar))),borderRadius:7,borderSkipped:false,maxBarThickness:34}));
- if(pars.length!==1)ds.push({label:F.allPars?'All pars':'Selected pars combined',backgroundColor:grad(PAL.g),data:s.order.map(A),borderRadius:7,borderSkipped:false,maxBarThickness:pars.length?34:56});
+ const ds=pars.map(p=>({label:'Par '+p,backgroundColor:grad(PARCOL[p]),data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar))),borderRadius:7,borderSkipped:false,minBarLength:6,maxBarThickness:34}));
+ if(pars.length!==1)ds.push({label:F.allPars?'All pars':'Selected pars combined',backgroundColor:grad(PAL.g),data:s.order.map(A),borderRadius:7,borderSkipped:false,minBarLength:6,maxBarThickness:pars.length?34:56});
  charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order.map(k=>LABEL[k]||k),datasets:ds},
   options:{maintainAspectRatio:false,plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.raw==null?'–':sgn(x.raw))}}},scales:{x:ax(s.x||'Category',{grid:{display:false}}),y:ax(s.y||'Avg score to par per hole')}}}));
  const rows=s.order.map(k=>{const g=H.filter(h=>s.key(h)===k);const a=avg(g.map(h=>h.toPar));
