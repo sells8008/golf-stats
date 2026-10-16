@@ -28,7 +28,7 @@ input:focus{border-color:var(--acc);box-shadow:0 0 0 3px #5fd38d33}input[type=da
 .dd .opt .cb{width:16px;height:16px;border:1.5px solid var(--mut);border-radius:5px;display:grid;place-items:center;font-size:11px}.dd .opt.on .cb{background:var(--acc);border-color:var(--acc);color:#10291b}.dd .opt.on .cb::after{content:'✓';font-weight:800}
 .dd .list{max-height:220px;overflow:auto}.dd .none{color:var(--mut);padding:8px;font-size:12px}
 .hint{display:none}
-.btn{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:4px 10px;cursor:pointer;font:500 12.5px Inter,system-ui}.btn:hover{color:var(--text);border-color:var(--acc)}
+.donerow{display:flex;justify-content:flex-end;padding:6px 0 2px}.donebtn{background:#2f6b48;border:1px solid var(--acc);color:var(--text);border-radius:8px;padding:5px 16px;font:600 12.5px Inter,system-ui;cursor:pointer}.donebtn:hover{background:#38804f}.btn{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:4px 10px;cursor:pointer;font:500 12.5px Inter,system-ui}.btn:hover{color:var(--text);border-color:var(--acc)}
 #areas{display:flex;gap:8px;overflow-x:auto;padding:6px 16px 4px;scrollbar-width:thin}
 .acard{flex:0 0 auto;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 13px;cursor:pointer;font-weight:500;font-size:13px;transition:all .15s;color:var(--text)}
 .acard .ic{font-size:17px}.acard:hover{transform:translateY(-1px);border-color:#4a7a60}
@@ -59,6 +59,7 @@ td{background:#ffffff06;padding:6px 8px;text-align:right}td:first-child{text-ali
   <div class="f"><label class="t">Course rating <span class="info" title="1-point bands from each round's Rating. Custom buckets (inside) replace the presets while filled.">ⓘ</span></label><div class="pop" id="popRt"><button class="trig"></button><div class="dd"><div class="chips" id="rts"></div><input type="text" id="rtManual" placeholder="Custom: 68-70.9, 71+"></div></div></div>
   <div class="f w2"><label class="t">Par (hole stats) <span class="info" title="All pars = one combined number. Pick 3/4/5 to split hole stats by par.">ⓘ</span></label><div class="chips" id="parChips"></div></div>
   <div class="f w2"><label class="t">9-hole rounds <span class="info" title="Applies to hole-level stats. Round-level counts always use 18-hole rounds only.">ⓘ</span></label><div class="chips" id="nineChips"></div></div>
+  <div class="donerow"><button id="doneBtn" class="donebtn">Done</button></div>
  </div>
 </div>
 <div id="areas"></div><div id="summary"></div><div id="out"></div>
@@ -132,6 +133,7 @@ function init(){
  multiSelect('#msTee',[...new Set(D.rounds.concat(D.ghin||[]).map(r=>r.tees).filter(Boolean))].sort(),ST.tees,'Search tees…');
  ['#lastN','#from','#to'].forEach(s=>$(s).addEventListener('input',render));
  ['#ydManual','#rtManual'].forEach(s=>$(s).addEventListener('input',()=>{(s==='#ydManual'?ST.yds:ST.rts).clear();drawChips();render()}));
+ $('#doneBtn').onclick=e=>{e.stopPropagation();$('#panel').classList.add('closed');SS('golf_panel_closed',true);$('#panel').scrollIntoView({behavior:'smooth',block:'start'})};
  $('#ph').onclick=e=>{if(e.target.id==='reset')return;$('#panel').classList.toggle('closed');SS('golf_panel_closed',$('#panel').classList.contains('closed'))};
  const pc=LS('golf_panel_closed');if(pc===true||(pc===null&&innerWidth<700))$('#panel').classList.add('closed');
  $('#reset').onclick=()=>{['courses','tees','yds','rts','pars'].forEach(k=>ST[k].clear());ST.allPars=true;ST.inc9=true;['#lastN','#from','#to','#ydManual','#rtManual'].forEach(s=>$(s).value='');
