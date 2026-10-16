@@ -32,7 +32,7 @@ input:focus{border-color:var(--acc);box-shadow:0 0 0 3px #5fd38d33}input[type=da
 #areas{display:flex;gap:8px;overflow-x:auto;padding:6px 16px 4px;scrollbar-width:thin}
 .acard{flex:0 0 auto;display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 13px;cursor:pointer;font-weight:500;font-size:13px;transition:all .15s;color:var(--text)}
 .acard .ic{font-size:17px}.acard:hover{transform:translateY(-1px);border-color:#4a7a60}
-#summary{padding:6px 18px;color:var(--mut);font-size:12.5px}
+#summary{padding:6px 18px;display:flex;flex-wrap:wrap;gap:6px;align-items:stretch}.sm{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 10px;font-size:11.5px;color:var(--mut);display:flex;flex-direction:column;line-height:1.25}.sm b{color:var(--text);font-size:15px}.sm.all{background:var(--card2);border-color:var(--acc)}.smsep{width:1px;background:var(--line);margin:0 2px}@media(max-width:600px){#summary{display:grid;grid-template-columns:repeat(2,1fr)}.sm.all{grid-column:1/-1}.smsep{display:none}}
 #out{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:16px;padding:8px 16px 40px}
 .card{background:linear-gradient(180deg,var(--card),#1c2f25);border:1px solid var(--line);border-radius:18px;padding:16px 16px 12px;box-shadow:0 6px 24px #0003;animation:fade .35s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -200,7 +200,8 @@ const tpR=x=>x==null?'–':`<span class="${tpCls(x/18)}">${x>0?'+':''}${x.toFixe
 function render(){
  charts.forEach(c=>c.destroy());charts=[];const F=filtered();
  const parTxt=F.allPars?'all holes':'par '+F.pars.join('/');
- $('#summary').innerHTML=`<b style="color:var(--text)">${F.R.length}</b> rounds · <b style="color:var(--text)">${F.R18.length}</b> × 18-hole · <b style="color:var(--text)">${F.H.length}</b> holes with hole data · ${parTxt}`;
+ const RS=F.R.filter(r=>ST.inc9||r.type==18),sm=(l,v,c='')=>`<div class="sm ${c}"><b>${v}</b>${l}</div>`;
+ $('#summary').innerHTML=sm('All-time rounds',(D.ghin||[]).length,'all')+'<div class="smsep"></div>'+sm('Total rounds',F.G.length)+sm('Total 18-hole rounds',F.G.filter(r=>r.type==18).length)+sm('Rounds with stats',RS.length)+sm('Holes with stats · '+parTxt,F.H.length);
  const bits=[];if(ST.courses.size)bits.push(ST.courses.size+' course'+(ST.courses.size>1?'s':''));if(ST.tees.size)bits.push([...ST.tees].join('/')+' tees');if(ST.yds.size)bits.push([...ST.yds].join(', ')+' yds');if(ST.rts.size)bits.push('rating '+[...ST.rts].join(', '));
  if($('#lastN').value)bits.push('last '+$('#lastN').value+' rounds'+(ST.courses.size?' (selected courses)':'')); if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
  $('#fsum').textContent=bits.join(' · ');
