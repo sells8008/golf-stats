@@ -69,6 +69,7 @@ PARS = [
  ('golf club at south hampton', 72, 36, 36),
  ('arrowhead country club - cypress / lakes', 72, 36, 36),
  ('clearwater country club', 72, 36, 36),
+ ('chevy chase club', 71, 36, 35),  # source: Hunter (course recently redone)
 ]
 def par_for(course, holes):
     c = (course or '').lower()

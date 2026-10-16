@@ -949,8 +949,8 @@
    "rating": 72.4,
    "slope": 132,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 71,
+   "toPar": 7
   },
   {
    "date": "2025-09-21",
@@ -3319,7 +3319,7 @@
    "toPar": 31
   }
  ],
- "generated": "2026-10-15T22:46",
+ "generated": "2026-10-15T22:49",
  "rounds": [
   {
    "date": "2026-06-25",
