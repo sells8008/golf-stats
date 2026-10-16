@@ -39,6 +39,36 @@ PARS = [
  ('forest park golf course - redbud/dogwood', 70, 35, 35),
  ('whiskey creek golf club', 72, 36, 36),
  ('the park', 71, None, None),  # The Park West Palm, Black 71.9/134 (BlueGolf/FSGA)
+ ('lpga international - hills', 72, 36, 36),
+ ('gran coyote', 71, 35, 36),
+ ('el camaleon mayakoba', 72, 36, 36),
+ ('innisbrook resort & golf club - copperhead', 71, 36, 35),
+ ('the river club golf course', 72, 36, 36),  # Suwanee GA
+ ('pasadena yacht', 72, 36, 36),
+ ('sand canyon country club - mountain/valley', 71, 35, 36),
+ ('oak quarry', 72, 35, 37),
+ ('los verdes', 71, 36, 35),
+ ('washington golf & country club', 70, 35, 35),
+ ('golf club at north hampton', 72, 36, 36),
+ ('cobblestone park golf club - gold / garnet', 70, 35, 35),  # Gold 35 + Garnet 35
+ ('links at perry cabin', 72, 35, 37),
+ ('plantation lakes', 72, 36, 36),
+ ('georgia southern university', 72, 36, 36),
+ ('rivertowne', 72, 36, 36),
+ ('kiawah island golf resort - cougar point', 72, 36, 36),
+ ('stono ferry', 72, 36, 36),
+ ('windsor parke', 72, 36, 36),
+ ('championsgate golf resort - international', 72, None, None),
+ ('king & bear', 72, 36, 36),
+ ('shingle creek', 72, 36, 36),
+ ('oak marsh', 72, 36, 36),
+ ('ponte vedra inn & club - ocean', 71, 36, 35),
+ ('angel park golf club - palm', 70, 34, 36),
+ ('east potomac golf links - blue', 72, None, None),
+ ("myrtle beach national - king's north", 72, 36, 36),
+ ('golf club at south hampton', 72, 36, 36),
+ ('arrowhead country club - cypress / lakes', 72, 36, 36),
+ ('clearwater country club', 72, 36, 36),
 ]
 def par_for(course, holes):
     c = (course or '').lower()
