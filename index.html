@@ -274,10 +274,10 @@ function diffSeries(s,F,c){
  const R=diffR(F);if(!R.length)return empty(c,'No differential data for the current filters yet.');
  const d=R.map(r=>r.differential);
  const b8=d.map((_,i)=>{const w=d.slice(Math.max(0,i-19),i+1);if(w.length<8)return null;return avg(w.slice().sort((a,b)=>a-b).slice(0,8))});
- const ds=[{label:'Differential',data:d,borderColor:PAL.g,backgroundColor:fillGrad(PAL.g),fill:true,tension:.35,borderWidth:2,pointRadius:R.length>60?2:3.5,pointHoverRadius:6,pointBackgroundColor:PAL.g}];
- if(b8.some(x=>x!=null))ds.push({label:'Avg best 8 of last 20',data:b8,borderColor:PAL.gold,borderDash:[5,4],tension:.4,borderWidth:2,pointRadius:0,fill:false,spanGaps:true});
+ const ds=[{label:'Differential',data:d,borderColor:PAL.g,backgroundColor:fillGrad(PAL.g),fill:true,tension:.35,borderWidth:2,pointRadius:R.length>60?2:3.5,pointHoverRadius:6,pointBackgroundColor:PAL.g,order:1}];
+ if(b8.some(x=>x!=null))ds.push({label:'Avg best 8 of last 20',data:b8,borderColor:PAL.gold,borderDash:[5,4],tension:.4,borderWidth:2,pointRadius:0,fill:false,spanGaps:true,order:0});
  charts.push(new Chart(canvas(c),{type:'line',data:{labels:R.map(r=>r.date),datasets:ds},options:{maintainAspectRatio:false,interaction:{mode:'nearest',intersect:false},
-  plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{title:x=>{const r=R[x[0].dataIndex];return r.date+' · '+r.course+(r.type==9?' (9 holes)':'')+' · '+r.score},label:x=>x.dataset.label+': '+(x.raw==null?'–':(+x.raw).toFixed(1))}}},
+  plugins:{legend:{display:ds.length>1,labels:{sort:(a,b)=>a.datasetIndex-b.datasetIndex}},tooltip:{callbacks:{title:x=>{const r=R[x[0].dataIndex];return r.date+' · '+r.course+(r.type==9?' (9 holes)':'')+' · '+r.score},label:x=>x.dataset.label+': '+(x.raw==null?'–':(+x.raw).toFixed(1))}}},
   scales:{x:ax('Round date',{grid:{display:false},ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:7}}),y:ax('Score differential')}}}));
 }
 function hcp(s,F,c){
