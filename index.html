@@ -51,10 +51,9 @@ td{background:#ffffff06;padding:6px 8px;text-align:right}td:first-child{text-ali
 <div class="panel" id="panel">
  <div class="ph" id="ph"><span class="tog">▾</span><b>Filters</b><span class="sum" id="fsum"></span><button class="btn" id="reset">Reset</button></div>
  <div class="pb">
-  <div class="f"><label class="t">Last # of rounds (all courses)</label><input type="number" id="lastN" min="1" placeholder="All"></div>
+  <div class="f"><label class="t">Last # of rounds</label><input type="number" id="lastN" min="1" placeholder="All"></div>
   <div class="f w2 dr"><label class="t">Date range</label><div class="row"><input type="date" id="from"><span class="sub">–</span><input type="date" id="to"></div></div>
   <div class="f w2"><label class="t">Courses</label><div class="ms" id="msCourse"></div></div>
-  <div class="f"><label class="t">Last # of rounds</label><input type="number" id="lastC" min="1" placeholder="All"></div>
   <div class="f w2"><label class="t">Tee name</label><div class="ms" id="msTee"></div></div>
   <div class="f"><label class="t">Tee distance <span class="info" title="18-hole tee yards. 9-hole rounds and unknown yardage fall in Unknown. Custom buckets (inside) replace the presets while filled.">ⓘ</span></label><div class="pop" id="popYd"><button class="trig"></button><div class="dd"><div class="chips" id="yds"></div><input type="text" id="ydManual" placeholder="Custom: 6000-6399, 6400+"></div></div></div>
   <div class="f"><label class="t">Course rating <span class="info" title="1-point bands from each round's Rating. Custom buckets (inside) replace the presets while filled.">ⓘ</span></label><div class="pop" id="popRt"><button class="trig"></button><div class="dd"><div class="chips" id="rts"></div><input type="text" id="rtManual" placeholder="Custom: 68-70.9, 71+"></div></div></div>
@@ -131,11 +130,11 @@ function init(){
   const a=Math.floor(r.rating);r.rb=r.rating!=null?a+'.0-'+a+'.9':'Unknown'});
  multiSelect('#msCourse',[...new Set(D.rounds.concat(D.ghin||[]).map(r=>r.course))].sort(),ST.courses,'Search courses…');
  multiSelect('#msTee',[...new Set(D.rounds.concat(D.ghin||[]).map(r=>r.tees).filter(Boolean))].sort(),ST.tees,'Search tees…');
- ['#lastN','#from','#to','#lastC'].forEach(s=>$(s).addEventListener('input',render));
+ ['#lastN','#from','#to'].forEach(s=>$(s).addEventListener('input',render));
  ['#ydManual','#rtManual'].forEach(s=>$(s).addEventListener('input',()=>{(s==='#ydManual'?ST.yds:ST.rts).clear();drawChips();render()}));
  $('#ph').onclick=e=>{if(e.target.id==='reset')return;$('#panel').classList.toggle('closed');SS('golf_panel_closed',$('#panel').classList.contains('closed'))};
  const pc=LS('golf_panel_closed');if(pc===true||(pc===null&&innerWidth<700))$('#panel').classList.add('closed');
- $('#reset').onclick=()=>{['courses','tees','yds','rts','pars'].forEach(k=>ST[k].clear());ST.allPars=true;ST.inc9=true;['#lastN','#from','#to','#lastC','#ydManual','#rtManual'].forEach(s=>$(s).value='');
+ $('#reset').onclick=()=>{['courses','tees','yds','rts','pars'].forEach(k=>ST[k].clear());ST.allPars=true;ST.inc9=true;['#lastN','#from','#to','#ydManual','#rtManual'].forEach(s=>$(s).value='');
   document.querySelectorAll('.ms').forEach(m=>m._draw());drawChips();render()};
  document.querySelectorAll('.pop').forEach(p=>p.querySelector('.trig').onclick=e=>{e.stopPropagation();const o=p.classList.contains('open');document.querySelectorAll('.pop.open,.ms.open').forEach(x=>x.classList.remove('open'));if(!o)p.classList.add('open')});
  document.addEventListener('click',e=>document.querySelectorAll('.ms.open,.pop.open').forEach(m=>{if(!m.contains(e.target))m.classList.remove('open')}));
@@ -184,7 +183,6 @@ function filtered(){
  const okB=(sel,man,auto,val)=>{if(!sel.size)return true;if(man.length){if(val==null)return sel.has('Unknown');return man.some(b=>sel.has(b)&&inBucket(val,b))}return sel.has(auto)};
  let R=D.rounds.filter(r=>(!cs.size||cs.has(r.course))&&(!ts.size||(r.tees&&ts.has(r.tees)))&&okB(ST.yds,ym,r.yb,r.type==18?r.teeYards:null)&&okB(ST.rts,rm,r.rb,r.rating)&&(!f||r.date>=f)&&(!t||r.date<=t));
  R.sort((a,b)=>b.date.localeCompare(a.date));
- const lc=+$('#lastC').value;if(lc){const keep=new Set();const cl=cs.size?[...cs]:[...new Set(R.map(r=>r.course))];cl.forEach(c=>R.filter(r=>r.course===c).slice(0,lc).forEach(r=>keep.add(r)));R=R.filter(r=>keep.has(r))}
  const n=+$('#lastN').value;if(n)R=R.slice(0,n);
  const key=x=>x.id||(x.date+'|'+x.course+'|'+x.type);const rk=new Set(R.map(key));
  const pars=ST.allPars?[3,4,5]:[...ST.pars].sort();
@@ -192,7 +190,6 @@ function filtered(){
  // GHIN score history (differential only): same round filters; tee distance only where known
  let G=(D.ghin||[]).filter(r=>(!cs.size||cs.has(r.course))&&(!ts.size||(r.tees&&ts.has(r.tees)))&&(r.teeYards==null||okB(ST.yds,ym,r.yb,r.type==18?r.teeYards:null))&&okB(ST.rts,rm,r.rb,r.rating)&&(!f||r.date>=f)&&(!t||r.date<=t)&&(ST.inc9||r.type==18));
  G.sort((a,b)=>b.date.localeCompare(a.date));
- if(lc){const keep=new Set();const cl=cs.size?[...cs]:[...new Set(G.map(r=>r.course))];cl.forEach(c=>G.filter(r=>r.course===c).slice(0,lc).forEach(r=>keep.add(r)));G=G.filter(r=>keep.has(r))}
  if(n)G=G.slice(0,n);
  return {R,R18:R.filter(r=>r.type==18),H,pars,allPars:ST.allPars,G};
 }
@@ -205,7 +202,7 @@ function render(){
  const parTxt=F.allPars?'all holes':'par '+F.pars.join('/');
  $('#summary').innerHTML=`<b style="color:var(--text)">${F.R.length}</b> rounds · <b style="color:var(--text)">${F.R18.length}</b> × 18-hole · <b style="color:var(--text)">${F.H.length}</b> holes with hole data · ${parTxt}`;
  const bits=[];if(ST.courses.size)bits.push(ST.courses.size+' course'+(ST.courses.size>1?'s':''));if(ST.tees.size)bits.push([...ST.tees].join('/')+' tees');if(ST.yds.size)bits.push([...ST.yds].join(', ')+' yds');if(ST.rts.size)bits.push('rating '+[...ST.rts].join(', '));
- if($('#lastN').value)bits.push('last '+$('#lastN').value+' rounds (all courses)');if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));if($('#lastC').value)bits.push('last '+$('#lastC').value+' rounds at course(s)');bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
+ if($('#lastN').value)bits.push('last '+$('#lastN').value+' rounds'+(ST.courses.size?' (selected courses)':'')); if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
  $('#fsum').textContent=bits.join(' · ');
  const out=$('#out');out.innerHTML='';const SC={};Object.keys(SUMM).forEach(k=>SC[k]=SUMM[k](F));
  ORDERED.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
