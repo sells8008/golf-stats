@@ -4,7 +4,7 @@ import sys, os, json, openpyxl, datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pars import par_for
 # Rounds Hunter says were logged incorrectly: kept out of every chart. Key = (YYYY-MM-DD, course substring, lowercase)
-EXCLUDED_ROUNDS = [('2026-06-20', 'jacksonville beach')]  # score 53 posted as 18 holes
+EXCLUDED_ROUNDS = []  # e.g. ('2026-06-20', 'jacksonville beach'); that round is now a 13-hole partial instead
 def excluded(date, course): return any(date == dt and c in (course or '').lower() for dt, c in EXCLUDED_ROUNDS)
 src = sys.argv[1] if len(sys.argv) > 1 else '/workspace/hcp/Hunter_Handicap_Tracker_p1.xlsx'
 wb = openpyxl.load_workbook(src, data_only=False)
@@ -15,14 +15,15 @@ def course(c):
     if c == 'Queens Harbour': return 'Queens Harbour Yacht & Country Club'
     return c
 rounds = []
-for sn, rt in (('18-Hole Rounds', 18), ('9-Hole Rounds', 9)):
+for sn, rt in (('18-Hole Rounds', 18), ('9-Hole Rounds', 9), ('Partial Rounds', None)):
+    if sn not in wb.sheetnames: continue
     ws = wb[sn]; H = [c.value for c in ws[1]]
     ix = {h: i for i, h in enumerate(H)}
     for r in ws.iter_rows(min_row=2, values_only=True):
-        if not r[0]: continue
+        if not r[ix['Date']]: continue
         g = lambda k: num(r[ix[k]]) if k in ix else None
         par, gross = g('Par'), g('Gross')
-        rounds.append(dict(date=d(r[0]), course=course(r[1]), tees=tee(r[2]), type=rt, teeYards=g('TeeYards'), rating=g('Rating'), differential=g('Differential'),
+        rounds.append(dict(date=d(r[ix['Date']]), course=course(r[ix['Course']]), tees=tee(r[ix['Tees']]), type=rt or int(r[ix['Holes']]), teeYards=g('TeeYards'), rating=g('Rating'), differential=g('Differential'),
             par=par, gross=gross, toPar=(gross - par) if par and gross else None,
             doubles=g('Doubles (exact +2)'), triplesPlus=g('TriplesOrWorse (+3 or more)'),
             fwHit=g('FairwaysHit'), fwPossible=g('FairwaysPossible'),
@@ -52,7 +53,7 @@ if 'GHIN Scores' in wb.sheetnames:
         # Score to par: tracker round (gross - par) when linked, else GHIN score - verified course par (pars.py); None if par unknown
         par = lr.get('par') or par_for(r[gx['Course']], hl)
         tp = lr.get('toPar') if lr.get('toPar') is not None else ((sc - par) if par and sc else None)
-        ghin.append(dict(date=d(r[0]), course=course(r[gx['Course']]), tees=tee(r[gx['Tees']]), type=hl, score=sc,
+        ghin.append(dict(date=d(r[0]), course=course(r[gx['Course']]), tees=tee(r[gx['Tees']]), type=lr.get('type') or hl, score=sc,
             differential=r[gx['Differential']], id=rid, rating=lr.get('rating'), teeYards=lr.get('teeYards'), par=par, toPar=tp))
 ghin = [g for g in ghin if not excluded(g['date'], g['course'])]
 rounds = [r for r in rounds if not excluded(r['date'], r['course'])]

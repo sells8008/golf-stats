@@ -153,7 +153,7 @@ function drawChips(){
  const trig=(id,set)=>{const v=[...set];$(id+' .trig').textContent=v.length?v[0]+(v.length>1?' +'+(v.length-1):''):'All'};trig('#popYd',ST.yds);trig('#popRt',ST.rts);
  chipGroup('#parChips',[['all','All holes'],[3,'Par 3'],[4,'Par 4'],[5,'Par 5']],v=>v==='all'?ST.allPars:!ST.allPars&&ST.pars.has(v),
   v=>{if(v==='all'){ST.allPars=true;ST.pars.clear()}else{ST.allPars=false;tg(ST.pars,v);if(!ST.pars.size)ST.allPars=true}});
- chipGroup('#nineChips',[[true,'Include 9-hole'],[false,'18-hole only']],v=>ST.inc9===v,v=>ST.inc9=v);
+ chipGroup('#nineChips',[[true,'Include 9-hole & partial'],[false,'18-hole only']],v=>ST.inc9===v,v=>ST.inc9=v);
 }
 function multiSelect(id,opts,set,ph){
  const m=$(id);m.innerHTML=`<div class="box"><button class="chip sa">Select all</button><input type="search" placeholder="${ph}"></div><div class="dd"><input type="search" placeholder="${ph}"><div class="list"></div></div>`;
@@ -265,10 +265,10 @@ function roundSeries(s,F,c){
 }
 function parSeries(s,F,c){
  // Full GHIN history (same filters as Differential); 18-hole rounds plotted, 9-hole rounds listed separately
- const G=diffR(F).filter(r=>r.toPar!=null),R=G.filter(r=>r.type==18),N=G.filter(r=>r.type==9);
+ const G=diffR(F).filter(r=>r.toPar!=null),R=G.filter(r=>r.type==18),N=G.filter(r=>r.type==9),P=G.filter(r=>r.type!=18&&r.type!=9);
  if(!R.length)return empty(c,'No 18-hole rounds with score to par in the current filters.');
  line(c,R.map(r=>r.date),R.map(r=>r.toPar),PAL.g,s.y,'Round date');
- c.insertAdjacentHTML('beforeend',`<div class="note">18-hole average <b style="color:var(--text)">${sgn(avg(R.map(r=>r.toPar))).replace(/(\.\d)\d$/,'$1')}</b> over ${R.length} rounds`+(N.length?` · 9-hole average <b style="color:var(--text)">${sgn(avg(N.map(r=>r.toPar))).replace(/(\.\d)\d$/,'$1')}</b> over ${N.length} rounds`:'')+`</div>`);
+ c.insertAdjacentHTML('beforeend',`<div class="note">18-hole average <b style="color:var(--text)">${sgn(avg(R.map(r=>r.toPar))).replace(/(\.\d)\d$/,'$1')}</b> over ${R.length} rounds`+(N.length?` · 9-hole average <b style="color:var(--text)">${sgn(avg(N.map(r=>r.toPar))).replace(/(\.\d)\d$/,'$1')}</b> over ${N.length} rounds`:'')+(P.length?` · partial rounds (not in averages): `+P.map(r=>`${r.date} ${r.type} holes <b style="color:var(--text)">${r.toPar>0?'+':''}${r.toPar}</b>`).join(', '):'')+`</div>`);
 }
 function diffSeries(s,F,c){
  const R=diffR(F);if(!R.length)return empty(c,'No differential data for the current filters yet.');
