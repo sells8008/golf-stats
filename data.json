@@ -305,8 +305,8 @@
    "rating": 69.8,
    "slope": 121,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2026-06-20",
@@ -347,8 +347,8 @@
    "rating": 70.8,
    "slope": 123,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 72,
+   "toPar": 16
   },
   {
    "date": "2026-05-30",
@@ -445,8 +445,8 @@
    "rating": 72.6,
    "slope": 133,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 70,
+   "toPar": 14
   },
   {
    "date": "2026-04-26",
@@ -487,8 +487,8 @@
    "rating": 71.8,
    "slope": 128,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 72,
+   "toPar": 13
   },
   {
    "date": "2026-04-24",
@@ -501,8 +501,8 @@
    "rating": 72.2,
    "slope": 135,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 72,
+   "toPar": 18
   },
   {
    "date": "2026-04-19",
@@ -599,8 +599,8 @@
    "rating": 33.6,
    "slope": 118,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 36,
+   "toPar": 5
   },
   {
    "date": "2026-03-03",
@@ -627,8 +627,8 @@
    "rating": 70.7,
    "slope": 131,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 71,
+   "toPar": 9
   },
   {
    "date": "2026-02-08",
@@ -711,8 +711,8 @@
    "rating": 71.9,
    "slope": 134,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 71,
+   "toPar": 13
   },
   {
    "date": "2026-01-01",
@@ -907,8 +907,8 @@
    "rating": 70.6,
    "slope": 131,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 70,
+   "toPar": 10
   },
   {
    "date": "2025-10-24",
@@ -1089,8 +1089,8 @@
    "rating": 71.5,
    "slope": 133,
    "teeYards": null,
-   "par": null,
-   "toPar": null
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2025-08-16",
@@ -3319,7 +3319,7 @@
    "toPar": 31
   }
  ],
- "generated": "2026-10-15T22:31",
+ "generated": "2026-10-15T22:44",
  "rounds": [
   {
    "date": "2026-06-25",

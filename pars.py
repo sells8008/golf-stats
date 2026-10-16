@@ -30,6 +30,15 @@ PARS = [
  ('falls road', 70, 35, 35),
  ('hog neck', 72, None, None),
  ('blue mash', 71, 36, 35),
+ ('jekyll island golf club - great dunes', 72, None, None),  # nines differ between published cards
+ ('windy harbor', 72, 36, 36),
+ ('rockaway hunting club', 70, 35, 35),  # Blue 2023 72.6/133 (BlueGolf)
+ ('the windsor club', 72, 36, 36),
+ ("john's island club - west", 72, 36, 36),
+ ('bobby jones golf club', 71, None, None),  # Sarasota Championship, Black 70.7/131 (FSGA/GolfPass)
+ ('forest park golf course - redbud/dogwood', 70, 35, 35),
+ ('whiskey creek golf club', 72, 36, 36),
+ ('the park', 71, None, None),  # The Park West Palm, Black 71.9/134 (BlueGolf/FSGA)
 ]
 def par_for(course, holes):
     c = (course or '').lower()
