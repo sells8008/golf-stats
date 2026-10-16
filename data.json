@@ -3583,9 +3583,9 @@
    "fwHit": 6,
    "fwPossible": 10,
    "gir": 11,
-   "putts": null,
-   "threePutts": null,
-   "onePutts": null,
+   "putts": 25,
+   "threePutts": 2,
+   "onePutts": 3,
    "udMade": 2,
    "udAtt": 3,
    "id": "2026-06-20_jacksonville-beach-g_13"
@@ -10014,7 +10014,7 @@
    "fwMiss": null,
    "gir": "Hit",
    "grMiss": null,
-   "putts": null,
+   "putts": 2,
    "udAtt": 0,
    "udMade": 0
   },
@@ -10032,7 +10032,7 @@
    "fwMiss": null,
    "gir": "Miss",
    "grMiss": "Right",
-   "putts": null,
+   "putts": 2,
    "udAtt": 1,
    "udMade": 0
   },
@@ -10050,7 +10050,7 @@
    "fwMiss": null,
    "gir": "Miss",
    "grMiss": "Right",
-   "putts": null,
+   "putts": 1,
    "udAtt": 1,
    "udMade": 1
   },
@@ -10068,7 +10068,7 @@
    "fwMiss": null,
    "gir": "Hit",
    "grMiss": null,
-   "putts": null,
+   "putts": 2,
    "udAtt": 0,
    "udMade": 0
   }
