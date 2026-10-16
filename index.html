@@ -75,9 +75,9 @@ const STATS=[
  {id:'dbl',area:'Doubles / Triples',title:'Doubles or worse per round',kind:'roundCount',x:'Holes at double bogey or worse',val:r=>r.doubles!=null&&r.triplesPlus!=null?r.doubles+r.triplesPlus:null},
  {id:'tpl',area:'Doubles / Triples',title:'Triples or worse per round',kind:'roundCount',x:'Holes at triple bogey or worse',val:r=>r.triplesPlus},
  {id:'fwc',area:'Fairways',title:'Fairways hit per round (with avg GIR)',kind:'roundCount',x:'Fairways hit',val:r=>r.fwHit,extra:{label:'Avg GIR',val:r=>r.gir}},
- {id:'firsplit',area:'Fairways',title:'Avg to par per hole: fairway hit vs missed',kind:'holeSplit',x:'Fairway result',key:h=>h.fir==='Hit'||h.fir==='Miss'?h.fir:null,order:['Hit','Miss'],note:'Par 3s have no fairway (NA).'},
+ {id:'firsplit',area:'Fairways',title:'Avg to par per hole: fairway hit vs missed',kind:'holeSplit',x:'Fairway result',key:h=>h.fir==='Hit'?'Hit':h.fir==='Miss'?(h.fwMiss==='No Chance'?'No Chance':'Miss'):null,order:['Hit','Miss','No Chance'],labels:{'Miss':'Missed','No Chance':'No chance'},hideEmpty:true,note:'Par 3s have no fairway (NA).'},
  {id:'girc',area:'Greens',title:'Greens in regulation per round',kind:'roundCount',x:'Greens hit',val:r=>r.gir},
- {id:'girsplit',area:'Greens',title:'Avg to par per hole: green hit vs missed',kind:'holeSplit',x:'Green result',key:h=>h.gir==='Hit'||h.gir==='Miss'?h.gir:null,order:['Hit','Miss']},
+ {id:'girsplit',area:'Greens',title:'Avg to par per hole: green hit / missed / no chance',kind:'holeSplit',x:'Green result',key:h=>h.gir==='Hit'?'Hit':h.gir==='Miss'?(h.grMiss==='No Chance'?'No Chance':'Miss'):null,order:['Hit','Miss','No Chance'],labels:{'Miss':'Missed','No Chance':'No chance'},hideEmpty:true},
  {id:'putts',area:'Putting',title:'Putts per round',kind:'roundSeries',y:'Putts',val:r=>r.putts},
  {id:'p3',area:'Putting',title:'3-putts or worse per round',kind:'roundCount',x:'3-putts or worse',val:r=>r.threePutts},
  {id:'p1',area:'Putting',title:'1-putts per round',kind:'roundCount',x:'1-putts',val:r=>r.onePutts},
@@ -243,15 +243,16 @@ function roundCount(s,F,c){
 function holeSplit(s,F,c){
  const H=F.H.filter(h=>s.key(h)!=null&&h.toPar!=null);
  if(!H.length)return empty(c,'No hole-level data for this stat in the current filters'+(!F.allPars&&F.pars.length==1&&F.pars[0]==3&&s.id.startsWith('f')?' (par 3s have no fairway).':'.'));
+ const ORD=s.hideEmpty?s.order.filter(k=>H.some(h=>s.key(h)===k)):s.order;const LB=k=>(s.labels||{})[k]||LABEL[k]||k;s={...s,order:ORD};
  const pars=F.allPars?[]:F.pars.filter(p=>H.some(h=>h.par===p));
  const A=k=>avg(H.filter(h=>s.key(h)===k).map(h=>h.toPar));
  const N=(k,p)=>H.filter(h=>s.key(h)===k&&(p==null||h.par===p)).length;
  const ds=pars.map(p=>({counts:s.order.map(k=>N(k,p)),label:'Par '+p,backgroundColor:grad(PARCOL[p]),data:s.order.map(k=>avg(H.filter(h=>h.par===p&&s.key(h)===k).map(h=>h.toPar))),borderRadius:7,borderSkipped:false,minBarLength:6,maxBarThickness:34}));
  if(pars.length!==1)ds.push({label:F.allPars?'All holes':'Selected pars combined',backgroundColor:grad(PAL.g),counts:s.order.map(k=>N(k)),data:s.order.map(A),borderRadius:7,borderSkipped:false,minBarLength:6,maxBarThickness:pars.length?34:56});
- charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order.map(k=>LABEL[k]||k),datasets:ds},
+ charts.push(new Chart(canvas(c),{type:'bar',data:{labels:s.order.map(LB),datasets:ds},
   options:{maintainAspectRatio:false,plugins:{legend:{display:ds.length>1},tooltip:{callbacks:{label:x=>x.dataset.label+': '+(x.raw==null?'–':sgn(x.raw)),afterLabel:x=>'# of holes: '+x.dataset.counts[x.dataIndex]}}},scales:{x:ax(s.x||'Category',{grid:{display:false}}),y:ax(s.y||'Avg score to par per hole')}}}));
  const rows=s.order.map(k=>{const g=H.filter(h=>s.key(h)===k);const a=avg(g.map(h=>h.toPar));
-  return [LABEL[k]||k,g.length,(100*g.length/H.length).toFixed(0)+'%',`<span class="${tpCls(a)}">${fmt(a)}</span>`].concat(pars.map(p=>{const q=g.filter(h=>h.par===p);const b=avg(q.map(h=>h.toPar));return q.length?`<span class="${tpCls(b)}">${fmt(b)}</span> <span style="color:var(--mut)">(${q.length})</span>`:'–'}))});
+  return [LB(k),g.length,(100*g.length/H.length).toFixed(0)+'%',`<span class="${tpCls(a)}">${fmt(a)}</span>`].concat(pars.map(p=>{const q=g.filter(h=>h.par===p);const b=avg(q.map(h=>h.toPar));return q.length?`<span class="${tpCls(b)}">${fmt(b)}</span> <span style="color:var(--mut)">(${q.length})</span>`:'–'}))});
  table(c,['','# of holes','Share',F.allPars?'Avg to par (all holes)':'Avg to par'].concat(pars.map(p=>'Par '+p)),rows);
 }
 function line(c,labels,data,color,yT,xT,extra={}){charts.push(new Chart(canvas(c),{type:'line',data:{labels,datasets:[Object.assign({label:yT,data,borderColor:color,backgroundColor:fillGrad(color),fill:true,tension:.4,borderWidth:2.5,pointRadius:3,pointHoverRadius:6,pointBackgroundColor:color},extra)]},
