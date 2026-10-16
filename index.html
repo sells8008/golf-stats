@@ -87,7 +87,7 @@ const STATS=[
  {id:'udser',area:'Up & Downs',title:'Up-and-downs made over time',kind:'roundSeries',y:'Up-and-downs made',val:r=>r.udMade},
  {id:'fwmiss',area:'Miss Direction',title:'Fairway miss direction',kind:'holeSplit',x:'Miss direction',key:h=>MISS.includes(h.fwMiss)?h.fwMiss:null,order:MISS},
  {id:'grmiss',area:'Miss Direction',title:'Green miss direction',kind:'holeSplit',x:'Miss direction',key:h=>MISS.includes(h.grMiss)?h.grMiss:null,order:MISS},
- {id:'score',area:'Scoring',title:'Score to par by round',kind:'roundSeries',y:'Score to par',val:r=>r.toPar},
+ {id:'score',area:'Scoring',title:'Score to par by round',kind:'parSeries',y:'Score to par'},
  {id:'hcp',area:'Handicap',title:'Handicap index trend',kind:'hcp'},
  {id:'diff',area:'Differential',title:'Score differential over time',kind:'diffSeries'},
 ];
@@ -210,7 +210,7 @@ function render(){
  const out=$('#out');out.innerHTML='';const SC={};Object.keys(SUMM).forEach(k=>SC[k]=SUMM[k](F));
  ORDERED.filter(s=>areaSel.all||areaSel.on.includes(s.area)).forEach(s=>{
   const c=document.createElement('div');c.className='card';c.innerHTML=`<h3>${s.title}</h3>${SUMM[s.area]?`<div class="spill">${SC[s.area]||'–'}</div>`:''}<div class="meta">${ICON[s.area]||''} ${s.area}${s.note?' · '+s.note:''}</div>`;out.appendChild(c);
-  ({roundCount,holeSplit,roundSeries,hcp,diffSeries})[s.kind](s,F,c);
+  ({roundCount,holeSplit,roundSeries,hcp,diffSeries,parSeries})[s.kind](s,F,c);
  });
 }
 function canvas(c){const w=document.createElement('div');w.className='cv';const k=document.createElement('canvas');w.appendChild(k);c.appendChild(w);return k}
@@ -265,6 +265,13 @@ function roundSeries(s,F,c){
  if(!R.length)return empty(c,'No 18-hole rounds with this stat in the current filters.');
  line(c,R.map(r=>r.date),R.map(s.val),PAL.g,s.y||s.title,'Round date');
  c.insertAdjacentHTML('beforeend',`<div class="note">Average <b style="color:var(--text)">${avg(R.map(s.val)).toFixed(1)}</b> over ${R.length} rounds</div>`);
+}
+function parSeries(s,F,c){
+ // Full GHIN history (same filters as Differential); 18-hole rounds plotted, 9-hole rounds listed separately
+ const G=diffR(F).filter(r=>r.toPar!=null),R=G.filter(r=>r.type==18),N=G.filter(r=>r.type==9);
+ if(!R.length)return empty(c,'No 18-hole rounds with score to par in the current filters.');
+ line(c,R.map(r=>r.date),R.map(r=>r.toPar),PAL.g,s.y,'Round date');
+ c.insertAdjacentHTML('beforeend',`<div class="note">18-hole average <b style="color:var(--text)">${sgn(avg(R.map(r=>r.toPar))).replace(/(\.\d)\d$/,'$1')}</b> over ${R.length} rounds`+(N.length?` · 9-hole average <b style="color:var(--text)">${sgn(avg(N.map(r=>r.toPar))).replace(/(\.\d)\d$/,'$1')}</b> over ${N.length} rounds`:'')+`</div>`);
 }
 function diffSeries(s,F,c){
  const R=diffR(F);if(!R.length)return empty(c,'No differential data for the current filters yet.');

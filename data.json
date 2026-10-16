@@ -9,7 +9,9 @@
    "differential": 11.4,
    "id": "2026-10-11_jacksonville-beach-g_18",
    "rating": 72.6,
-   "teeYards": 6750
+   "teeYards": 6750,
+   "par": 71,
+   "toPar": 15
   },
   {
    "date": "2026-10-04",
@@ -20,7 +22,9 @@
    "differential": 12.2,
    "id": "2026-10-04_queens-harbour-yacht_18",
    "rating": 73.3,
-   "teeYards": 6983
+   "teeYards": 6983,
+   "par": 72,
+   "toPar": 11
   },
   {
    "date": "2026-09-27",
@@ -31,7 +35,9 @@
    "differential": -1.5,
    "id": "2026-09-27_jacksonville-beach-g_18",
    "rating": 72.6,
-   "teeYards": 6750
+   "teeYards": 6750,
+   "par": 71,
+   "toPar": 1
   },
   {
    "date": "2026-09-19",
@@ -42,7 +48,9 @@
    "differential": 7.7,
    "id": "2026-09-19_queens-harbour_9_42",
    "rating": 37.1,
-   "teeYards": 3590
+   "teeYards": 3590,
+   "par": 36,
+   "toPar": 6
   },
   {
    "date": "2026-09-19",
@@ -53,7 +61,9 @@
    "differential": 10.2,
    "id": "2026-09-19_queens-harbour_9_45",
    "rating": 37.1,
-   "teeYards": 3590
+   "teeYards": 3590,
+   "par": 36,
+   "toPar": 9
   },
   {
    "date": "2026-09-11",
@@ -64,7 +74,9 @@
    "differential": 6.6,
    "id": "2026-09-11_jacksonville-beach-g_18",
    "rating": 72.6,
-   "teeYards": 6750
+   "teeYards": 6750,
+   "par": 71,
+   "toPar": 2
   },
   {
    "date": "2026-09-06",
@@ -75,7 +87,9 @@
    "differential": 8.3,
    "id": "2026-09-06_jacksonville-beach-g_18",
    "rating": 72.6,
-   "teeYards": 6750
+   "teeYards": 6750,
+   "par": 71,
+   "toPar": 3
   },
   {
    "date": "2026-08-30",
@@ -86,7 +100,9 @@
    "differential": 8.7,
    "id": "2026-08-30_jacksonville-beach-g_18",
    "rating": 72.6,
-   "teeYards": 6750
+   "teeYards": 6750,
+   "par": 71,
+   "toPar": 13
   },
   {
    "date": "2026-08-27",
@@ -97,7 +113,9 @@
    "differential": 2.1,
    "id": "2026-08-27_jacksonville-beach-g_9",
    "rating": 37,
-   "teeYards": null
+   "teeYards": null,
+   "par": 36,
+   "toPar": -2
   },
   {
    "date": "2026-08-24",
@@ -108,7 +126,9 @@
    "differential": 12.9,
    "id": "2026-08-24_cimarrone-golf-club_18",
    "rating": 69.4,
-   "teeYards": 6159
+   "teeYards": 6159,
+   "par": 72,
+   "toPar": 14
   },
   {
    "date": "2026-08-15",
@@ -119,7 +139,9 @@
    "differential": 8,
    "id": "2026-08-15_queens-harbour-yacht_18",
    "rating": 73.3,
-   "teeYards": 6983
+   "teeYards": 6983,
+   "par": 72,
+   "toPar": 12
   },
   {
    "date": "2026-08-09",
@@ -130,7 +152,9 @@
    "differential": 12.1,
    "id": "2026-08-09_jacksonville-beach-g_18",
    "rating": 72.6,
-   "teeYards": 6750
+   "teeYards": 6750,
+   "par": 71,
+   "toPar": 18
   },
   {
    "date": "2026-08-07",
@@ -141,7 +165,9 @@
    "differential": 5.3,
    "id": "2026-08-07_jacksonville-beach-g_18",
    "rating": 72.6,
-   "teeYards": 6750
+   "teeYards": 6750,
+   "par": 71,
+   "toPar": 9
   },
   {
    "date": "2026-08-05",
@@ -152,7 +178,9 @@
    "differential": 10.7,
    "id": "2026-08-05_jacksonville-beach-g_18",
    "rating": 69.6,
-   "teeYards": 6379
+   "teeYards": 6379,
+   "par": 71,
+   "toPar": 14
   },
   {
    "date": "2026-07-17",
@@ -163,7 +191,9 @@
    "differential": 8.8,
    "id": "2026-07-17_club-at-savannah-har_18",
    "rating": 69.3,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 8
   },
   {
    "date": "2026-07-12",
@@ -174,7 +204,9 @@
    "differential": 9,
    "id": "2026-07-12_tpc-sawgrass-stadium_18",
    "rating": 73.9,
-   "teeYards": 6631
+   "teeYards": 6631,
+   "par": 72,
+   "toPar": 16
   },
   {
    "date": "2026-07-05",
@@ -185,7 +217,9 @@
    "differential": 11.2,
    "id": "2026-07-05_talbot_18",
    "rating": 72,
-   "teeYards": 6466
+   "teeYards": 6466,
+   "par": 72,
+   "toPar": 14
   },
   {
    "date": "2026-07-03",
@@ -196,7 +230,9 @@
    "differential": 9,
    "id": "2026-07-03_talbot_18",
    "rating": 69.9,
-   "teeYards": 5956
+   "teeYards": 5956,
+   "par": 72,
+   "toPar": 8
   },
   {
    "date": "2026-06-27",
@@ -207,7 +243,9 @@
    "differential": 16.6,
    "id": "2026-06-27_canyons-golf_18",
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 16
   },
   {
    "date": "2026-06-26",
@@ -218,7 +256,9 @@
    "differential": 8.3,
    "id": "2026-06-26_park-city-gc_18",
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 9
   },
   {
    "date": "2026-06-25",
@@ -229,7 +269,9 @@
    "differential": 8.7,
    "id": "2026-06-25_soldier-hollow_18",
    "rating": 73.5,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 12
   },
   {
    "date": "2026-06-21",
@@ -240,7 +282,9 @@
    "differential": 16.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-06-20",
@@ -251,7 +295,9 @@
    "differential": 6.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": -18
   },
   {
    "date": "2026-06-17",
@@ -262,7 +308,9 @@
    "differential": 14.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 15
   },
   {
    "date": "2026-06-12",
@@ -273,7 +321,9 @@
    "differential": 15.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-05-30",
@@ -284,7 +334,9 @@
    "differential": 14.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 15
   },
   {
    "date": "2026-05-25",
@@ -295,7 +347,9 @@
    "differential": 14.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 17
   },
   {
    "date": "2026-05-22",
@@ -306,7 +360,9 @@
    "differential": 12,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2026-05-16",
@@ -317,7 +373,9 @@
    "differential": 7.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 7
   },
   {
    "date": "2026-05-15",
@@ -328,7 +386,9 @@
    "differential": 13.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 18
   },
   {
    "date": "2026-05-10",
@@ -339,7 +399,9 @@
    "differential": 10.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 11
   },
   {
    "date": "2026-04-30",
@@ -350,7 +412,9 @@
    "differential": 9.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-04-26",
@@ -361,7 +425,9 @@
    "differential": 9.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2026-04-25",
@@ -372,7 +438,9 @@
    "differential": 13.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 14
   },
   {
    "date": "2026-04-25",
@@ -383,7 +451,9 @@
    "differential": 11.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-04-24",
@@ -394,7 +464,9 @@
    "differential": 14.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-04-19",
@@ -405,7 +477,9 @@
    "differential": 6.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 6
   },
   {
    "date": "2026-04-02",
@@ -416,7 +490,9 @@
    "differential": 8.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-04-02",
@@ -427,7 +503,9 @@
    "differential": 16.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-03-29",
@@ -438,7 +516,9 @@
    "differential": 9.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 8
   },
   {
    "date": "2026-03-22",
@@ -449,7 +529,9 @@
    "differential": 11.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 12
   },
   {
    "date": "2026-03-21",
@@ -460,7 +542,9 @@
    "differential": 10.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 10
   },
   {
    "date": "2026-03-20",
@@ -471,7 +555,9 @@
    "differential": 12.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-03-03",
@@ -482,7 +568,9 @@
    "differential": 11.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 16
   },
   {
    "date": "2026-02-20",
@@ -493,7 +581,9 @@
    "differential": 8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-02-08",
@@ -504,7 +594,9 @@
    "differential": 14.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2026-02-01",
@@ -515,7 +607,9 @@
    "differential": 23,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 25
   },
   {
    "date": "2026-01-31",
@@ -526,7 +620,9 @@
    "differential": 17.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 19
   },
   {
    "date": "2026-01-18",
@@ -537,7 +633,9 @@
    "differential": 12.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 16
   },
   {
    "date": "2026-01-11",
@@ -548,7 +646,9 @@
    "differential": 5.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 5
   },
   {
    "date": "2026-01-02",
@@ -559,7 +659,9 @@
    "differential": 10.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2026-01-01",
@@ -570,7 +672,9 @@
    "differential": 17.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 19
   },
   {
    "date": "2025-12-29",
@@ -581,7 +685,9 @@
    "differential": 18.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 20
   },
   {
    "date": "2025-12-29",
@@ -592,7 +698,9 @@
    "differential": 9.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 12
   },
   {
    "date": "2025-12-28",
@@ -603,7 +711,9 @@
    "differential": 23,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 25
   },
   {
    "date": "2025-12-27",
@@ -614,7 +724,9 @@
    "differential": 12.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2025-12-27",
@@ -625,7 +737,9 @@
    "differential": 6.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 9
   },
   {
    "date": "2025-12-14",
@@ -636,7 +750,9 @@
    "differential": 11.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 13
   },
   {
    "date": "2025-12-13",
@@ -647,7 +763,9 @@
    "differential": 16.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 21
   },
   {
    "date": "2025-12-07",
@@ -658,7 +776,9 @@
    "differential": 16.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 17
   },
   {
    "date": "2025-11-26",
@@ -669,7 +789,9 @@
    "differential": 16.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 19
   },
   {
    "date": "2025-11-23",
@@ -680,7 +802,9 @@
    "differential": 10.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 13
   },
   {
    "date": "2025-11-22",
@@ -691,7 +815,9 @@
    "differential": 9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 10
   },
   {
    "date": "2025-11-09",
@@ -702,7 +828,9 @@
    "differential": 8.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 8
   },
   {
    "date": "2025-10-31",
@@ -713,7 +841,9 @@
    "differential": 8.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2025-10-24",
@@ -724,7 +854,9 @@
    "differential": 13.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 11
   },
   {
    "date": "2025-10-04",
@@ -735,7 +867,9 @@
    "differential": 10.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 12
   },
   {
    "date": "2025-09-26",
@@ -746,7 +880,9 @@
    "differential": 4.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2025-09-21",
@@ -757,7 +893,9 @@
    "differential": 10.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 10
   },
   {
    "date": "2025-09-20",
@@ -768,7 +906,9 @@
    "differential": 13.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 18
   },
   {
    "date": "2025-09-13",
@@ -779,7 +919,9 @@
    "differential": 10.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 10
   },
   {
    "date": "2025-09-06",
@@ -790,7 +932,9 @@
    "differential": 12.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 13
   },
   {
    "date": "2025-09-05",
@@ -801,7 +945,9 @@
    "differential": 14.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 16
   },
   {
    "date": "2025-09-01",
@@ -812,7 +958,9 @@
    "differential": 15.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 18
   },
   {
    "date": "2025-08-30",
@@ -823,7 +971,9 @@
    "differential": 12.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 17
   },
   {
    "date": "2025-08-29",
@@ -834,7 +984,9 @@
    "differential": 10.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2025-08-27",
@@ -845,7 +997,9 @@
    "differential": 10,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 13
   },
   {
    "date": "2025-08-17",
@@ -856,7 +1010,9 @@
    "differential": 13.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2025-08-16",
@@ -867,7 +1023,9 @@
    "differential": 12.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 14
   },
   {
    "date": "2025-08-10",
@@ -878,7 +1036,9 @@
    "differential": 13.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 17
   },
   {
    "date": "2025-08-09",
@@ -889,7 +1049,9 @@
    "differential": 15.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 16
   },
   {
    "date": "2025-07-27",
@@ -900,7 +1062,9 @@
    "differential": 7.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 7
   },
   {
    "date": "2025-07-26",
@@ -911,7 +1075,9 @@
    "differential": 11.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 12
   },
   {
    "date": "2025-07-25",
@@ -922,7 +1088,9 @@
    "differential": 12.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2025-07-19",
@@ -933,7 +1101,9 @@
    "differential": 12.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 11
   },
   {
    "date": "2025-07-13",
@@ -944,7 +1114,9 @@
    "differential": 15,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 17
   },
   {
    "date": "2025-07-04",
@@ -955,7 +1127,9 @@
    "differential": 4.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 7
   },
   {
    "date": "2025-07-03",
@@ -966,7 +1140,9 @@
    "differential": 5.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 4
   },
   {
    "date": "2025-07-02",
@@ -977,7 +1153,9 @@
    "differential": 10.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 12
   },
   {
    "date": "2025-06-29",
@@ -988,7 +1166,9 @@
    "differential": 4.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 5
   },
   {
    "date": "2025-06-22",
@@ -999,7 +1179,9 @@
    "differential": 10,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 10
   },
   {
    "date": "2025-06-21",
@@ -1010,7 +1192,9 @@
    "differential": 10.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 13
   },
   {
    "date": "2025-06-21",
@@ -1021,7 +1205,9 @@
    "differential": 8.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2025-06-21",
@@ -1032,7 +1218,9 @@
    "differential": 13.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 14
   },
   {
    "date": "2025-06-19",
@@ -1043,7 +1231,9 @@
    "differential": 9.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 13
   },
   {
    "date": "2025-06-12",
@@ -1054,7 +1244,9 @@
    "differential": 17.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 14
   },
   {
    "date": "2025-06-07",
@@ -1065,7 +1257,9 @@
    "differential": 16.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 17
   },
   {
    "date": "2025-05-29",
@@ -1076,7 +1270,9 @@
    "differential": 11.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 12
   },
   {
    "date": "2025-05-23",
@@ -1087,7 +1283,9 @@
    "differential": 8.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 9
   },
   {
    "date": "2025-05-23",
@@ -1098,7 +1296,9 @@
    "differential": 15.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 18
   },
   {
    "date": "2025-05-18",
@@ -1109,7 +1309,9 @@
    "differential": 10.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 12
   },
   {
    "date": "2025-05-16",
@@ -1120,7 +1322,9 @@
    "differential": 7.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2025-05-03",
@@ -1131,7 +1335,9 @@
    "differential": 13.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2025-05-02",
@@ -1142,7 +1348,9 @@
    "differential": 21.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2025-04-19",
@@ -1153,7 +1361,9 @@
    "differential": 12.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 13
   },
   {
    "date": "2025-03-30",
@@ -1164,7 +1374,9 @@
    "differential": 21,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 24
   },
   {
    "date": "2025-03-23",
@@ -1175,7 +1387,9 @@
    "differential": 16.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 22
   },
   {
    "date": "2025-03-21",
@@ -1186,7 +1400,9 @@
    "differential": 10.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 14
   },
   {
    "date": "2025-03-16",
@@ -1197,7 +1413,9 @@
    "differential": 14.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 16
   },
   {
    "date": "2025-03-15",
@@ -1208,7 +1426,9 @@
    "differential": 8.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 9
   },
   {
    "date": "2025-03-14",
@@ -1219,7 +1439,9 @@
    "differential": 9.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 11
   },
   {
    "date": "2025-03-08",
@@ -1230,7 +1452,9 @@
    "differential": 21.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 25
   },
   {
    "date": "2025-02-03",
@@ -1241,7 +1465,9 @@
    "differential": 23.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 27
   },
   {
    "date": "2025-01-31",
@@ -1252,7 +1478,9 @@
    "differential": 12.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 14
   },
   {
    "date": "2025-01-26",
@@ -1263,7 +1491,9 @@
    "differential": 9.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 13
   },
   {
    "date": "2025-01-19",
@@ -1274,7 +1504,9 @@
    "differential": 13.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 17
   },
   {
    "date": "2025-01-04",
@@ -1285,7 +1517,9 @@
    "differential": 7.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 6
   },
   {
    "date": "2025-01-02",
@@ -1296,7 +1530,9 @@
    "differential": 10.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 10
   },
   {
    "date": "2025-01-01",
@@ -1307,7 +1543,9 @@
    "differential": 8.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-12-30",
@@ -1318,7 +1556,9 @@
    "differential": 7.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-12-27",
@@ -1329,7 +1569,9 @@
    "differential": 21.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 23
   },
   {
    "date": "2024-12-27",
@@ -1340,7 +1582,9 @@
    "differential": 7.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 8
   },
   {
    "date": "2024-12-26",
@@ -1351,7 +1595,9 @@
    "differential": 11.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 12
   },
   {
    "date": "2024-12-26",
@@ -1362,7 +1608,9 @@
    "differential": 8.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 9
   },
   {
    "date": "2024-12-25",
@@ -1373,7 +1621,9 @@
    "differential": 18.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 20
   },
   {
    "date": "2024-12-24",
@@ -1384,7 +1634,9 @@
    "differential": 6.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 6
   },
   {
    "date": "2024-12-22",
@@ -1395,7 +1647,9 @@
    "differential": 10.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 11
   },
   {
    "date": "2024-12-22",
@@ -1406,7 +1660,9 @@
    "differential": 19.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 21
   },
   {
    "date": "2024-12-21",
@@ -1417,7 +1673,9 @@
    "differential": 13.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 14
   },
   {
    "date": "2024-12-20",
@@ -1428,7 +1686,9 @@
    "differential": 15.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-12-14",
@@ -1439,7 +1699,9 @@
    "differential": 17.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-12-13",
@@ -1450,7 +1712,9 @@
    "differential": 14.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-12-09",
@@ -1461,7 +1725,9 @@
    "differential": 21.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-12-09",
@@ -1472,7 +1738,9 @@
    "differential": 15.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-12-04",
@@ -1483,7 +1751,9 @@
    "differential": 18.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-11-28",
@@ -1494,7 +1764,9 @@
    "differential": 12.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 14
   },
   {
    "date": "2024-11-24",
@@ -1505,7 +1777,9 @@
    "differential": 11.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-11-24",
@@ -1516,7 +1790,9 @@
    "differential": 17.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-11-23",
@@ -1527,7 +1803,9 @@
    "differential": 11.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 13
   },
   {
    "date": "2024-11-17",
@@ -1538,7 +1816,9 @@
    "differential": 9.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 10
   },
   {
    "date": "2024-11-16",
@@ -1549,7 +1829,9 @@
    "differential": 22.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 26
   },
   {
    "date": "2024-11-08",
@@ -1560,7 +1842,9 @@
    "differential": 10.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 36,
+   "toPar": 5
   },
   {
    "date": "2024-11-03",
@@ -1571,7 +1855,9 @@
    "differential": 2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 3
   },
   {
    "date": "2024-10-31",
@@ -1582,7 +1868,9 @@
    "differential": 15.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-10-27",
@@ -1593,7 +1881,9 @@
    "differential": 13.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-10-16",
@@ -1604,7 +1894,9 @@
    "differential": 16.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-10-11",
@@ -1615,7 +1907,9 @@
    "differential": 14.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 11
   },
   {
    "date": "2024-09-28",
@@ -1626,7 +1920,9 @@
    "differential": 15,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 17
   },
   {
    "date": "2024-09-27",
@@ -1637,7 +1933,9 @@
    "differential": 15.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-09-16",
@@ -1648,7 +1946,9 @@
    "differential": 10.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-09-16",
@@ -1659,7 +1959,9 @@
    "differential": 19.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-09-01",
@@ -1670,7 +1972,9 @@
    "differential": 13.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2024-08-30",
@@ -1681,7 +1985,9 @@
    "differential": 9.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 10
   },
   {
    "date": "2024-08-25",
@@ -1692,7 +1998,9 @@
    "differential": 20.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 24
   },
   {
    "date": "2024-08-23",
@@ -1703,7 +2011,9 @@
    "differential": 13.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 16
   },
   {
    "date": "2024-08-21",
@@ -1714,7 +2024,9 @@
    "differential": 16.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 17
   },
   {
    "date": "2024-08-18",
@@ -1725,7 +2037,9 @@
    "differential": 14.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 14
   },
   {
    "date": "2024-08-13",
@@ -1736,7 +2050,9 @@
    "differential": 19.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 22
   },
   {
    "date": "2024-08-02",
@@ -1747,7 +2063,9 @@
    "differential": 15.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 17
   },
   {
    "date": "2024-07-29",
@@ -1758,7 +2076,9 @@
    "differential": 6.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 7
   },
   {
    "date": "2024-07-26",
@@ -1769,7 +2089,9 @@
    "differential": 9.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 10
   },
   {
    "date": "2024-07-19",
@@ -1780,7 +2102,9 @@
    "differential": 15.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 18
   },
   {
    "date": "2024-07-08",
@@ -1791,7 +2115,9 @@
    "differential": 10.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-07-07",
@@ -1802,7 +2128,9 @@
    "differential": 12.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 14
   },
   {
    "date": "2024-07-05",
@@ -1813,7 +2141,9 @@
    "differential": 18.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 21
   },
   {
    "date": "2024-07-02",
@@ -1824,7 +2154,9 @@
    "differential": 20.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-06-02",
@@ -1835,7 +2167,9 @@
    "differential": 11.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 15
   },
   {
    "date": "2024-06-01",
@@ -1846,7 +2180,9 @@
    "differential": 20.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 24
   },
   {
    "date": "2024-06-01",
@@ -1857,7 +2193,9 @@
    "differential": 13.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 17
   },
   {
    "date": "2024-05-16",
@@ -1868,7 +2206,9 @@
    "differential": 33.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-05-16",
@@ -1879,7 +2219,9 @@
    "differential": 17.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-05-16",
@@ -1890,7 +2232,9 @@
    "differential": 15.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-05-13",
@@ -1901,7 +2245,9 @@
    "differential": 27.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-04-29",
@@ -1912,7 +2258,9 @@
    "differential": 17.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 21
   },
   {
    "date": "2024-04-28",
@@ -1923,7 +2271,9 @@
    "differential": 11.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 11
   },
   {
    "date": "2024-04-20",
@@ -1934,7 +2284,9 @@
    "differential": 17.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-04-14",
@@ -1945,7 +2297,9 @@
    "differential": 9.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 9
   },
   {
    "date": "2024-04-13",
@@ -1956,7 +2310,9 @@
    "differential": 24.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 28
   },
   {
    "date": "2024-04-12",
@@ -1967,7 +2323,9 @@
    "differential": 19.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-04-07",
@@ -1978,7 +2336,9 @@
    "differential": 13.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2024-03-30",
@@ -1989,7 +2349,9 @@
    "differential": 16.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-03-17",
@@ -2000,7 +2362,9 @@
    "differential": 14.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 15
   },
   {
    "date": "2024-03-16",
@@ -2011,7 +2375,9 @@
    "differential": 14.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 16
   },
   {
    "date": "2024-03-16",
@@ -2022,7 +2388,9 @@
    "differential": 21.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 23
   },
   {
    "date": "2024-03-13",
@@ -2033,7 +2401,9 @@
    "differential": 24.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 27
   },
   {
    "date": "2024-03-09",
@@ -2044,7 +2414,9 @@
    "differential": 16.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-03-02",
@@ -2055,7 +2427,9 @@
    "differential": 23.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 23
   },
   {
    "date": "2024-03-02",
@@ -2066,7 +2440,9 @@
    "differential": 20.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 20
   },
   {
    "date": "2024-03-02",
@@ -2077,7 +2453,9 @@
    "differential": 15.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 19
   },
   {
    "date": "2024-02-29",
@@ -2088,7 +2466,9 @@
    "differential": 21.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 27
   },
   {
    "date": "2024-02-21",
@@ -2099,7 +2479,9 @@
    "differential": 17,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-02-10",
@@ -2110,7 +2492,9 @@
    "differential": 22.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 22
   },
   {
    "date": "2024-02-09",
@@ -2121,7 +2505,9 @@
    "differential": 17.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 22
   },
   {
    "date": "2024-02-08",
@@ -2132,7 +2518,9 @@
    "differential": 26.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2024-01-30",
@@ -2143,7 +2531,9 @@
    "differential": 33.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 38
   },
   {
    "date": "2024-01-07",
@@ -2154,7 +2544,9 @@
    "differential": 11.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 13
   },
   {
    "date": "2024-01-06",
@@ -2165,7 +2557,9 @@
    "differential": 22,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2023-11-19",
@@ -2176,7 +2570,9 @@
    "differential": 13.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 14
   },
   {
    "date": "2023-11-18",
@@ -2187,7 +2583,9 @@
    "differential": 10.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 11
   },
   {
    "date": "2023-11-12",
@@ -2198,7 +2596,9 @@
    "differential": 22.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 26
   },
   {
    "date": "2023-11-10",
@@ -2209,7 +2609,9 @@
    "differential": 11.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 11
   },
   {
    "date": "2023-11-07",
@@ -2220,7 +2622,9 @@
    "differential": 19.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 24
   },
   {
    "date": "2023-11-05",
@@ -2231,7 +2635,9 @@
    "differential": 26.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 30
   },
   {
    "date": "2023-11-05",
@@ -2242,7 +2648,9 @@
    "differential": 38.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 47
   },
   {
    "date": "2023-10-21",
@@ -2253,7 +2661,9 @@
    "differential": 30.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2023-10-20",
@@ -2264,7 +2674,9 @@
    "differential": 30.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 32
   },
   {
    "date": "2023-10-16",
@@ -2275,7 +2687,9 @@
    "differential": 16.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 19
   },
   {
    "date": "2023-10-10",
@@ -2286,7 +2700,9 @@
    "differential": 14.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 15
   },
   {
    "date": "2023-09-30",
@@ -2297,7 +2713,9 @@
    "differential": 21.5,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 25
   },
   {
    "date": "2023-09-16",
@@ -2308,7 +2726,9 @@
    "differential": 31.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 40
   },
   {
    "date": "2023-09-09",
@@ -2319,7 +2739,9 @@
    "differential": 21.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 27
   },
   {
    "date": "2023-09-07",
@@ -2330,7 +2752,9 @@
    "differential": 20,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2023-09-02",
@@ -2341,7 +2765,9 @@
    "differential": 17.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 20
   },
   {
    "date": "2023-08-24",
@@ -2352,7 +2778,9 @@
    "differential": 18.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 20
   },
   {
    "date": "2023-08-14",
@@ -2363,7 +2791,9 @@
    "differential": 20.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 23
   },
   {
    "date": "2023-08-05",
@@ -2374,7 +2804,9 @@
    "differential": 23.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 25
   },
   {
    "date": "2023-07-23",
@@ -2385,7 +2817,9 @@
    "differential": 17.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 18
   },
   {
    "date": "2023-06-26",
@@ -2396,7 +2830,9 @@
    "differential": 14.8,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 14
   },
   {
    "date": "2023-06-19",
@@ -2407,7 +2843,9 @@
    "differential": 19.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 23
   },
   {
    "date": "2023-06-16",
@@ -2418,7 +2856,9 @@
    "differential": 15,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 17
   },
   {
    "date": "2023-06-16",
@@ -2429,7 +2869,9 @@
    "differential": 27.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 31
   },
   {
    "date": "2023-06-01",
@@ -2440,7 +2882,9 @@
    "differential": 19.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 70,
+   "toPar": 23
   },
   {
    "date": "2023-05-25",
@@ -2451,7 +2895,9 @@
    "differential": 18.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 21
   },
   {
    "date": "2023-05-24",
@@ -2462,7 +2908,9 @@
    "differential": 18.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 21
   },
   {
    "date": "2023-05-22",
@@ -2473,7 +2921,9 @@
    "differential": 16.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2023-05-14",
@@ -2484,7 +2934,9 @@
    "differential": 15.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 20
   },
   {
    "date": "2023-05-14",
@@ -2495,7 +2947,9 @@
    "differential": 12.4,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 16
   },
   {
    "date": "2023-05-11",
@@ -2506,7 +2960,9 @@
    "differential": 12.2,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 14
   },
   {
    "date": "2023-05-07",
@@ -2517,7 +2973,9 @@
    "differential": 19,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 17
   },
   {
    "date": "2023-05-07",
@@ -2528,7 +2986,9 @@
    "differential": 15,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 18
   },
   {
    "date": "2023-04-30",
@@ -2539,7 +2999,9 @@
    "differential": 27.7,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 26
   },
   {
    "date": "2023-04-17",
@@ -2550,7 +3012,9 @@
    "differential": 17.3,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 71,
+   "toPar": 22
   },
   {
    "date": "2023-04-15",
@@ -2561,7 +3025,9 @@
    "differential": 14.1,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 16
   },
   {
    "date": "2023-04-09",
@@ -2572,7 +3038,9 @@
    "differential": 21.9,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2023-04-08",
@@ -2583,7 +3051,9 @@
    "differential": 23,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2023-03-31",
@@ -2594,7 +3064,9 @@
    "differential": 14.6,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": null,
+   "toPar": null
   },
   {
    "date": "2023-03-26",
@@ -2605,10 +3077,12 @@
    "differential": 29,
    "id": null,
    "rating": null,
-   "teeYards": null
+   "teeYards": null,
+   "par": 72,
+   "toPar": 31
   }
  ],
- "generated": "2026-10-15T18:50",
+ "generated": "2026-10-15T21:54",
  "rounds": [
   {
    "date": "2026-06-25",

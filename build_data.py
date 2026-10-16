@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Build data.json from Hunter_Handicap_Tracker.xlsx. Usage: python3 build_data.py [xlsx]"""
-import sys, json, openpyxl, datetime
+import sys, os, json, openpyxl, datetime
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pars import par_for
 src = sys.argv[1] if len(sys.argv) > 1 else '/workspace/hcp/Hunter_Handicap_Tracker_p1.xlsx'
 wb = openpyxl.load_workbook(src, data_only=False)
 def d(v): return v.strftime('%Y-%m-%d') if isinstance(v, (datetime.date, datetime.datetime)) else v
@@ -43,8 +45,12 @@ if 'GHIN Scores' in wb.sheetnames:
     for r in ws.iter_rows(min_row=2, values_only=True):
         if not r[0] or num(r[gx['Differential']]) is None: continue
         rid = r[gx['RoundId']]; lr = rmap.get(rid, {})
-        ghin.append(dict(date=d(r[0]), course=course(r[gx['Course']]), tees=tee(r[gx['Tees']]), type=int(r[gx['Holes']]), score=r[gx['Score']],
-            differential=r[gx['Differential']], id=rid, rating=lr.get('rating'), teeYards=lr.get('teeYards')))
+        hl = int(r[gx['Holes']]); sc = num(r[gx['Score']])
+        # Score to par: tracker round (gross - par) when linked, else GHIN score - verified course par (pars.py); None if par unknown
+        par = lr.get('par') or par_for(r[gx['Course']], hl)
+        tp = lr.get('toPar') if lr.get('toPar') is not None else ((sc - par) if par and sc else None)
+        ghin.append(dict(date=d(r[0]), course=course(r[gx['Course']]), tees=tee(r[gx['Tees']]), type=hl, score=sc,
+            differential=r[gx['Differential']], id=rid, rating=lr.get('rating'), teeYards=lr.get('teeYards'), par=par, toPar=tp))
 out = dict(ghin=ghin, generated=datetime.datetime.now().isoformat(timespec='minutes'), rounds=rounds, holes=holes, handicap=hcp)
 json.dump(out, open('data.json', 'w'), indent=1)
-print(len(ghin), 'ghin', len(rounds), 'rounds', len(holes), 'holes', len(hcp), 'hcp')
+print(len(ghin), 'ghin', sum(g['toPar'] is not None for g in ghin), 'with toPar', len(rounds), 'rounds', len(holes), 'holes', len(hcp), 'hcp')
