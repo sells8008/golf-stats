@@ -203,7 +203,7 @@ function render(){
  charts.forEach(c=>c.destroy());charts=[];const F=filtered();
  const parTxt=F.allPars?'all holes':'par '+F.pars.join('/');
  const RS=F.R.filter(r=>ST.inc9||r.type==18),sm=(l,v,c='')=>`<div class="sm ${c}"><b>${v}</b>${l}</div>`;
- $('#summary').innerHTML=sm('All-time rounds',(D.ghin||[]).length,'all')+'<div class="smsep"></div>'+sm('Total rounds',F.G.length)+sm('Total 18-hole rounds',F.G.filter(r=>r.type==18).length)+sm('Rounds with stats<i>*stat tracking begins in 6/26</i>',RS.length)+sm('Holes with stats · '+parTxt,F.H.length);
+ $('#summary').innerHTML=sm('All-time rounds',(D.ghin||[]).length,'all')+'<div class="smsep"></div>'+sm('Rounds in criteria',F.G.length)+sm('18 hole rounds in criteria',F.G.filter(r=>r.type==18).length)+sm('Rounds with stats in criteria<i>*stat tracking begins in 6/26</i>',RS.length)+sm('Holes with stats in criteria · '+parTxt,F.H.length);
  const bits=[];if(ST.courses.size)bits.push(ST.courses.size+' course'+(ST.courses.size>1?'s':''));if(ST.tees.size)bits.push([...ST.tees].join('/')+' tees');if(ST.yds.size)bits.push([...ST.yds].join(', ')+' yds');if(ST.rts.size)bits.push('rating '+[...ST.rts].join(', '));
  if($('#lastN').value)bits.push('last '+$('#lastN').value+' rounds'+(ST.courses.size?' (selected courses)':'')); if($('#from').value||$('#to').value)bits.push(($('#from').value||'…')+' → '+($('#to').value||'…'));bits.push(parTxt);if(!ST.inc9)bits.push('18-hole only');
  $('#fsum').textContent=bits.join(' · ');
