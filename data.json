@@ -287,19 +287,6 @@
    "toPar": null
   },
   {
-   "date": "2026-06-20",
-   "course": "Jacksonville Beach Golf Club",
-   "tees": "Blue",
-   "type": 18,
-   "score": 53,
-   "differential": 6.1,
-   "id": null,
-   "rating": null,
-   "teeYards": null,
-   "par": 71,
-   "toPar": -18
-  },
-  {
    "date": "2026-06-17",
    "course": "Jacksonville Beach Golf Club",
    "tees": "Blue",
@@ -3082,7 +3069,7 @@
    "toPar": 31
   }
  ],
- "generated": "2026-10-15T21:55",
+ "generated": "2026-10-15T21:59",
  "rounds": [
   {
    "date": "2026-06-25",

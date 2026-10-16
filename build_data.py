@@ -3,6 +3,9 @@
 import sys, os, json, openpyxl, datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from pars import par_for
+# Rounds Hunter says were logged incorrectly: kept out of every chart. Key = (YYYY-MM-DD, course substring, lowercase)
+EXCLUDED_ROUNDS = [('2026-06-20', 'jacksonville beach')]  # score 53 posted as 18 holes
+def excluded(date, course): return any(date == dt and c in (course or '').lower() for dt, c in EXCLUDED_ROUNDS)
 src = sys.argv[1] if len(sys.argv) > 1 else '/workspace/hcp/Hunter_Handicap_Tracker_p1.xlsx'
 wb = openpyxl.load_workbook(src, data_only=False)
 def d(v): return v.strftime('%Y-%m-%d') if isinstance(v, (datetime.date, datetime.datetime)) else v
@@ -51,6 +54,9 @@ if 'GHIN Scores' in wb.sheetnames:
         tp = lr.get('toPar') if lr.get('toPar') is not None else ((sc - par) if par and sc else None)
         ghin.append(dict(date=d(r[0]), course=course(r[gx['Course']]), tees=tee(r[gx['Tees']]), type=hl, score=sc,
             differential=r[gx['Differential']], id=rid, rating=lr.get('rating'), teeYards=lr.get('teeYards'), par=par, toPar=tp))
+ghin = [g for g in ghin if not excluded(g['date'], g['course'])]
+rounds = [r for r in rounds if not excluded(r['date'], r['course'])]
+holes = [h for h in holes if not excluded(h['date'], h['course'])]
 out = dict(ghin=ghin, generated=datetime.datetime.now().isoformat(timespec='minutes'), rounds=rounds, holes=holes, handicap=hcp)
 json.dump(out, open('data.json', 'w'), indent=1)
 print(len(ghin), 'ghin', sum(g['toPar'] is not None for g in ghin), 'with toPar', len(rounds), 'rounds', len(holes), 'holes', len(hcp), 'hcp')
