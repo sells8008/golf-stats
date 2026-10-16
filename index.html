@@ -75,9 +75,9 @@ const STATS=[
  {id:'dbl',area:'Doubles / Triples',title:'Doubles or worse per round',kind:'roundCount',x:'Holes at double bogey or worse',val:r=>r.doubles!=null&&r.triplesPlus!=null?r.doubles+r.triplesPlus:null},
  {id:'tpl',area:'Doubles / Triples',title:'Triples or worse per round',kind:'roundCount',x:'Holes at triple bogey or worse',val:r=>r.triplesPlus},
  {id:'fwc',area:'Fairways',title:'Fairways hit per round (with avg GIR)',kind:'roundCount',x:'Fairways hit',val:r=>r.fwHit,extra:{label:'Avg GIR',val:r=>r.gir}},
- {id:'firsplit',area:'Fairways',title:'Avg to par per hole: fairway hit vs missed',kind:'holeSplit',x:'Fairway result',key:h=>h.fir==='Hit'?'Hit':h.fir==='Miss'?(h.fwMiss==='No Chance'?'No Chance':'Miss'):null,order:['Hit','Miss','No Chance'],labels:{'Miss':'Missed','No Chance':'No chance'},hideEmpty:true,note:'Par 3s have no fairway (NA).'},
+ {id:'firsplit',area:'Fairways',title:'Avg to par per hole: fairway hit vs missed',kind:'holeSplit',x:'Fairway result',key:h=>h.fir==='Hit'?'Hit':h.fir==='Miss'?(h.fwMiss==='No Chance'?'No Chance':'Miss'):null,order:['Hit','Miss','No Chance'],labels:{'Miss':'Missed','No Chance':'No chance'},hideEmpty:true,combinable:true,note:'Par 3s have no fairway (NA).'},
  {id:'girc',area:'Greens',title:'Greens in regulation per round',kind:'roundCount',x:'Greens hit',val:r=>r.gir},
- {id:'girsplit',area:'Greens',title:'Avg to par per hole: green hit / missed / no chance',kind:'holeSplit',x:'Green result',key:h=>h.gir==='Hit'?'Hit':h.gir==='Miss'?(h.grMiss==='No Chance'?'No Chance':'Miss'):null,order:['Hit','Miss','No Chance'],labels:{'Miss':'Missed','No Chance':'No chance'},hideEmpty:true},
+ {id:'girsplit',area:'Greens',title:'Avg to par per hole: green hit / missed / no chance',kind:'holeSplit',x:'Green result',key:h=>h.gir==='Hit'?'Hit':h.gir==='Miss'?(h.grMiss==='No Chance'?'No Chance':'Miss'):null,order:['Hit','Miss','No Chance'],labels:{'Miss':'Missed','No Chance':'No chance'},hideEmpty:true,combinable:true},
  {id:'putts',area:'Putting',title:'Putts per round',kind:'roundSeries',y:'Putts',val:r=>r.putts},
  {id:'p3',area:'Putting',title:'3-putts or worse per round',kind:'roundCount',x:'3-putts or worse',val:r=>r.threePutts},
  {id:'p1',area:'Putting',title:'1-putts per round',kind:'roundCount',x:'1-putts',val:r=>r.onePutts},
@@ -110,7 +110,7 @@ const ICON={'Doubles / Triples':'💥','Fairways':'🎯','Greens':'⛳','Putting
 // =========================================================
 let D,charts=[];const $=s=>document.querySelector(s);
 const LS=k=>JSON.parse(localStorage.getItem(k)||'null');const SS=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
-let areaSel=LS('golf_areas')||{all:true,on:[]};let buckets=LS('golf_buckets')||{};
+let combine=LS('golf_combine')||{};let areaSel=LS('golf_areas')||{all:true,on:[]};let buckets=LS('golf_buckets')||{};
 const AREA_ORDER=['Fairways','Greens','Putting','Up & Downs','Miss Direction','Doubles / Triples','Scoring','Handicap','Differential'];
 const aIdx=a=>{const i=AREA_ORDER.indexOf(a);return i<0?99:i};
 const AREAS=[...new Set(STATS.map(s=>s.area))].sort((a,b)=>aIdx(a)-aIdx(b));
@@ -241,6 +241,9 @@ function roundCount(s,F,c){
  d.querySelector('input').onchange=e=>{const v=parseB(e.target.value);if(v.length)buckets[s.id]=v;else delete buckets[s.id];SS('golf_buckets',buckets);render()};c.appendChild(d);
 }
 function holeSplit(s,F,c){
+ if(s.combinable){const tg=document.createElement('div');tg.className='chips';tg.style.margin='0 0 6px';const b=document.createElement('button');b.className='chip'+(combine[s.id]?' on':'');b.textContent='Combine misses';
+  b.title='Merge Missed and No chance into one Missed (all) category';b.onclick=()=>{combine[s.id]=!combine[s.id];SS('golf_combine',combine);render()};tg.appendChild(b);c.appendChild(tg);
+  if(combine[s.id]){const k0=s.key;s={...s,key:h=>{const k=k0(h);return k==='Miss'||k==='No Chance'?'Missed (all)':k},order:['Hit','Missed (all)']}}}
  const H=F.H.filter(h=>s.key(h)!=null&&h.toPar!=null);
  if(!H.length)return empty(c,'No hole-level data for this stat in the current filters'+(!F.allPars&&F.pars.length==1&&F.pars[0]==3&&s.id.startsWith('f')?' (par 3s have no fairway).':'.'));
  const ORD=s.hideEmpty?s.order.filter(k=>H.some(h=>s.key(h)===k)):s.order;const LB=k=>(s.labels||{})[k]||LABEL[k]||k;s={...s,order:ORD};
