@@ -12,6 +12,7 @@ PARS = [
  ('park city gc', 72, None, None),
  ('soldier hollow', 72, None, None),
  ('riomar', 70, 36, 34),
+ ('danville golf club', 70, 35, 35),  # from GHIN hole pars, White 69.1/128 (10/23/2026)
  ('columbia c', 70, 35, 35),
  ('quail valley', 72, 36, 36),
  ('hyde park golf club', 72, 36, 36),
